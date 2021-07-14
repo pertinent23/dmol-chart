@@ -1,0 +1,162 @@
+:root{
+    --black: #000000;
+    --blue-1: #3D4DFF;
+    --blue-2: #99AFFF;
+    --blue-3: #061F58;
+    --blue-4: #3D489F /*rgba( 61, 72, 159 )*/;
+    --green-1: #3AFF73;
+    --purple-1: #1D058A;
+    --purple-2: #4837B1;
+    --orange-1: #C32C1E;
+    --light-1: #F0F5F8;
+}
+
+::-webkit-scrollbar{
+    width: 6px;
+    height: 6px;
+    background-color: transparent;
+}
+  
+::-webkit-scrollbar-thumb{
+    background-color: var( --black );
+}
+
+@font-face{
+    src: url( "./../police/Aaargh.ttf" );
+    font-family: aaargh;
+}
+
+#__next{
+    display: block;
+    width: 100%;
+}
+
+*{
+    font-family: aaargh;
+    color: var( --text );
+    position: relative;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100%;
+}
+
+.loader{
+    position: fixed;
+    display: flex;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    background-color: rgba( 255, 255, 255, 0.7 );
+    -webkit-backdrop-filter: blur( 10px );
+    backdrop-filter: blur( 10px );
+}
+
+@keyframes rotate {
+    0%{
+        transform: rotate( 0deg );
+    }
+    100%{
+        transform: rotate( 360deg );
+    }
+}
+
+.loader .loader-item{
+    height: 150px;
+    width: 150px;
+    border: 6px solid var( --purple-2 );
+    border-top-color: transparent;
+    animation: rotate 1.5s ease-out 0s infinite;
+}
+
+.main-container{
+    display: none;
+    border-top: 7px solid #3D489F;
+}
+
+#menu{
+    background-color: #FFFFFF;
+    min-height: 60px;
+}
+
+#menu .content-menu-data{
+    flex: 1;
+}
+
+#menu .content-icon{
+    height: 60px;
+    width: 60px;
+    justify-content: center;
+    align-items: center;
+}
+
+#menu .content-icon img{
+    position: relative;
+    height: 50px;
+    width: 50px;
+    transform: scale( 1.5 );
+}
+
+#menu .content-name span{
+    font-weight: bold;
+    font-size: 1.2em;
+    color: var( --blue-3 );
+}
+
+#menu .content-name span a{
+    text-decoration: none;
+    color: var( --blue-3 );
+}
+
+#menu-action{
+    max-height: 45px;
+    border: 2px solid var( --blue-3 );
+    color: var( --blue-3 );
+    padding: 6px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 0.8em;
+}
+
+.button-type-1{
+    background-color: var( --black );
+    color: #FFFFFF;
+    padding: 8px 28px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.8em;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+}
+
+.button-type-2{
+    max-height: 45px;
+    border: 2px solid var( --black );
+    color: var( --black );
+    padding: 6px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: transparent;
+    font-size: 0.8em;
+}
+
+@media screen and ( min-width: 500px ) {
+    .loader .loader-item{
+        height: 300px;
+        width: 300px;
+    }
+}
