@@ -33,17 +33,17 @@ export function Nav( { date } ) {
 
 export function AddData() {
     return (
-        <div className="text-light container py-4">
+        <div className="text-light container py-4 px-1 px-md-3">
             <div className="part-title py-2"> Progression </div>
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="270" id="doughnut"></canvas>
+                        <canvas width="300" height="260" id="doughnut"></canvas>
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="270" id="polar"></canvas>
+                        <canvas width="300" height="260" id="polar"></canvas>
                     </div>
                 </div>
             </div>
@@ -51,12 +51,12 @@ export function AddData() {
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="270" id="bar"></canvas>
+                        <canvas width="300" height="260" id="bar"></canvas>
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="270" id="point"></canvas>
+                        <canvas width="300" height="260" id="point"></canvas>
                     </div>
                 </div>
             </div>

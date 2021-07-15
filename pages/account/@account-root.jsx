@@ -49,12 +49,21 @@ export default function AccountRoot( { page, children } ) {
             </Head>
             <div className="container-fluid d-flex justify-content-center align-items-center account-body p-0">
                 <div className="row d-block d-md-flex flex-row w-100 main-row">
-                    <div className="col col-md-5 col-lg-4 menu-container overflow-hidden px-0 pt-md-3 d-flex h-100 justify-content-center justify-content-md-start flex-column">
+                    <div className="col col-md-5 col-lg-4 menu-container overflow-hidden px-0 pt-2 pt-md-3 d-flex h-100 justify-content-center justify-content-md-start flex-column">
                         <div className="menu-brand text-light d-flex justify-content-center align-items-center">
                             <div className="menu-icon">
                                 <img src="/img/solar.svg" alt="solar-icon"/>
                             </div>
                             <div className="menu-name pl-3"> { TITLE } </div>
+                        </div>
+                        <div className="user-container d-flex justify-content-between align-items-center mx-3 px-3 mt-2 shadow">
+                            <div className="user-icon">
+                                <img src="/img/user/user1.svg" alt="user" className="img" />
+                            </div>
+                            <div className="user-name px-3"> fr@cnkkk pertinent </div>
+                            <div className="user-action">
+                                <img src="/img/menu/chevron-down.svg" alt="user-action" className="img" />
+                            </div>
                         </div>
                         <div className="menu-small d-flex d-md-none justify-content-between align-items-center py-3 pt-4">
                             <div className="name pl-3"> Menu </div>

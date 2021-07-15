@@ -21,6 +21,43 @@
     font-weight: 600;
 }
 
+.user-container{
+    height: 60px;
+    background-color: var( --light-dark-2 );
+    border-radius: 7px;
+}
+
+.user-container img{
+    height: 40px;
+    width: 40px;
+}
+
+.user-container .user-name{
+    display: flex;
+    justify-content: center;
+    font-size: 0.9em;
+    letter-spacing: 0.13em;
+    color: #999999;
+    font-weight: 600;
+}
+
+.user-container .user-action{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    background-color: var( --dark );
+    cursor: pointer;
+}
+
+.user-container .user-action img{
+    max-width: 60%;
+    max-height: 60%;
+    cursor: pointer;
+}
+
 .menu-container .menu-small .name{
     color: #FFFFFF;
     font-weight: 600;
