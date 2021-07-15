@@ -1,4 +1,4 @@
-import Root from "./routes/@root";
+import Root from "./@root";
 import App from "next/app";
 import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -25,9 +25,6 @@ function MyApp( { Component, pageProps } ) {
             <Root page={ Component.page }>
                 <Component { ...pageProps } />
             </Root>
-            { Component.scripts ? Component.scripts.map( ( url ) => (
-                <script src={ url } key={ url }></script>
-            ) ) : "" }
         </Fragment>
     );
 };

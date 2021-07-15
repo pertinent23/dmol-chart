@@ -6,10 +6,7 @@ export const page = 'home';
 export default function Home () {
     return (
         <Fragment>
-            <Head>
-                
-            </Head>
-            <div> index </div>
+            <a href="/account/add-data/"></a>
         </Fragment>
     );
 };

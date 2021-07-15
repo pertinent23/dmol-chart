@@ -2,8 +2,8 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import { element, string } from 'prop-types';
 
-export const TITLE = 'GreatNet Simulator';
-export default function Root( { children, page } ) {
+export const TITLE = 'Solar Tracking';
+export default function Root( { children } ) {
     return (
         <Fragment>
             <Head>
@@ -18,10 +18,8 @@ export default function Root( { children, page } ) {
                 <script src="/libs/popper.min.js"></script>
                 <script src="/libs/digital-v2.0.0.min.js"></script>
             </Head>
-            <div className="container-fluid main-container p-0">
-                <div className="container-fuild part content-part d-flex flex-column">
-                    { children }
-                </div>
+            <div className="container-fluid p-0 main-container">
+                { children }
             </div>
             <script src="/libs/bootstrap.bundle.min.js"></script>
         </Fragment>

@@ -1,0 +1,234 @@
+
+
+.menu-container{
+    background-color: var( --dark );
+    display: block;
+    border-top: 5px solid var( --yellow );
+}
+
+.menu-container .menu-brand{
+    height: 65px;
+}
+
+.menu-container .menu-icon img{
+    height: 40px;
+    width: 40px;
+}
+
+.menu-container .menu-name{
+    font-size: 1.1em;
+    letter-spacing: 0.13em;
+    font-weight: 600;
+}
+
+.menu-container .menu-small .name{
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.1em;
+    letter-spacing: 0.15em;
+}
+
+.menu-container .menu-small .menu-action{
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.menu-container .menu-small .menu-action .items{
+    position: relative;
+    display: block;
+    height: 3px;
+    width: 60%;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.menu-container .menu-small .close-s .items{
+    position: absolute;
+    display: block;
+    height: 3px;
+    width: 50%;
+    transform: rotate( 45deg );
+    border-radius: 3px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.menu-container .menu-small .close-s .item1{
+    transform: rotate( -45deg );
+}
+
+.menu-container .menu-data{
+    background-color: var( --light-dark-2 );
+    border-radius: 5px;
+}
+
+.menu-data .menu-item-name a{
+    font-size: 0.85em;
+    color: #999999 !important;
+    font-weight: 600;
+}
+
+.menu-data .menu-item-icon img{
+    height: 25px;
+    width: 25px;
+}
+
+.menu-data .menu-item-name a span{
+    height: 40px;
+    border-radius: 40px;
+}
+
+.menu-data a{
+    text-decoration: none !important;
+}
+
+.menu-data .active .menu-item-name a{
+    color: var( --yellow ) !important;
+}
+
+.menu-data .active .menu-item-name a span{
+    background-color: var( --light-dark );
+}
+
+.part-title{
+    font-weight: 600;
+    letter-spacing: 0.17em;
+    font-size: 1.3em;
+    color: #999999;
+}
+
+.content-chart{
+    background-color: var( --dark );
+    border-radius: 8px;
+}
+
+.content-chart canvas{
+    margin: 0 auto;
+}
+
+.content-save{
+    flex-wrap: wrap;
+}
+
+.content-save .save{
+    background-color: var( --dark );
+    border-radius: 5px;
+}
+
+.content-save .save .data{
+    font-size: 1.3em;
+    color: var( --orange );
+    font-weight: 600;
+}
+
+.content-save .save .name{
+    font-size: 1.1em;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.content-nav{
+    border-bottom: 1px solid var( --dark );
+}
+
+.nav{
+    display: block;
+    overflow: auto;
+    position: relative;
+    white-space: nowrap;
+}
+
+.content-nav .date img{
+    height: 25px;
+    width: 25px;
+}
+
+.content-nav .date .date-content{
+    font-size: 0.85em;
+    color: #999999;
+    font-weight: 600;
+    left: 0.13em;
+}
+
+.nav-brand{
+    display: block;
+    color: var( --orange );
+    font-size: 1.3em;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.nav .nav-item{
+    display: inline-block;
+    align-items: center;
+    color: #999999;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.12em;
+}
+
+.nav .active{
+    color: var( --orange );
+    border-bottom: 2px solid var( --orange );
+}
+
+@media screen and ( min-width: 768px ) {
+    .main-container{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .menu-container .menu-brand{
+        height: 75px;
+    }
+
+    .menu-container .menu-name{
+        font-size: 1.3em;
+    }
+
+    .menu-data .menu-item-icon img{
+        height: 35px;
+        width: 35px;
+    }
+
+    .menu-container .menu-icon img{
+        height: 50px;
+        width: 50px;
+    }
+
+    .content-menu-data{
+        flex: 1;
+    }
+
+    .account-body{
+        height: 100%;
+    }
+
+    .account-body > .row{
+        height: 100%;
+    }
+
+    .col-body{
+        height: 100%;
+    }
+
+    .content-body{
+        height: 100%;
+    }
+
+    .content-nav .date img{
+        height: 35px;
+        width: 35px;
+    }
+    
+    .content-nav .date .date-content{
+        font-size: 1.1em;
+    }
+}
