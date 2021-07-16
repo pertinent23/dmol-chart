@@ -60,6 +60,18 @@ export function AddData() {
                     </div>
                 </div>
             </div>
+            <div className="row d-flex flex-column flex-lg-row py-3">
+                <div className="col mx-lg-1 py-2">
+                    <div className="content-chart shadow p-3">
+                        <canvas width="300" height="260" id="circle"></canvas>
+                    </div>
+                </div>
+                <div className="col-12 col-lg-6 mx-lg-1 py-2">
+                    <div className="content-chart shadow p-3">
+                        <canvas width="300" height="260" id="hbar"></canvas>
+                    </div>
+                </div>
+            </div>
             <div className="part-title py-2"> Enregistrment </div>
             <div className="content-save container-fluid d-flex justify-content-center py-3">
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">

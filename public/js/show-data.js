@@ -30,7 +30,10 @@ const Utils = {
                     datasets: [ {
                         data: data,
                         backgroundColor: [ Colors.background, Colors.gradient( context ) ],
-                        borderColor: "transparent",
+                        borderColor: Colors.dark,
+                        borderWidth: 5,
+                        borderRadius: 10,
+                        borderSkipped: false,
                     } ]
                 },
                 options: {
@@ -59,7 +62,9 @@ const Utils = {
                         data: data,
                         backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
-                        borderWidth: 3
+                        borderWidth: 3,
+                        borderRadius: 10,
+                        borderSkipped: false,
                     } ],
                     labels: data,
                 },
@@ -74,7 +79,7 @@ const Utils = {
                         },
                         title: {
                             display: true,
-                            text: 'Polar',
+                            text: 'Diagramme polaire',
                             color: Colors.text
                         }
                     }
@@ -85,7 +90,7 @@ const Utils = {
             config
         );
     },
-    showBarGraph( canvas, data ) {
+    showBarGraph( canvas, data, axis ) {
         const 
             context = this.getContext( canvas ),
             config = {
@@ -95,11 +100,14 @@ const Utils = {
                         data: data,
                         backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
-                        borderWidth: 3
+                        borderWidth: 3,
+                        borderRadius: 10,
+                        borderSkipped: false,
                     } ],
                     labels: data,
                 },
                 options: {
+                    indexAxis: axis || 'x',
                     responsive: false,
                     plugins: {
                         legend: {
@@ -107,7 +115,7 @@ const Utils = {
                         },
                         title: {
                             display: true,
-                            text: 'bar',
+                            text: 'Diagramme en batton',
                             color: Colors.text
                         }
                     }
@@ -128,7 +136,9 @@ const Utils = {
                         data: data,
                         backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
-                        fill: true
+                        fill: true,
+                        borderRadius: 10,
+                        borderSkipped: false,
                     } ],
                     labels: data,
                 },
@@ -155,7 +165,41 @@ const Utils = {
             context, 
             config
         );
-    }
+    },
+    showPieGraph( canvas, data ) {
+        const 
+            context = this.getContext( canvas ),
+            config = {
+                type: 'pie',
+                data: {
+                    datasets: [ {
+                        data: data,
+                        backgroundColor: Colors.gradient( context ),
+                        borderColor: Colors.dark,
+                        borderWidth: 3,
+                        borderRadius: 10,
+                        borderSkipped: false,
+                    } ],
+                    labels: data,
+                },
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Diagramme circulaire'
+                        }
+                    }
+                },
+            };
+        return new Chart(
+            context, 
+            config
+        );
+    },
 };
 
 window.logData = function ( data ) {
@@ -164,11 +208,15 @@ window.logData = function ( data ) {
             doughnut = $( '#doughnut' ),
             polar = $( '#polar' ),
             bar = $( '#bar' ),
-            point = $( '#point' );
-            Utils.showDoughnutGraph( doughnut, data.doughnut );
-            Utils.showPolarGraph( polar, data.polar );
-            Utils.showBarGraph( bar, data.bar );
-            Utils.showPointGraph( point, data.point );
+            hbar = $( '#hbar' ),
+            point = $( '#point' ),
+            radar = $( '#circle' );
+                Utils.showDoughnutGraph( doughnut, data.doughnut );
+                Utils.showPolarGraph( polar, data.polar );
+                Utils.showBarGraph( bar, data.bar );
+                Utils.showBarGraph( hbar, data.bar, 'y' );
+                Utils.showPointGraph( point, data.point );
+                Utils.showPieGraph( radar, data.point );
         return this;
     } );  
 };
