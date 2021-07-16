@@ -33,7 +33,7 @@ export function Nav( { date } ) {
 
 export function AddData() {
     return (
-        <div className="text-light container py-4 px-1 px-md-3">
+        <div className="text-light container-fluid py-4 px-3 px-md-3">
             <div className="part-title py-2"> Progression </div>
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">

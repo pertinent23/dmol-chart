@@ -7,9 +7,12 @@ const Colors = {
     text: "#999999",
     dark: "rgba( 19, 21, 27, 1 )",
     background: "rgba( 33, 34, 45, 1 )",
-    orangeColor() {
-        this.index -= 0.1;
-        return `rgba( 247, 147, 26, ${ this.index })`;
+    gradient( context ) {
+        const 
+            gradient = context.createLinearGradient( 0, 0, 200, 200 );
+                gradient.addColorStop( 0.3, Colors.yellow );
+                gradient.addColorStop( 0.7, Colors.orange );
+        return gradient;
     }
 };
 const Utils = {
@@ -26,8 +29,8 @@ const Utils = {
                     max: 250,
                     datasets: [ {
                         data: data,
-                        backgroundColor: [ Colors.background, Colors.orange ],
-                        borderColor: "transparent"
+                        backgroundColor: [ Colors.background, Colors.gradient( context ) ],
+                        borderColor: "transparent",
                     } ]
                 },
                 options: {
@@ -54,7 +57,7 @@ const Utils = {
                 data: {
                     datasets: [ {
                         data: data,
-                        backgroundColor: Colors.orange,
+                        backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
                         borderWidth: 3
                     } ],
@@ -90,7 +93,7 @@ const Utils = {
                 data: {
                     datasets: [ {
                         data: data,
-                        backgroundColor: Colors.orange,
+                        backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
                         borderWidth: 3
                     } ],
@@ -123,7 +126,7 @@ const Utils = {
                 data: {
                     datasets: [ {
                         data: data,
-                        backgroundColor: Colors.orange,
+                        backgroundColor: Colors.gradient( context ),
                         borderColor: Colors.dark,
                         fill: true
                     } ],

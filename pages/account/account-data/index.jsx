@@ -5,14 +5,12 @@ import PageRoot from './../@account-root';
 function AddData() {
     return (
         <div className="text-light container py-4">
-            Test de data
-            <br /><br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br />
+            Account data
         </div>
     );
 };
 
-export const page = "add-data";
+export const page = "account-data";
 export default function Index() {
     return (
         <Fragment>

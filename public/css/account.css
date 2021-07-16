@@ -240,6 +240,10 @@
         width: 50px;
     }
 
+    .menu-container .menu-data{
+        border-bottom: 3px solid var( --yellow );
+    }
+
     .content-menu-data{
         flex: 1;
     }

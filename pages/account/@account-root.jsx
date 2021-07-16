@@ -99,7 +99,7 @@ export default function AccountRoot( { page, children } ) {
 export async function getServerSideProps() {
     return {
         props: {
-            data: { }
+            id: '1'
         }
     };
 };
