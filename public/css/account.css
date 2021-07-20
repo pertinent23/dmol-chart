@@ -21,6 +21,11 @@
     font-weight: 600;
 }
 
+.menu-container .menu-name a{
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
 .user-container{
     height: 60px;
     background-color: var( --light-dark-2 );
