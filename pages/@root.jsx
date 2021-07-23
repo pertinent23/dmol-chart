@@ -8,13 +8,13 @@ export default function Root( { children } ) {
         <Fragment>
             <Head>
                 <meta charSet="UTF-8" />
-                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="theme-color" content="#13151B"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="stylesheet" type="text/css" href="/libs/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="/css/main.css" />
                 <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
-                <link rel="icon" href="/img/icon.png" type="image/png" />
+                <link rel="icon" href="/img/solar.svg" type="image/png" />
                 <title> { TITLE } </title>
                 <script src="/libs/jquery-3.3.1.slim.min.js"></script>
                 <script src="/libs/popper.min.js"></script>

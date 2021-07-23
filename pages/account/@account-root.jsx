@@ -27,8 +27,8 @@ export function Item( { src, page, data, prev, link } ) {
 export function Menu( { page } ) {
     return (
         <Fragment>
-            <Item link="/account/show-data/day" src="/img/menu/bar-chart-line" data="Tableaux de données" prev="show-data" page={ page } />
-            <Item link="/account/add-data" src="/img/menu/clipboard-data" data="Ajouter des données" prev="add-data" page={ page } />
+            <Item link="/account/graphs/day" src="/img/menu/bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
+            <Item link="/account/show-data" src="/img/menu/clipboard-data" data="Tableaux de données" prev="show-data" page={ page } />
             <Item link="/account/account-data" src="/img/menu/admin" data="Mon compte" prev="account-data" page={ page } />
         </Fragment>
     );
@@ -40,8 +40,8 @@ export default function AccountRoot( { page, children } ) {
         state2 = 'd-flex d-md-flex',
         state3 = 'open-s',
         state4 = 'close-s',
-        [ open, setOpen ] = useState( state2 ),
-        [ type, setType ] = useState( state4 );
+        [ open, setOpen ] = useState( state1 ),
+        [ type, setType ] = useState( state3 );
     return (
         <Fragment>
             <Head>

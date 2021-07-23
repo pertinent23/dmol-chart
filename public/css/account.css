@@ -40,7 +40,7 @@
 .user-container .user-name{
     display: flex;
     justify-content: center;
-    font-size: 0.9em;
+    font-size: 0.85em;
     letter-spacing: 0.13em;
     color: #999999;
     font-weight: 600;

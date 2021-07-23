@@ -1,0 +1,134 @@
+.profile-container{
+    height: 300px;
+    border-radius: 6px;
+}
+
+.profile-container .upper{
+    height: 55%;
+    border-radius: 6px;
+    background-color: var( --dark );
+    background-image: url( './../../img/other/img1.jpg' );
+    background-size: cover;
+    background-position: -10%;
+    background-repeat: no-repeat;
+}
+
+.profile-container .upper::after{
+    content: " ";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient( 0deg, rgba( 0, 0, 0, 1 ), rgba( 0, 0, 0, 0.5 ) );
+    -webkit-backdrop-filter: blur( 2px );
+    backdrop-filter: blur( 2px );
+    z-index: 10;
+    border-radius: 6px;
+}
+
+.profile-container .upper .content-profil{
+    display: block;
+    position: relative;
+    border: 8px solid var( --light-dark-2 );
+    height: 230px;
+    width: 230px;
+    border-radius: 100%;
+    top: 50%;
+    background-color: var( --dark );
+    z-index: 20;
+}
+
+.profile-container .upper .content-profil img{
+    display: block;
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 100%;
+}
+
+.profile-container .upper .content-profil .uploader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: 25;
+    background-image: linear-gradient( 0deg, rgba( 0, 0, 0, 1 ), rgba( 0, 0, 0, 0.5 ) );
+    -webkit-backdrop-filter: blur( 2px );
+    backdrop-filter: blur( 2px );
+}
+
+.profile-container .upper .content-profil .uploader .content-icon{
+    position: absolute;
+    left: calc( 100% - 60px );
+    top: 70%;
+    background-color: var( --orange );
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    box-sizing: content-box;
+    border: 7px solid var( --light-dark-2 );
+    cursor: pointer;
+}
+
+.profile-container .upper .content-profil .uploader i{
+    font-size: 30px;
+}
+
+.user-item{
+    background-color: var( --dark );
+    border-radius: 6px;
+}
+
+.user-item .user-item-name{
+    font-size: 0.9em;
+    color: #888888;
+}
+
+.user-item .user-item-value{
+    font-size: 1.1em;
+    color: #BBBBBB;
+    letter-spacing: 0.10em;
+    font-weight: 600;
+}
+
+.user-item .user-item-value input{
+    background: none;
+    border: 2px solid var( --light-dark-2 );
+    outline: none;
+    height: 45px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    color: #BBBBBB;
+    letter-spacing: 0.10em;
+    font-weight: 600;
+}
+
+#update-password{
+    background-color: var( --orange );
+    color: var( --dark );
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+#update-all{
+    background-color: var( --dark );
+    color: var( --orange );
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+@media screen and ( min-width: 768px ) {
+    .profile-container .upper{
+        height: 70%;
+    }
+
+    .profile-container .upper .content-profil{
+        width: 310px;
+        height: 310px;
+        top: 55%;
+    }
+}

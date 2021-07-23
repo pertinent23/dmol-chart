@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import { Fragment, useEffect } from 'react';
-import PageRoot from './../@account-root';
+import PageRoot from '../@account-root';
 
 export function Item( { id, date, text } ) {
     return (
-        <a className={ "nav-item px-4 py-3 ".concat( id === date ? 'active': '' ) } href={ "/account/show-data/".concat( id ) }> { text } </a>
+        <a className={ "nav-item px-4 py-3 ".concat( id === date ? 'active': '' ) } href={ "/account/graphs/".concat( id ) }> { text } </a>
     );
 };
 
@@ -91,10 +91,12 @@ export function AddData() {
     );
 };
 
-export const page = "show-data";
+export const page = "graphs";
 export default function Index( { date, data } ) {
     useEffect( () => {
-        window.logData( data );
+        window.Digital( function () {
+            window.logData( data );
+        } );
     } );
     return (
         <Fragment>
