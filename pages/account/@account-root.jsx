@@ -4,7 +4,6 @@ import { Fragment, useState } from 'react';
 import { TITLE } from './../@root';
 
 export function Item( { src, page, data, prev, link } ) {
-    console.log( "bi bi-".concat( src ).concat( " " ).concat( page === prev ? 'active' : '' ) )
     return (
         <div className={
             "menu-item d-flex justify-content-between align-items-center w-100 px-2 px-md-4 my-3 my-md-2 mb-md-4 ".concat(

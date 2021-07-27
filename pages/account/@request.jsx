@@ -4,14 +4,14 @@ export default async function getUserData() {
     return {
         username: '@test',
         password: '',
-        email: null,
-        first_name: null,
-        last_name: null,
-        birth: null,
-        adress: null,
+        email: '',
+        first_name: '',
+        last_name: '',
+        birth: '',
+        adress: '',
         profil: '/img/user/user1.svg',
-        city: null,
-        about: null,
+        city: '',
+        about: '',
         role: 'admin'
     };
 };
