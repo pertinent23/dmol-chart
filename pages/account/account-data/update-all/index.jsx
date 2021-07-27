@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Fragment, useState } from 'react';
 import PageRoot from './../../@account-root';
+import getUserData from './../../@request';
 
 function AddData( { userdata } ) {
     const 
@@ -94,7 +95,7 @@ export const page = "account-data";
 export default function Index( { user } ) {
     return (
         <Fragment>
-            <PageRoot page={ page }>
+            <PageRoot page={ page } userdata={ user }>
                 <AddData userdata={ user } />
             </PageRoot>
         </Fragment>
@@ -102,20 +103,10 @@ export default function Index( { user } ) {
 };
 
 export async function getServerSideProps() {
+    const user = await getUserData();
     return {
         props: {
-            user: {
-                username: '',
-                password: '',
-                email: '',
-                first_name: '',
-                last_name: '',
-                birth: '',
-                adress: '',
-                profil: '/img/user/user1.svg',
-                city: '',
-                about: ''
-            }
+            user
         }
     };
 };

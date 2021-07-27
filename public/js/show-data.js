@@ -222,4 +222,10 @@
             return this;
         } );  
     };
+
+    Digital( document ).ready( function () {
+        const 
+            data = window.Digital.allData;
+        return window.logData( data );
+    } );
 } )( window );

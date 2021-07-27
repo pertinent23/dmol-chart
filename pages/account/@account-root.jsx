@@ -34,7 +34,7 @@ export function Menu( { page } ) {
     );
 };
 
-export default function AccountRoot( { page, children } ) {
+export default function AccountRoot( { page, children, userdata } ) {
     const 
         state1 = 'd-none d-md-flex',
         state2 = 'd-flex d-md-flex',
@@ -62,9 +62,9 @@ export default function AccountRoot( { page, children } ) {
                         </div>
                         <div className="user-container d-flex justify-content-between align-items-center mx-3 px-3 mt-2 shadow">
                             <div className="user-icon">
-                                <img src="/img/user/user1.svg" alt="user" className="img" />
+                                <img src={ userdata.profil } alt="user" className="img" />
                             </div>
-                            <div className="user-name px-3"> fr@cnkkk pertinent </div>
+                            <div className="user-name px-3"> { userdata.username } </div>
                             <div className="user-action">
                                 <img src="/img/menu/chevron-down.svg" alt="user-action" className="img" />
                             </div>
@@ -102,8 +102,6 @@ export default function AccountRoot( { page, children } ) {
 
 export async function getServerSideProps() {
     return {
-        props: {
-            id: '1'
-        }
+        props: { }
     };
 };

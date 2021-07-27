@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Fragment, useEffect } from 'react';
 import PageRoot from '../@account-root';
+import getUserData from './../@request';
+import { DoughnutChart, PolarChart, VerticalBarChart, HorizontalBarChart, LineChart, PieChart } from './@graphs';
 
 export function Item( { id, date, text } ) {
     return (
@@ -31,19 +33,19 @@ export function Nav( { date } ) {
     );
 };
 
-export function AddData() {
+export function AddData( { chartData } ) {
     return (
         <div className="text-light container-fluid py-4 px-3 px-md-3">
             <div className="part-title py-2"> Progression </div>
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="doughnut"></canvas>
+                        <DoughnutChart data={ chartData.doughnut } />
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="polar"></canvas>
+                        <PolarChart data={ chartData.polar } />
                     </div>
                 </div>
             </div>
@@ -51,24 +53,24 @@ export function AddData() {
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="bar"></canvas>
+                        <VerticalBarChart data={ chartData.bar } />
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="point"></canvas>
+                        <LineChart data={ chartData.point } />
                     </div>
                 </div>
             </div>
             <div className="row d-flex flex-column flex-lg-row py-3">
                 <div className="col mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="circle"></canvas>
-                    </div>
+                        <PieChart data={ chartData.point } />
+                    </div> 
                 </div>
                 <div className="col-12 col-lg-6 mx-lg-1 py-2">
                     <div className="content-chart shadow p-3">
-                        <canvas width="300" height="260" id="hbar"></canvas>
+                        <HorizontalBarChart data={ chartData.bar } />
                     </div>
                 </div>
             </div>
@@ -92,29 +94,25 @@ export function AddData() {
 };
 
 export const page = "graphs";
-export default function Index( { date, data } ) {
-    useEffect( () => {
-        window.Digital( function () {
-            window.logData( data );
-        } );
-    } );
+export default function Index( { date, data, user } ) {
     return (
         <Fragment>
             <Head>
                 <script src="/libs/chart.min.js"></script>
-                <script src="/js/show-data.js"></script>
             </Head>
-            <PageRoot page={ page }>
+            <PageRoot page={ page } userdata={ user }>
                 <Nav date={ date } />
-                <AddData />
+                <AddData chartData={ data } />
             </PageRoot>
         </Fragment>
     );
 };
 
 export async function getServerSideProps( context ) {
+    const user = await getUserData();
     return {
         props: {
+            user,
             date: context.query.date,
             data: {
                 doughnut: [ 30, 70 ],
