@@ -11,6 +11,7 @@ export default async function getUserData() {
         adress: null,
         profil: '/img/user/user1.svg',
         city: null,
-        about: null
+        about: null,
+        role: 'admin'
     };
 };

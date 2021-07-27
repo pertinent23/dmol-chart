@@ -15,6 +15,15 @@
     width: 40px;
 }
 
+.menu-item i{
+    font-size: 30px;
+    color: #888888;
+}
+
+.menu-item i.active{
+    color: var( --yellow );
+}
+
 .menu-container .menu-name{
     font-size: 1.1em;
     letter-spacing: 0.13em;
@@ -238,6 +247,10 @@
     .menu-data .menu-item-icon img{
         height: 35px;
         width: 35px;
+    }
+
+    .menu-item i{
+        font-size: 37px;
     }
 
     .menu-container .menu-icon img{

@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Fragment, useState } from 'react';
 
+const ContentData = {};
+
 function Input( { placeholder, type, name } ) {
     const 
         [ display, setDisplay ] = useState( 'd-none' ),
@@ -17,7 +19,8 @@ function Input( { placeholder, type, name } ) {
                 onInput={ function ( event ) {
                     const 
                         str = event.target.value;
-                            setP( str ? 'pl-5' : 'pl-3'  );
+                            ContentData[ event.target.name ] = str;
+                                setP( str ? 'pl-5' : 'pl-3'  );
                     return setDisplay( str ? 'd-block' : 'd-none' );
                 } }
             />
