@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Fragment, useState } from 'react';
 import PageRoot from './../../@account-root';
 import getUserData from './../../@request';
+import Image from 'next/image';
 
 function AddData( { userdata } ) {
     const 
@@ -39,7 +40,7 @@ function AddData( { userdata } ) {
                         <div className="upper container-fluid d-flex justify-content-center align-items-center">
                             <div className="content-profil d-flex justify-content-center align-items-center">
                                 <input type="file" id="file" name="profil" className="d-none" onChange={ onChange } />
-                                <img src={ image } alt="user-img" className="profil-img img d-block" />
+                                <Image layout="fill" src={ image } alt="user-img" className="profil-img img d-block" />
                                 <div className="uploader d-flex justify-content-center align-items-center">
                                     <label htmlFor="file" className="content-icon d-flex justify-content-center align-items-center">
                                         <i className="bi bi-camera-fill mt-1"></i>

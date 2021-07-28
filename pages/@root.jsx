@@ -16,14 +16,14 @@ export default function Root( { children } ) {
                 <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
                 <link rel="icon" href="/img/solar.svg" type="image/png" />
                 <title> { TITLE } </title>
-                <script src="/libs/jquery-3.3.1.slim.min.js"></script>
-                <script src="/libs/popper.min.js"></script>
-                <script src="/libs/digital-v2.0.0.min.js"></script>
+                <script async src="/libs/jquery-3.3.1.slim.min.js"></script>
+                <script async src="/libs/popper.min.js"></script>
+                <script async src="/libs/digital-v2.0.0.min.js"></script>
             </Head>
             <div className="container-fluid p-0 main-container">
                 { children }
             </div>
-            <script src="/libs/bootstrap.bundle.min.js"></script>
+            <script async src="/libs/bootstrap.bundle.min.js"></script>
         </Fragment>
     );
 };

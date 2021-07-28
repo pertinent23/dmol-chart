@@ -1,12 +1,15 @@
-import Head from 'next/head';
-import { Fragment, useEffect } from 'react';
+import { Fragment } from 'react';
 import PageRoot from '../@account-root';
 import getUserData from './../@request';
+import Image from 'next/image';
+import Link from 'next/link';
 import { DoughnutChart, PolarChart, VerticalBarChart, HorizontalBarChart, LineChart, PieChart } from './@graphs';
 
 export function Item( { id, date, text } ) {
     return (
-        <a className={ "nav-item px-4 py-3 ".concat( id === date ? 'active': '' ) } href={ "/account/graphs/".concat( id ) }> { text } </a>
+        <Link href={ "/account/graphs/".concat( id ) }>
+            <a className={ "nav-item px-4 py-3 ".concat( id === date ? 'active': '' ) }> { text } </a>
+        </Link>
     );
 };
 
@@ -18,7 +21,9 @@ export function Nav( { date } ) {
             <div className="container-fluid px-0 d-flex justify-content-between align-items-center">
                 <div className="date d-flex justify-content-center align-items-center mr-4">
                     <div className="data-icon">
-                        <img src="/img/menu/calendar3.svg" alt="nav-icon" className="img" />
+                        <div className="data-icon-item mb-1">
+                            <Image layout="fill" src="/img/menu/calendar3.svg" alt="nav-icon" className="img" />
+                        </div>
                     </div>
                     <div className="date-content pl-3"> { obj.getDate() }/{ obj.getMonth() + 1 }/{ obj.getFullYear() } </div>
                 </div>
@@ -78,7 +83,7 @@ export function AddData( { chartData } ) {
             <div className="content-save container-fluid d-flex justify-content-center py-3">
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
                     <div className="data"> 5 </div>
-                    <div className="name"> Aujoud'hui </div>
+                    <div className="name"> Aujoud &apos hui </div>
                 </div>
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
                     <div className="data"> 15 </div>
@@ -97,9 +102,6 @@ export const page = "graphs";
 export default function Index( { date, data, user } ) {
     return (
         <Fragment>
-            <Head>
-                <script src="/libs/chart.min.js"></script>
-            </Head>
             <PageRoot page={ page } userdata={ user }>
                 <Nav date={ date } />
                 <AddData chartData={ data } />

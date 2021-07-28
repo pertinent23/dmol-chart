@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import PageRoot from './../../@account-root';
 import getUserData from './../../@request';
+import Image from 'next/image';
 
 function AddData( { userdata } ) {
     return (
@@ -14,7 +15,7 @@ function AddData( { userdata } ) {
                     <div className="profile-container d-block">
                         <div className="upper container-fluid d-flex justify-content-center align-items-center">
                             <div className="content-profil d-flex justify-content-center align-items-center">
-                                <img src={ userdata.profil } alt="user-img" className="user-img" />
+                                <Image layout="fill" src={ userdata.profil } alt="user-img" className="user-img" />
                             </div>
                         </div>
                     </div>

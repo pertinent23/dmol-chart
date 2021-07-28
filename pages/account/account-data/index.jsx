@@ -2,6 +2,8 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import PageRoot from './../@account-root';
 import getUserData from './../@request';
+import Image from 'next/image';
+import Link from 'next/link';
 
 function AddData( { userdata } ) {
     return (
@@ -14,7 +16,7 @@ function AddData( { userdata } ) {
                     <div className="profile-container d-block">
                         <div className="upper container-fluid d-flex justify-content-center align-items-center">
                             <div className="content-profil d-flex justify-content-center align-items-center">
-                                <img src={ userdata.profil } alt="user-img" className="user-img" />
+                                <Image layout="fill" src={ userdata.profil } alt="user-img" className="user-img" />
                             </div>
                         </div>
                     </div>
@@ -71,8 +73,12 @@ function AddData( { userdata } ) {
                 </div>
                 <div className="content-button container-fluid my-2">
                     <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center py-2">
-                        <a href="/account/account-data/update-password/" className="btn py-3 px-4 mr-md-3 mb-4 mb-md-0" id="update-password"> Modifier le mot de passe </a>
-                        <a href="/account/account-data/update-all/" className="btn py-3 px-4" id="update-all"> Modifier vos informations </a>
+                        <Link href="/account/account-data/update-password/">
+                            <span className="btn py-3 px-4 mr-md-3 mb-4 mb-md-0" id="update-password"> Modifier le mot de passe </span>
+                        </Link>
+                        <Link href="/account/account-data/update-all/">
+                            <span className="btn py-3 px-4" id="update-all"> Modifier vos informations </span>
+                        </Link>
                     </div>
                 </div>
             </div>

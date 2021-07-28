@@ -6,6 +6,7 @@
     transition-duration: 0.3s;
 }
 
+.form .form-icon-item,
 .form img{
     height: 50px;
     width: 50px;

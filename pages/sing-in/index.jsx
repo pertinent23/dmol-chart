@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { Fragment, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const ContentData = {};
 
@@ -37,7 +39,9 @@ function AddData() {
             <div className="form d-flex flex-column justify-content-center align-items-center container-fluid pt-5 px-2">
                 <div className="form-head d-flex flex-column container-fluid">
                     <div className="form-icon d-flex align-items-center justify-content-center container-fluid">
-                        <img src="/img/solar.svg" alt="icon" className="img d-block position-relative" />
+                        <div className="form-icon-item">
+                            <Image layout="fill" src="/img/solar.svg" alt="icon" className="img d-block position-relative" />
+                        </div>
                     </div>
                     <div className="form-name text-center container-fluid py-5">
                         <span className="text-center"> Connection </span>
@@ -56,12 +60,16 @@ function AddData() {
                         </div>
                         <Input placeholder="Mot de passe: " type="password" name="password" />
                     </div>
-                    <div className="form-buttons d-flex justify-content-between align-items-center py-2 mt-5 mb-5">
-                        <a href="/sing-up" className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> inscription </a>
-                        <a className="btn py-2 px-4 second">
-                            Connection
-                            <i className="bi bi-arrow-right ml-3"></i>
-                        </a>
+                    <div className="form-buttons d-flex justify-content-between align-items-center py-2 pt-5 mt-5 mb-5">
+                        <Link href="/sing-up">
+                            <a className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> inscription </a>
+                        </Link>
+                        <Link href="">
+                            <a className="btn py-2 px-4 second">
+                                Connection
+                                <i className="bi bi-arrow-right ml-3"></i>
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>

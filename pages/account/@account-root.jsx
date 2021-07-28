@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Fragment, useState } from 'react';
 import { TITLE } from './../@root';
+import Image from 'next/image';
 
 export function Item( { src, page, data, prev, link } ) {
     return (
@@ -63,7 +64,9 @@ export default function AccountRoot( { page, children, userdata } ) {
                     <div className="col col-md-5 col-lg-4 col-lx-3 menu-container overflow-hidden px-0 pt-2 pt-md-3 d-flex h-100 justify-content-center justify-content-md-start flex-column">
                         <div className="menu-brand text-light d-flex justify-content-center align-items-center">
                             <div className="menu-icon">
-                                <img src="/img/solar.svg" alt="solar-icon"/>
+                                <div className="menu-icon-item">
+                                    <Image layout="fill" src="/img/solar.svg" alt="solar-icon"/>
+                                </div>
                             </div>
                             <div className="menu-name pl-3">
                                 <Link href="/">
@@ -72,12 +75,14 @@ export default function AccountRoot( { page, children, userdata } ) {
                             </div>
                         </div>
                         <div className="user-container d-flex justify-content-between align-items-center mx-3 px-3 mt-2 shadow">
-                            <div className="user-icon">
-                                <img src={ userdata.profil } alt="user" className="img" />
+                            <div className="user-icon" width="50" height="50">
+                                <div className="user-icon-item">
+                                    <Image layout="fill" src={ userdata.profil } alt="user" className="img" />
+                                </div>
                             </div>
                             <div className="user-name px-3"> { userdata.username } </div>
-                            <div className="user-action">
-                                <img src="/img/menu/chevron-down.svg" alt="user-action" className="img" />
+                            <div className="user-action d-flex justify-content-center align-items-center">
+                                <i className="bi bi-power"></i>
                             </div>
                         </div>
                         <div className="menu-small d-flex d-md-none justify-content-between align-items-center py-3 pt-4">
