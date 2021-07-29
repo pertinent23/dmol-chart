@@ -3,7 +3,10 @@ import Link from 'next/link';
 import { Fragment, useState } from 'react';
 import { TITLE } from './../@root';
 import Image from 'next/image';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
+const base64 = require( 'base-64' );
 export function Item( { src, page, data, prev, link } ) {
     return (
         <div className={
@@ -46,14 +49,29 @@ export function AdminMenu( { page } ) {
     );
 };
 
+export async function getProfil( link, setState ) {
+    const 
+        baseData = await fetch( link ),
+        url = URL.createObjectURL( await baseData.blob() );
+    return setState( url );
+};
+
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 export default function AccountRoot( { page, children, userdata } ) {
     const 
         state1 = 'd-none d-md-flex',
         state2 = 'd-flex d-md-flex',
         state3 = 'open-s',
         state4 = 'close-s',
+        [ profil, setProfil ] = useState( '/img/user/user1.svg' ),
         [ open, setOpen ] = useState( state1 ),
-        [ type, setType ] = useState( state3 );
+        [ type, setType ] = useState( state3 ),
+        [ , setCookie ] = useCookies( [ 'user' ] );
+        getProfil( userdata.profil, setProfil );
+        setCookie( 'user-data', JSON.stringify( userdata ), {
+            path: '/',
+            maxAge: 3600 * 24 * 5
+        } );
     return (
         <Fragment>
             <Head>
@@ -77,11 +95,26 @@ export default function AccountRoot( { page, children, userdata } ) {
                         <div className="user-container d-flex justify-content-between align-items-center mx-3 px-3 mt-2 shadow">
                             <div className="user-icon" width="50" height="50">
                                 <div className="user-icon-item">
-                                    <Image layout="fill" src={ userdata.profil } alt="user" className="img" />
+                                    <Image layout="fill" src={ profil } alt="user" className="img" />
                                 </div>
                             </div>
                             <div className="user-name px-3"> { userdata.username } </div>
-                            <div className="user-action d-flex justify-content-center align-items-center">
+                            <div className="user-action d-flex justify-content-center align-items-center" onClick={ async function () {
+                                const 
+                                    [ cookies ] = useCookies( [ 'user' ] ),
+                                    datas = cookies[ 'user-data' ],
+                                    { access_token } = datas;
+                                        try{
+                                            const 
+                                                auth = 'Bearer '.concat( access_token );
+                                                await axios.get( '/user/logout/', {
+                                                    mode: 'cors',
+                                                    headers: {
+                                                        Authorization: auth
+                                                    }
+                                                } );
+                                        } catch( e ) {}
+                            } }>
                                 <i className="bi bi-power"></i>
                             </div>
                         </div>

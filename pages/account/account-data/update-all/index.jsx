@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react';
 import PageRoot from './../../@account-root';
 import getUserData from './../../@request';
 import Image from 'next/image';
+import Cookies from 'cookie';
 
 function AddData( { userdata } ) {
     const 
@@ -117,8 +118,11 @@ export default function Index( { user } ) {
     );
 };
 
-export async function getServerSideProps() {
-    const user = await getUserData();
+export async function getServerSideProps( context ) {
+    const 
+        { data } = Cookies.parse( context.req.headers.cookie ),
+        { access_token } = JSON.parse( data ),
+        user = await getUserData( access_token, context.res );
     return {
         props: {
             user

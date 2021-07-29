@@ -3,6 +3,7 @@ import PageRoot from '../@account-root';
 import getUserData from './../@request';
 import Image from 'next/image';
 import Link from 'next/link';
+import Cookies from 'cookie';
 import { DoughnutChart, PolarChart, VerticalBarChart, HorizontalBarChart, LineChart, PieChart } from './@graphs';
 
 export function Item( { id, date, text } ) {
@@ -111,10 +112,13 @@ export default function Index( { date, data, user } ) {
 };
 
 export async function getServerSideProps( context ) {
-    const user = await getUserData();
+    const 
+        { data } = Cookies.parse( context.req.headers.cookie ),
+        { access_token } = JSON.parse( data ),
+        user = await getUserData( access_token, context.res );
     return {
         props: {
-            user,
+            user: user,
             date: context.query.date,
             data: {
                 doughnut: [ 30, 70 ],

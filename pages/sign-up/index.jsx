@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { Fragment, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+import axios from 'axios';
 
 const ContentData = {};
 
@@ -44,11 +45,17 @@ function AddData() {
                         </div>
                     </div>
                     <div className="form-name text-center container-fluid py-5">
-                        <span className="text-center"> Connection </span>
+                        <span className="text-center"> Inscription </span>
                     </div>
                 </div>
                 <div className="form-body d-flex flex-column align-items-center container-fluid py-3 px-0">
-                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3 mb-5">
+                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
+                        <div className="field-icon justify-content-center align-items-center mr-4">
+                            <i className="bi bi-file-earmark-text-fill"></i>
+                        </div>
+                        <Input placeholder="Nom d'utilisateur: " type="text" name="username" />
+                    </div>
+                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
                         <div className="field-icon justify-content-center align-items-center mr-4">
                             <i className="bi bi-envelope-open-fill"></i>
                         </div>
@@ -60,13 +67,27 @@ function AddData() {
                         </div>
                         <Input placeholder="Mot de passe: " type="password" name="password" />
                     </div>
-                    <div className="form-buttons d-flex justify-content-between align-items-center py-2 pt-5 mt-5 mb-5">
-                        <Link href="/sing-up">
-                            <a className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> inscription </a>
+                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
+                        <div className="field-icon justify-content-center align-items-center mr-4">
+                            <i className="bi bi-shield-lock"></i>
+                        </div>
+                        <Input placeholder="Mot de passe: " type="password" name="password2" />
+                    </div>
+                    <div className="form-buttons d-flex justify-content-between align-items-center py-2 mt-5 mb-5">
+                        <Link href="/sign-in">
+                            <a className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> Connection </a>
                         </Link>
-                        <Link href="">
-                            <a className="btn py-2 px-4 second">
-                                Connection
+                        <Link href="/sign-up">
+                            <a className="btn py-2 px-4 second" onClick={ async ( e ) => {
+                                const res = await axios.post( '/api/user/registration/', {
+                                    body: JSON.stringify( ContentData ),
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    }
+                                } );
+                                console.log( await res.text() );
+                            } }>
+                                Inscription 
                                 <i className="bi bi-arrow-right ml-3"></i>
                             </a>
                         </Link>
@@ -77,7 +98,7 @@ function AddData() {
     );
 };
 
-export const page = "sing-in";
+export const page = "sing-up";
 export default function Index() {
     return (
         <Fragment>

@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import PageRoot from '../@account-root';
 import getUserData from './../@request';
+import Cookies from 'cookie';
 
 function AddData() {
     return (
@@ -47,7 +48,7 @@ function AddData() {
 };
 
 export const page = "show-data";
-export default function Index( { user }) {
+export default function Index( { user } ) {
     return (
         <Fragment>
             <PageRoot page={ page } userdata={ user }>
@@ -57,8 +58,11 @@ export default function Index( { user }) {
     );
 };
 
-export async function getServerSideProps() {
-    const user = await getUserData();
+export async function getServerSideProps( context ) {
+    const 
+        { data } = Cookies.parse( context.req.headers.cookie ),
+        { access_token } = JSON.parse( data ),
+        user = await getUserData( access_token, context.res );
     return {
         props: {
             user
