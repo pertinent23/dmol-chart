@@ -4,9 +4,9 @@ import { Fragment, useState } from 'react';
 import { TITLE } from './../@root';
 import Image from 'next/image';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 
-const base64 = require( 'base-64' );
 export function Item( { src, page, data, prev, link } ) {
     return (
         <div className={
@@ -50,9 +50,18 @@ export function AdminMenu( { page } ) {
 };
 
 export async function getProfil( link, setState ) {
+    let url = null;
     const 
+        reader = new FileReader(),
         baseData = await fetch( link ),
-        url = URL.createObjectURL( await baseData.blob() );
+        blob = await baseData.blob();
+            await new Promise( function ( resole ) {
+                reader.onload = function ( event ) {
+                        url = event.target.result;
+                    return resole();
+                };
+                reader.readAsDataURL( blob );
+            } );
     return setState( url );
 };
 
@@ -63,11 +72,12 @@ export default function AccountRoot( { page, children, userdata } ) {
         state2 = 'd-flex d-md-flex',
         state3 = 'open-s',
         state4 = 'close-s',
+        router = useRouter(),
         [ profil, setProfil ] = useState( '/img/user/user1.svg' ),
         [ open, setOpen ] = useState( state1 ),
         [ type, setType ] = useState( state3 ),
-        [ , setCookie ] = useCookies( [ 'user' ] );
-        getProfil( userdata.profil, setProfil );
+        [ cookies, setCookie ] = useCookies( [ 'user' ] );
+        //getProfil( userdata.profil, setProfil );
         setCookie( 'user-data', JSON.stringify( userdata ), {
             path: '/',
             maxAge: 3600 * 24 * 5
@@ -101,7 +111,6 @@ export default function AccountRoot( { page, children, userdata } ) {
                             <div className="user-name px-3"> { userdata.username } </div>
                             <div className="user-action d-flex justify-content-center align-items-center" onClick={ async function () {
                                 const 
-                                    [ cookies ] = useCookies( [ 'user' ] ),
                                     datas = cookies[ 'user-data' ],
                                     { access_token } = datas;
                                         try{
@@ -114,6 +123,7 @@ export default function AccountRoot( { page, children, userdata } ) {
                                                     }
                                                 } );
                                         } catch( e ) {}
+                                return router.push( '/sign-in' );
                             } }>
                                 <i className="bi bi-power"></i>
                             </div>

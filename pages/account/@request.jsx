@@ -14,7 +14,7 @@ export default async function getUserData( key, res ) {
             data = request.data;
         return { 
             ...data,
-            profil: axios.defaults.urlImg.concat( data.profile_image ), 
+            profil: '/img/user/user1.svg',// axios.defaults.urlImg.concat( data.profile_image ), 
             about: data.about_me 
         };
     } catch( e ){
