@@ -4,7 +4,7 @@ import cookie from "react-cookie";
 export default async function getUserData( key, res ) {
     try{ 
         const 
-            auth = 'Bearer '.concat( key ),
+            auth = `Bearer ${ key }`,
             request = await axios.get( '/currentuser/', {
                 mode: 'cors',
                 headers: {

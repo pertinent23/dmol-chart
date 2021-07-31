@@ -4,19 +4,22 @@ import PageRoot from './../../@account-root';
 import getUserData from './../../@request';
 import Image from 'next/image';
 import Cookies from 'cookie';
+import axios from 'axios';
 
-function AddData( { userdata } ) {
+function AddData( { userdata, auth } ) {
     const 
         [ image, setImage ] = useState( userdata.profil ),
         [ username, setusername ] = useState( userdata.username ),
         [ email, setemail ] = useState( userdata.email ),
-        [ first_name, setfirst_name ] = useState( userdata.first_name ),
-        [ last_name, setlast_name ] = useState( userdata.last_name ),
-        [ birth, setbirth ] = useState( userdata.birth ),
-        [ adress, setadress ] = useState( userdata.adress ),
-        [ city, setcity ] = useState( userdata.city ),
-        fx = { setusername, setadress, setbirth, setcity, setemail, setfirst_name, setlast_name },
-        basedata = { image, username, email, first_name, last_name, birth, adress, city },
+        [ first_name, setfirst_name ] = useState( userdata.first_name || '' ),
+        [ last_name, setlast_name ] = useState( userdata.last_name || '' ),
+        [ birth, setbirth ] = useState( userdata.birth || '' ),
+        [ adress, setadress ] = useState( userdata.adress || '' ),
+        [ city, setcity ] = useState( userdata.city || '' ),
+        [ about, setabout ] = useState( userdata.about || '' ),
+        [ loader, setLoader ] = useState( 'd-none' ),
+        fx = { setusername, setadress, setbirth, setcity, setemail, setfirst_name, setlast_name, setabout },
+        basedata = { image, username, email, first_name, last_name, birth, adress, city, about, pk: useState.pk },
         onChange = event => {
             const 
                 file = event.target.files[ 0 ],
@@ -52,6 +55,12 @@ function AddData( { userdata } ) {
                     </div>
                 </div>
                 <div className="content-data d-block container-fluid mt-5 pt-md-5">
+                    <div className="user-item container-fluid d-flex flex-column align-items-center py-3 my-3">
+                        <div className="user-item-name container-fluid"> A propos de moi: </div>
+                        <div className="user-item-value pl-3 container-fluid pt-5 pb-2">
+                            <input type="text" placeholder="Az:" name="about" value={ about } className="container-fluid mb-2" onChange={ onChangeField } />
+                        </div>
+                    </div>
                     <div className="user-item container-fluid d-flex flex-column align-items-center py-3 my-3">
                         <div className="user-item-name container-fluid"> Pseudo: </div>
                         <div className="user-item-value pl-3 container-fluid pt-5 pb-2">
@@ -97,9 +106,28 @@ function AddData( { userdata } ) {
                 </div>
                 <div className="content-button container-fluid my-2">
                     <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center py-2">
-                        <a className="btn py-2 px-4" id="update-password" onClick={ function () {
-                            console.log( basedata );
-                        } }> Modifier </a>
+                        <a className="btn py-2 px-4 d-flex flex-row align-items-center" id="update-password" onClick={ function () {
+                            setLoader( "d-flex" );
+                            basedata.about_me = about;
+                            basedata.profil_image = image;
+                            basedata.pk = userdata.pk;
+                            const url = '/updateUser/' + encodeURIComponent( basedata.pk ) + '/';
+                            axios.put( url, basedata, {
+                                headers: {
+                                    Authorization: auth,
+                                    'Content-Type': 'application/json'
+                                }
+                            } ).then( function () {
+                                setLoader( 'd-none' );
+                            } ).catch( function () {
+                                setLoader( 'd-none' );
+                            } );
+                        } }>
+                            <div className={ "spinner-border text-light mr-3 ".concat( loader ) } role="status">
+                                <span className="sr-only"></span>
+                            </div> 
+                            Modifier 
+                        </a>
                     </div>
                 </div>
             </div>
@@ -108,11 +136,12 @@ function AddData( { userdata } ) {
 };
 
 export const page = "account-data";
-export default function Index( { user } ) {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Index( { user, auth } ) {
     return (
         <Fragment>
             <PageRoot page={ page } userdata={ user }>
-                <AddData userdata={ user } />
+                <AddData userdata={ user } auth={ auth } />
             </PageRoot>
         </Fragment>
     );
@@ -125,6 +154,7 @@ export async function getServerSideProps( context ) {
         user = await getUserData( access_token, context.res );
     return {
         props: {
+            auth: 'Bearer ' + access_token,
             user
         }
     };

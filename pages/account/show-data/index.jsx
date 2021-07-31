@@ -3,6 +3,8 @@ import { Fragment } from 'react';
 import PageRoot from '../@account-root';
 import getUserData from './../@request';
 import Cookies from 'cookie';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 function AddData() {
     return (
@@ -48,7 +50,13 @@ function AddData() {
 };
 
 export const page = "show-data";
-export default function Index( { user } ) {
+/** 
+    * @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props 
+    *
+*/
+export default function Index( { user, tables, auth } ) {
+    console.log( tables, auth )
+    const [ cook ] = useCookies( [ 'user' ] );
     return (
         <Fragment>
             <PageRoot page={ page } userdata={ user }>
@@ -62,9 +70,15 @@ export async function getServerSideProps( context ) {
     const 
         { data } = Cookies.parse( context.req.headers.cookie ),
         { access_token } = JSON.parse( data ),
-        user = await getUserData( access_token, context.res );
+        user = await getUserData( access_token, context.res ),
+        auth = `Bearer ${ access_token }`,
+        tables = await axios.get( "/listneworks​/", {
+            Authorization: auth
+        } );
     return {
         props: {
+            auth,
+            tables: tables.data,
             user
         }
     };
