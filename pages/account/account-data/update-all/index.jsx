@@ -5,9 +5,12 @@ import getUserData from './../../@request';
 import Image from 'next/image';
 import Cookies from 'cookie';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function AddData( { userdata, auth } ) {
-    const 
+    const
+        router = useRouter(), 
+        [ ufile, setFile ] = useState( null ),
         [ image, setImage ] = useState( userdata.profil ),
         [ username, setusername ] = useState( userdata.username ),
         [ email, setemail ] = useState( userdata.email ),
@@ -24,7 +27,8 @@ function AddData( { userdata, auth } ) {
             const 
                 file = event.target.files[ 0 ],
                 reader = new FileReader();
-                    reader.onload = ( e ) => setImage( e.target.result );
+                    setFile( file );
+                        reader.onload = ( e ) => setImage( e.target.result );
             return reader.readAsDataURL( file );
         },
         onChangeField = event => {
@@ -106,7 +110,7 @@ function AddData( { userdata, auth } ) {
                 </div>
                 <div className="content-button container-fluid my-2">
                     <div className="container d-flex flex-column flex-md-row justify-content-center align-items-center py-2">
-                        <a className="btn py-2 px-4 d-flex flex-row align-items-center" id="update-password" onClick={ function () {
+                        <a className="btn py-2 px-4 d-flex flex-row align-items-center" id="update-password" onClick={ async function () {
                             setLoader( "d-flex" );
                             basedata.about_me = about;
                             basedata.profil_image = image;
@@ -119,6 +123,7 @@ function AddData( { userdata, auth } ) {
                                 }
                             } ).then( function () {
                                 setLoader( 'd-none' );
+                                router.push( "/account/account-data" );
                             } ).catch( function () {
                                 setLoader( 'd-none' );
                             } );
