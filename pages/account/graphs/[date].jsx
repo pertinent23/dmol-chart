@@ -4,7 +4,215 @@ import getUserData from './../@request';
 import Image from 'next/image';
 import Link from 'next/link';
 import Cookies from 'cookie';
+import axios from 'axios';
 import { DoughnutChart, PolarChart, VerticalBarChart, HorizontalBarChart, LineChart, PieChart } from './@graphs';
+
+const Tools = {
+    list: [],
+    sorted: [],
+    date( text ) {
+        const 
+            obj = new Date( text );
+        return {
+            month: obj.getMonth() + 1,
+            day: obj.getDate(),
+            year: obj.getFullYear(),
+            hour: obj.getHours(),
+            isSameMonth( date ){
+                return this.s2 === date.s2;
+            },
+            isSameYear( date ) {
+                return this.year = date.year;
+            },
+            isSameHour( date ) {
+                return this.s4 === date.s4;
+            },
+            isSameDay( date ) {
+                return this.s3 === date.s3;
+            },
+            get s4(){
+                return `${this.day}/${this.month}/${this.year}/${this.hour}`;
+            },
+            get s3(){
+                return `${this.day}/${this.month}/${this.year}`;
+            },
+            get s2(){
+                return `${this.day}/${this.month}`;
+            }
+        }
+    },
+    push( data ) {
+        return this.list.push( {
+            date: this.date( data.created_at ),
+            value: data.data
+        } );
+    },
+    pushAll( list ) {
+        for( const item of list )
+            this.push( item ); 
+    },
+    sort() {
+        let     
+            current = '',
+            temp = [],
+            hour = [],
+            day = [],
+            month = [],
+            year = [];
+                for( const item of this.list ) {
+                    if ( !current ) {
+                        temp.date = item.date;
+                            current = item.date;
+                        temp.push( item );
+                    } else {
+                        if ( !item.date.isSameHour( current ) ) {
+                            temp.date = current;
+                                hour.push( temp );
+                            temp = [ ];
+                        }
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    }
+                }
+                if ( temp.length != 0 )
+                    hour.push( temp );
+                current = '';
+                temp = [ ];
+                for( const item of hour ) {
+                    if ( !current ) {
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    } else {
+                        if ( !item.date.isSameDay( current ) ) {
+                            temp.date = current;
+                                day.push( temp );
+                            temp = [ ];
+                        }
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    }
+                }
+                if ( temp.length != 0 )
+                    day.push( temp );
+                current = '';
+                temp = [ ];
+                for( const item of day ) {
+                    if ( !current ) {
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    } else {
+                        if ( !item.date.isSameMonth( current ) ) {
+                            temp.date = current;
+                                month.push( temp );
+                            temp = [ ];
+                        }
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    }
+                }
+                if ( temp.length != 0 )
+                    month.push( temp );
+                current = '';
+                temp = [ ];
+                for( const item of month ) {
+                    if ( !current ) {
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    } else {
+                        if ( !item.date.isSameYear( current ) ) {
+                            temp.date = current;
+                                year.push( temp );
+                            temp = [ ];
+                        }
+                        current = temp.date = item.date;
+                        temp.push( item );
+                    }
+                }
+                if ( temp.length != 0 )
+                    year.push( temp );
+            this.sorted = year;
+        return this;
+    }, 
+    analyseAll( nowAre, before ) {
+        let 
+            doughnut, polar = [], bar, point = [];
+            if ( before.length === 0 )
+                doughnut = [ 100, 0 ];
+            else {
+                let 
+                    part = before.length > nowAre.length ? ( nowAre.length * 100 ) / before.length : ( before.length * 100 ) / nowAre.length;
+                doughnut = [ part, 100 - part ];
+            }
+            bar = [];
+            nowAre.map( function ( val ) {
+                polar.push( val.length );
+                    bar.push( val.length );
+                point.push( val.length );  
+            } );
+        return {
+            doughnut: this.stabilyze( doughnut ),
+            polar: this.stabilyze( polar ),
+            bar: this.stabilyze( bar ),
+            point: this.stabilyze( point )
+        };
+    },
+    stabilyze( arr ) {
+        const 
+            max = Math.max.apply( Math, arr );
+        return arr.map( function ( value ) {
+            return Math.round( ( value * 100 ) / max );
+        } );
+    },
+    analyseLast( nowAre, before ) {
+        let 
+            doughnut, polar = [], bar, point = [];
+            if ( before.length === 0 )
+                doughnut = [ 100, 0 ];
+            else {
+                let 
+                    part = before.length > nowAre.length ? ( nowAre.length * 100 ) / before.length : ( before.length * 100 ) / nowAre.length;
+                doughnut = [ part, 100 - part ];
+            }
+            bar = [];
+            nowAre.map( function ( val ) {
+                polar.push( val.value );
+                    bar.push( val.value );
+                point.push( val.value );  
+            } );
+        return {
+            doughnut: this.stabilyze( doughnut ),
+            polar: this.stabilyze( polar ),
+            bar: this.stabilyze( bar ),
+            point: this.stabilyze( point )
+        };
+    },
+    getDataFor( type ) {
+        let 
+            data = this.sorted,
+            year = data.pop(),
+            month = year.pop(),
+            day = month.pop(),
+            hour = day.pop();
+        if ( type === 'year' || type === 'month' || type === 'day' ) {
+            if ( type === 'year' ) {
+                return this.analyseAll( year, data.pop() || [ ] );
+            } else {
+                if ( type === 'month' ) {
+                    return this.analyseAll( month, year.pop() || [ ] );
+                } else {
+                    return this.analyseAll( day, month.pop() || [ ] );
+                }
+            }
+        } else if ( type === 'last' ) {
+            return this.analyseLast( hour, day.pop() || [ ] );
+        }
+    },
+    data( tables, type ) {
+        this.pushAll( tables );
+            this.sort();
+        return this.getDataFor( type );
+    }
+};
 
 export function Item( { id, date, text } ) {
     return (
@@ -29,8 +237,8 @@ export function Nav( { date } ) {
                     <div className="date-content pl-3"> { obj.getDate() }/{ obj.getMonth() + 1 }/{ obj.getFullYear() } </div>
                 </div>
                 <div className="nav d-block">
-                    <Item id="day" text="Jour" date={ date }/>
-                    <Item id="week" text="Semaine" date={ date }/>
+                    <Item id="last" text="Dernières" date={ date }/>
+                    <Item id="day" text="Aujourd'hui" date={ date }/>
                     <Item id="month" text="Mois" date={ date }/>
                     <Item id="year" text="Année" date={ date }/>
                 </div>
@@ -100,6 +308,7 @@ export function AddData( { chartData } ) {
 };
 
 export const page = "graphs";
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 export default function Index( { date, data, user } ) {
     return (
         <Fragment>
@@ -115,17 +324,19 @@ export async function getServerSideProps( context ) {
     const 
         { data } = Cookies.parse( context.req.headers.cookie ),
         { access_token } = JSON.parse( data ),
-        user = await getUserData( access_token, context.res );
+        user = await getUserData( access_token, context.res ),
+        url = "/listData/",
+        tables = ( await axios.get( url, {
+            headers: {
+                Authorization: 'Bearer ' + access_token
+            }
+        } ) ).data,
+        graphData = Tools.data( tables, context.query.date );
     return {
         props: {
             user: user,
             date: context.query.date,
-            data: {
-                doughnut: [ 30, 70 ],
-                polar: [ 10, 50, 15, 30, 60 ],
-                bar: [ 10, 50, 15, 30, 5, 60 ],
-                point: [ 10, 50, 15, 30, 80 ]
-            }
+            data: graphData
         }
     };
 };

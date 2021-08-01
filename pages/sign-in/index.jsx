@@ -100,7 +100,7 @@ function AddData() {
                                             path: '/', 
                                             maxAge: 3600 * 24
                                         } );
-                                    return router.push( '/account/graphs/day' );
+                                    return router.push( '/account/graphs/last' );
                                 }
                                     setLoader( 'd-none' );
                                 return setError( 'failed to sign-in' );
@@ -123,7 +123,8 @@ function AddData() {
 };
 
 export const page = "sing-in";
-export default function Index() {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Index(props) {
     return (
         <Fragment>
             <AddData />

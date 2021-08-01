@@ -41,7 +41,7 @@ export function Menu( { page } ) {
 export function AdminMenu( { page } ) {
     return (
         <Fragment>
-            <Item link="/account/graphs/day" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
+            <Item link="/account/graphs/last" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
             <Item link="/account/show-data" src="clipboard-data" data="Tableaux de données" prev="show-data" page={ page } />
             <Item link="/account/account-data" src="window-sidebar" data="Mon compte" prev="account-data" page={ page } />
             <Item link="/admin" src="terminal-fill" data="Admin" prev="admin" page={ page } />

@@ -13,7 +13,7 @@ const Tools = {
     },
     list: [],
     getCurrent( date ) {
-        return `${date.getDate()}/${date.getMonth() + 1 }/${date.getMonth()}`;
+        return `${date.getDate()}/${date.getMonth() + 1 }/${date.getFullYear() }`;
     },
     push( data ) {
         const 
