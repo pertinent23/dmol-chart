@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import { element, string } from 'prop-types';
 
 export const TITLE = 'Solar Tracking';
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 export default function Root( { children } ) {
     return (
         <Fragment>
@@ -14,7 +15,7 @@ export default function Root( { children } ) {
                 <link rel="stylesheet" type="text/css" href="/libs/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="/css/main.css" />
                 <link rel="stylesheet" href="/icons/bootstrap-icons.css" />
-                <link rel="icon" href="/img/solar.svg" type="image/png" />
+                <link rel="icon" href="/img/solar.png" type="image/png" />
                 <title> { TITLE } </title>
                 <script async src="/libs/jquery-3.3.1.slim.min.js"></script>
                 <script async src="/libs/popper.min.js"></script>

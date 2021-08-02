@@ -108,7 +108,7 @@ export default function AccountRoot( { page, children, userdata } ) {
                         <div className="menu-brand text-light d-flex justify-content-center align-items-center">
                             <div className="menu-icon">
                                 <div className="menu-icon-item">
-                                    <Image layout="fill" src="/img/solar.svg" alt="solar-icon"/>
+                                    <Image layout="fill" src="/img/solar.png" alt="solar-icon"/>
                                 </div>
                             </div>
                             <div className="menu-name pl-3">

@@ -10,7 +10,11 @@
     height: 65px;
 }
 
-.menu-container .menu-icon .menu-icon-item,
+.menu-container .menu-icon .menu-icon-item{
+    height: 40px;
+    width: 45px;
+}
+
 .menu-container .menu-icon img{
     display: block;
     border-radius: 100;
@@ -261,7 +265,11 @@
         font-size: 37px;
     }
 
-    .menu-container .menu-icon .menu-icon-item,
+    .menu-container .menu-icon .menu-icon-item{
+        height: 50px;
+        width: 55px;
+    }
+
     .menu-container .menu-icon img{
         height: 50px;
         width: 50px;
