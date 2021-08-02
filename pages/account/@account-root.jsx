@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Loader from './@loader';
 
 export function Item( { src, page, data, prev, link } ) {
     return (
@@ -31,7 +32,7 @@ export function Item( { src, page, data, prev, link } ) {
 export function Menu( { page } ) {
     return (
         <Fragment>
-            <Item link="/account/graphs/day" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
+            <Item link="/account/graphs" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
             <Item link="/account/show-data" src="clipboard-data" data="Tableaux de données" prev="show-data" page={ page } />
             <Item link="/account/account-data" src="window-sidebar" data="Mon compte" prev="account-data" page={ page } />
         </Fragment>
@@ -41,7 +42,7 @@ export function Menu( { page } ) {
 export function AdminMenu( { page } ) {
     return (
         <Fragment>
-            <Item link="/account/graphs/last" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
+            <Item link="/account/graphs" src="bar-chart-line" data="Graphiques" prev="graphs" page={ page } />
             <Item link="/account/show-data" src="clipboard-data" data="Tableaux de données" prev="show-data" page={ page } />
             <Item link="/account/account-data" src="window-sidebar" data="Mon compte" prev="account-data" page={ page } />
             <Item link="/admin" src="terminal-fill" data="Admin" prev="admin" page={ page } />
@@ -76,12 +77,22 @@ export default function AccountRoot( { page, children, userdata } ) {
         [ profil, setProfil ] = useState( '/img/user/user1.svg' ),
         [ open, setOpen ] = useState( state1 ),
         [ type, setType ] = useState( state3 ),
+        [ content, setContent ] = useState( children ),
         [ cookies, setCookie ] = useCookies( [ 'user' ] );
         //getProfil( userdata.profil, setProfil );
         setCookie( 'user-data', JSON.stringify( userdata ), {
             path: '/',
             maxAge: 3600 * 24 * 5
         } );
+        if ( typeof router.events !== 'undefined' )
+            router.events.on( 'routeChangeStart', () => {
+                setContent( <Loader /> );
+                return () => (
+                    router.events.off( 'routeChangeStart', () => (
+                        setContent( <Loader /> )
+                    ) )
+                );
+            } );
     return (
         <Fragment>
             <Head>
@@ -150,7 +161,7 @@ export default function AccountRoot( { page, children, userdata } ) {
                     </div>
                     <div className="col col-body d-block overflow-hidden px-0">
                         <div className="content-body d-block overflow-auto">
-                            { children }
+                            { content }
                         </div>
                     </div>
                 </div>

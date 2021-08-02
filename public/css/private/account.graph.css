@@ -1,0 +1,57 @@
+.network-item{
+    background-color: var( --dark );
+    border-radius: 6px;
+    color: var( --light-dark-2 );
+    font-size: 0.95em;
+}
+
+.network-subitem,
+.network-item .start{
+    color: #999999;
+}
+
+.network-item .start > i{
+    font-size: 25px;
+    color: #999999;
+}
+
+.network-action{
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    position: relative;
+    background-color: var( --light-dark-2 );
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.network-action.active{
+    transition-duration: 0.3s;
+    transform: rotate( 180deg );
+}
+
+.network-action i{
+    font-size: 16px;
+    color: #999999;
+}
+
+.network-item .end{
+    background-color: var( --light-dark-2 );
+}
+
+.network-subitem{
+    background-color: var( --dark );
+}
+
+.network-subitem-action{
+    height: 30px;
+    width: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.network-action-subitem,
+.network-action-subitem i{
+    font-size: 16px;
+    color: #999999;
+}

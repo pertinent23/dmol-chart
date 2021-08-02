@@ -3,9 +3,10 @@ import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 const ContentData = {};
-
 function Input( { placeholder, type, name } ) {
     const 
         [ display, setDisplay ] = useState( 'd-none' ),
@@ -32,6 +33,11 @@ function Input( { placeholder, type, name } ) {
 };
 
 function AddData() {
+    const 
+        [ error, setError ] = useState( '' ),
+        [ , setCookie ] = useCookies( [ 'user' ] ),
+        [ loader, setLoader ] = useState( 'd-none' ),
+        router = useRouter();
     return (
         <Fragment>
             <Head>
@@ -65,7 +71,7 @@ function AddData() {
                         <div className="field-icon justify-content-center align-items-center mr-4">
                             <i className="bi bi-shield-lock-fill"></i>
                         </div>
-                        <Input placeholder="Mot de passe: " type="password" name="password" />
+                        <Input placeholder="Mot de passe: " type="password" name="password1" />
                     </div>
                     <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
                         <div className="field-icon justify-content-center align-items-center mr-4">
@@ -73,20 +79,40 @@ function AddData() {
                         </div>
                         <Input placeholder="Mot de passe: " type="password" name="password2" />
                     </div>
+
+                    <div className="container-fluid d-flex justify-content-center text-danger pt-4"> { error } </div>
                     <div className="form-buttons d-flex justify-content-between align-items-center py-2 mt-5 mb-5">
                         <Link href="/sign-in">
                             <a className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> Connection </a>
                         </Link>
                         <Link href="/sign-up">
-                            <a className="btn py-2 px-4 second" onClick={ async ( e ) => {
-                                const res = await axios.post( '/api/user/registration/', {
-                                    body: JSON.stringify( ContentData ),
+                            <a className="btn py-2 px-4 second d-flex align-items-center" onClick={ async ( e ) => {
+                                console.log( ContentData );
+                                setLoader( 'd-flex' );
+                                axios.post( '/user/registration/', ContentData, {
+                                    mode: 'cors',
                                     headers: {
                                         "Content-Type": "application/json"
                                     }
+                                } ).then( function ( res ) {
+                                    if ( res.status === 200 || res.status === 201 ) {
+                                        setError( '' );
+                                            setCookie( 'data', JSON.stringify( res.data ), { 
+                                                path: '/', 
+                                                maxAge: 3600 * 24
+                                            } );
+                                        return router.push( '/account/graphs/last' );
+                                    }
+                                    setLoader( 'd-none' );
+                                    setError( 'Inscription failed' );
+                                } ).catch( function ( err ) {
+                                        setError( 'Inscription failed' );
+                                    setLoader( 'd-none' );
                                 } );
-                                console.log( await res.text() );
                             } }>
+                                <div className={ "spinner-border text-light mr-3 ".concat( loader ) } role="status">
+                                    <span className="sr-only"></span>
+                                </div>
                                 Inscription 
                                 <i className="bi bi-arrow-right ml-3"></i>
                             </a>
@@ -99,7 +125,8 @@ function AddData() {
 };
 
 export const page = "sing-up";
-export default function Index() {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Index(props) {
     return (
         <Fragment>
             <AddData />

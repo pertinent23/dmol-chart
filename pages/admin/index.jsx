@@ -3,6 +3,7 @@ import { Fragment } from 'react';
 import PageRoot from '../account/@account-root';
 import getUserData from '../account/@request';
 import Image from 'next/image';
+import Cookies from 'cookie';
 
 function User( { username, profil } ) {
     return (
@@ -46,6 +47,7 @@ function AddData() {
 };
 
 export const page = "admin";
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 export default function Index( { user }) {
     return (
         <Fragment>
@@ -56,10 +58,14 @@ export default function Index( { user }) {
     );
 };
 
-export async function getServerSideProps() {
-    const user = await getUserData();
+export async function getServerSideProps( context ) {
+    const 
+        { data } = Cookies.parse( context.req.headers.cookie ),
+        { access_token } = JSON.parse( data ),
+        user = await getUserData( access_token, context.res );
     return {
         props: {
+            auth: 'Bearer ' + access_token,
             user
         }
     };

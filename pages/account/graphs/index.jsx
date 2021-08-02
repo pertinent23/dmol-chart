@@ -54,7 +54,7 @@ function SubItem( { name, id } ) {
         <div className="network-subitem list-group-item d-flex align-items-center mt-2 w-100">
             { name }
             <div className="network-subitem-action d-flex justify-content-center align-items-center ml-3" onClick={ () => (
-                router.push( "/account/show-data/" + id )
+                router.push( "/account/graphs/last?k=" + id )
             ) }>
                 <i className="bi bi-arrow-right"></i>
             </div>
@@ -106,7 +106,7 @@ function AddData() {
     );
 };
 
-export const page = "show-data";
+export const page = "graphs";
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
 export default function Index( { user, networks, auth } ) {
     Manager.auth = auth;

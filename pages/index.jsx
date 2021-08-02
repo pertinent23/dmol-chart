@@ -6,7 +6,7 @@ export const page = 'home';
 export default function Home () {
     return (
         <Fragment>
-            <Link href="/account/graphs/day" className="text-light"> ici </Link>
+            <Link href="/sign-in" className="text-light"> ici </Link>
         </Fragment>
     );
 };

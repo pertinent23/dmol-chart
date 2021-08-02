@@ -100,7 +100,7 @@ function AddData() {
                                             path: '/', 
                                             maxAge: 3600 * 24
                                         } );
-                                    return router.push( '/account/graphs/last' );
+                                    return router.push( '/account/graphs' );
                                 }
                                     setLoader( 'd-none' );
                                 return setError( 'failed to sign-in' );

@@ -216,7 +216,7 @@ const Tools = {
 
 export function Item( { id, date, text } ) {
     return (
-        <Link href={ "/account/graphs/".concat( id ) }>
+        <Link href={ "/account/graphs/".concat( id ).concat( "?k=" + Item.k ) }>
             <a className={ "nav-item px-4 py-3 ".concat( id === date ? 'active': '' ) }> { text } </a>
         </Link>
     );
@@ -292,15 +292,15 @@ export function AddData( { chartData } ) {
             <div className="content-save container-fluid d-flex justify-content-center py-3">
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
                     <div className="data"> 5 </div>
-                    <div className="name"> Aujoud &apos hui </div>
+                    <div className="name"> { "Ajourd'hui" } </div>
                 </div>
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
                     <div className="data"> 15 </div>
-                    <div className="name"> Cette semaine </div>
+                    <div className="name"> Ce mois </div>
                 </div>
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
                     <div className="data"> 105 </div>
-                    <div className="name"> Ce moi </div>
+                    <div className="name"> Cette année </div>
                 </div>
             </div>
         </div>
@@ -309,7 +309,8 @@ export function AddData( { chartData } ) {
 
 export const page = "graphs";
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Index( { date, data, user } ) {
+export default function Index( { date, data, user, k } ) {
+    Item.k = k;
     return (
         <Fragment>
             <PageRoot page={ page } userdata={ user }>
@@ -322,10 +323,11 @@ export default function Index( { date, data, user } ) {
 
 export async function getServerSideProps( context ) {
     const 
-        { data } = Cookies.parse( context.req.headers.cookie ),
-        { access_token } = JSON.parse( data ),
+        cook = Cookies.parse( context.req.headers.cookie ),
+        { k } = context.query,
+        { access_token } = JSON.parse( cook.data ),
         user = await getUserData( access_token, context.res ),
-        url = "/listData/",
+        url = "/userdatanodenetwork/"+ encodeURIComponent( k ) + "/",
         tables = ( await axios.get( url, {
             headers: {
                 Authorization: 'Bearer ' + access_token
@@ -334,6 +336,7 @@ export async function getServerSideProps( context ) {
         graphData = Tools.data( tables, context.query.date );
     return {
         props: {
+            k,
             user: user,
             date: context.query.date,
             data: graphData
