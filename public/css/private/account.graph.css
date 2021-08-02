@@ -1,3 +1,14 @@
+.page-title{
+    font-size: 1.4em;
+    color: var( --yellow );
+    font-weight: 600;
+}
+
+.page-title i{
+    font-size: 30px;
+    color: var( --yellow );
+}
+
 .network-item{
     background-color: var( --dark );
     border-radius: 6px;

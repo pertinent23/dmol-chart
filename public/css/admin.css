@@ -48,3 +48,23 @@
 .user .content-button{
     flex-wrap: wrap;
 }
+
+.content-user-number{
+    top: 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    background-color: var( --light-dark-2 );
+    z-index: 50;
+    border-bottom: 1px solid var( --dark );
+}
+
+.content-user-number .user-number{
+    color: #888888;
+    font-weight: 600;
+    font-size: 0.95em;
+    border-bottom: 2px solid var( --yellow );
+}
+
+.content-user-number .user-number i{
+    font-size: 20px;
+}

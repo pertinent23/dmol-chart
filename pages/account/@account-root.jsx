@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { TITLE } from './../@root';
 import Image from 'next/image';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Loader from './@loader';
+import { refreshToken } from './@request';
 
 export function Item( { src, page, data, prev, link } ) {
     return (
@@ -80,6 +81,9 @@ export default function AccountRoot( { page, children, userdata } ) {
         [ content, setContent ] = useState( children ),
         [ cookies, setCookie ] = useCookies( [ 'user' ] );
         //getProfil( userdata.profil, setProfil );
+        useEffect( function () {
+            return refreshToken( cookies, setCookie );
+        } );
         setCookie( 'user-data', JSON.stringify( userdata ), {
             path: '/',
             maxAge: 3600 * 24 * 5

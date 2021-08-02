@@ -71,8 +71,15 @@ function AddData() {
             <Head>
                 <link rel="stylesheet" href="/css/admin.css" />
             </Head>
-            <div className="container-fluid py-2">
-                <div className="container content-item-list py-2 d-flex flex-column px-0">
+            <div className="container-fluid py-2 px-0">
+                <div className="container-fluid d-flex flex-row align-items-center justify-content-end content-user-number mb-2">
+                    <div className="user-number d-flex align-items-center py-3 px-2 mx-3">
+                        <i className="bi bi-people mr-4 ml-3"></i>
+                        { Manager.arr.length }
+                        <span className="ml-1 mr-3"> utilisateur(s) </span>
+                    </div>
+                </div>
+                <div className="container content-item-list py-2 d-flex flex-column px-3">
                     { Manager.generateUsers() }
                 </div>
             </div>

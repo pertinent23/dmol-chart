@@ -25,4 +25,24 @@ export default async function getUserData( key, res ) {
 
 export function parseCookies( req ) {
     return cookie.parse( req ? req.headers.cookie || "" : document.cookie );
-}
+};
+
+export async function refreshToken( cookies, setCookie ) {
+    const 
+        data = cookies.data,
+        { refresh_token, access_token } = data,
+        auth = 'Bearer ' + access_token,
+        access = ( await axios.post( '/user/token/refresh/', {
+                refresh: refresh_token
+            }, {
+                headers: {
+                    Authorization: auth,
+                    'Content-Type': 'application/json'
+                }
+            } ) ).data.access;
+        data.access_token = access;
+    return setCookie( 'data', JSON.stringify( data ), {
+        maxAge: 3600 * 24,
+        path: '/'
+    } );
+};

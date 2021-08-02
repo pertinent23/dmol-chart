@@ -27,7 +27,6 @@ const Manager = {
         return result;
     },
     async getNode( id, setState ) {
-        console.log( Manager.auth )
         const 
             auth = Manager.auth,
             url = "/usernodeNetwork/" + encodeURIComponent( id ) + "/",
@@ -98,6 +97,10 @@ function AddData() {
                 <link rel="stylesheet" href="/css/private/account.graph.css" />
             </Head>
             <div className="container-fluid py-2">
+                <div className="page-title d-flex align-items-center justify-content-center justify-content-md-start mb-2 py-2"> 
+                    <i className="bi bi-clipboard-data ml-2 mr-4"></i>
+                    Graphiques 
+                </div>
                 <div className="container content-item-list py-2 d-flex flex-column px-0">
                     { Manager.generateItem() }
                 </div>
