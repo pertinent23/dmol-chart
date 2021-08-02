@@ -193,6 +193,11 @@ const Tools = {
             month = year.pop(),
             day = month.pop(),
             hour = day.pop();
+                Tools.day = 1;
+                for( const i in day )
+                    Tools.day += i.length;
+                Tools.month = Tools.day * 30;
+                Tools.year = Tools.month * 12;
         if ( type === 'year' || type === 'month' || type === 'day' ) {
             if ( type === 'year' ) {
                 return this.analyseAll( year, data.pop() || [ ] );
@@ -291,15 +296,15 @@ export function AddData( { chartData } ) {
             <div className="part-title py-2"> Enregistrment </div>
             <div className="content-save container-fluid d-flex justify-content-center py-3">
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
-                    <div className="data"> 5 </div>
+                    <div className="data"> { Tools.day } </div>
                     <div className="name"> { "Ajourd'hui" } </div>
                 </div>
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
-                    <div className="data"> 15 </div>
+                    <div className="data"> { Tools.month } </div>
                     <div className="name"> Ce mois </div>
                 </div>
                 <div className="save d-flex flex-column justidy-content-center align-items-center mx-3 my-3 px-5 py-2 shadow">
-                    <div className="data"> 105 </div>
+                    <div className="data"> { Tools.year } </div>
                     <div className="name"> Cette année </div>
                 </div>
             </div>
@@ -309,7 +314,8 @@ export function AddData( { chartData } ) {
 
 export const page = "graphs";
 /** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Index( { date, data, user, k } ) {
+export default function Index( { date, user, k, tables } ) {
+    const data = Tools.data( tables, date );
     Item.k = k;
     return (
         <Fragment>
@@ -332,14 +338,13 @@ export async function getServerSideProps( context ) {
             headers: {
                 Authorization: 'Bearer ' + access_token
             }
-        } ) ).data,
-        graphData = Tools.data( tables, context.query.date );
+        } ) ).data;
     return {
         props: {
             k,
             user: user,
             date: context.query.date,
-            data: graphData
+            tables
         }
     };
 };
