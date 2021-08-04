@@ -1,5 +1,5 @@
 import axios from "axios";
-import cookie from "react-cookie";
+import cookie from "cookie";
 
 export default async function getUserData( key, res ) {
     try{ 

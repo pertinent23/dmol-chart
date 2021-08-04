@@ -32,13 +32,14 @@ const Manager = {
         this.arr = [ ];
         const
             auth = Manager.auth,
-            result = ( await axios.get( '/userNetwork/' + encodeURIComponent( id ) + "/", {
+            result = Manager.cookies.networks || ( await axios.get( '/userNetwork/' + encodeURIComponent( id ) + "/", {
                 headers: {
                     Authorization: auth
                 }
             }  ) ).data;
                 for( const item of result )
                     await this.push( item );
+            Manager.setCookies( 'networks', JSON.stringify( result ) );
         return setState( this.generateItem() );
     },
     async getNode( id ) {
@@ -46,7 +47,7 @@ const Manager = {
             auth = Manager.auth,
             result = [],
             url = "/usernodeNetwork/" + encodeURIComponent( id ) + "/",
-            nodes = ( await axios.get( url, {
+            nodes = Manager.cookies[ id ] || ( await axios.get( url, {
                 headers: {
                     Authorization: auth
                 }
@@ -58,6 +59,7 @@ const Manager = {
                             { item.name } : { item.id }
                         </div>
                     );
+                Manager.setCookies( '' + id, JSON.stringify( nodes ) );
         return result;
     }
 };
@@ -79,7 +81,7 @@ export default function Sticky( { state, setState } ) {
         options = { checked: note },
         data = cook.data;
         useEffect( () => {
-            if ( load <= 2 ) {
+            if ( load <= 2 && data ) {
                 const { pk } = data.user;
                     Manager.auth = 'Bearer ' + data.access_token;
                     Manager.getNetWorks( pk, setContent );
@@ -89,7 +91,14 @@ export default function Sticky( { state, setState } ) {
             if( note )
                 setState( 'show-i' );
             return () => {};
-        } );
+        }, [ note, state, setState, data ] );
+        Manager.cookies = cookies;
+        Manager.setCookies = function ( name, value ) {
+            return setCookies( name, value, {
+                maxAge: 3600 * 24 * 5,
+                path: '/'
+            } );
+        };
         load++;
     return (
         <div className={ "sticky-note d-flex flex-column justify-content-center align-items-center position-fixed ".concat( display ) }>
@@ -123,10 +132,4 @@ export default function Sticky( { state, setState } ) {
             </div>
         </div>
     );
-};
-
-export async function getStaticProps() {
-    return {
-        prop: {}
-    };
 };
