@@ -241,6 +241,193 @@
     border-bottom: 2px solid var( --orange );
 }
 
+.tools{
+    bottom: 7px;
+    right: 7px;
+    transition-duration: 0.3s;
+    z-index: 120;
+    background-color: transparent;
+    border-radius: 50px;
+}
+
+.tools .tool-item{
+    border-radius: 50px;
+    background-color: var( --orange );
+    color: var( --dark );
+    cursor: pointer;
+}
+
+.tools .tool-item,
+.tools .tool-item-name,
+.tools .tool-item-icon i{
+    cursor: pointer !important;
+}
+
+.tools .tool-item-name{
+    color: var( --dark );
+    font-size: 0.85em;
+    font-weight: 600;
+    transition-duration: 0.4s;
+}
+
+.tools .tool-item-name.hide-i span,
+.tools .tool-item-name.hide-i{
+    transition-duration: 0.4s;
+    max-width: 0px;
+    overflow: hidden;
+}
+
+.tools .tool-item-name.show-i span,
+.tools .tool-item-name.show-i{
+    transition-duration: 0.4s;
+    max-width: 200px;
+    word-wrap: normal;
+}
+
+.sticky-note{
+    z-index: 170;
+    bottom: 7px;
+    right: 7px;
+    width: calc( 100% - 10px );
+    max-width: 350px;
+    height: auto;
+    max-height: calc( 100% - 50px );
+    overflow: hidden;
+    background-color: var( --dark );
+    border-radius: 6px;
+    transition-duration: 0.3s;
+}
+
+.sticky-note.hide-i{
+    max-width: 0px !important;
+    max-height: 0px !important;
+    transition-duration: 0.3s;
+}
+
+.sticky-note.show-i{
+    transition-duration: 0.3s;
+}
+
+.sticky-note > .sticky-note-head{
+    background-color: var( --orange );
+    color: var( --dark );
+    font-size: 0.9em;
+    font-weight: 600;
+    min-height: 60px;
+}
+
+.sticky-note-data{
+    overflow: auto;
+    min-height: 200px;
+}
+
+.sticky-note > .sticky-note-head i{
+    font-size: 30px;
+}
+
+.sticky-note-item-head,
+.sticky-note-subitem-head{
+    color: #999999;
+    font-weight: 600;
+}
+
+.sticky-note .btn:hover,
+.sticky-note .btn{
+    background-color: var( --orange );
+    color: var( --dark );
+    font-size: 0.85em;
+    box-shadow: none !important;
+    font-weight: 600;
+}
+
+
+.sticky-note .btn i{
+    font-size: 20px;
+}
+
+.sticky-note input{
+    background-color: transparent;
+    border-radius: 2px solid var( --orange );
+}
+
+.content-choice{
+    border-top: 1px solid var( --light-dark-2 );
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 2px solid #888888;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.checkbox-container input{
+    display: none;
+}
+
+.checkbox-container .checkmark{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #888888;
+    opacity: 0;
+}
+
+.checkbox-container .checkmark::before{
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 6px;
+    height: 3px;
+    transform: rotate( 45deg );
+    top: 7px;
+    left: 2px;
+    background-color: var( --dark );
+}
+
+.checkbox-container .checkmark::after{
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 12px;
+    height: 3px;
+    transform: rotate( -55deg );
+    top: 6px;
+    left: 4px;
+    background-color: var( --dark );
+}
+
+.checkbox-container input:checked ~ .checkmark{
+    opacity: 1;
+}
+
+.sticky-note label{
+    font-size: 0.9em;
+    color: #888888;
+    user-select: none;
+    font-weight: 600;
+}
+
+.sticky-note .content-button,
+.sticky-note .content-button.show{
+    transition-duration: 0.3s;
+}
+
+.sticky-note .content-button.hide{
+    max-width: 0px !important;
+    max-height: 0px !important;
+    overflow: hidden;
+    transition-duration: 0.3s;
+}
+
 @media screen and ( min-width: 768px ) {
     .main-container{
         position: fixed;
@@ -306,5 +493,10 @@
     
     .content-nav .date .date-content{
         font-size: 1.1em;
+    }
+
+    .tools{
+        bottom: 25px;
+        right: 20px;
     }
 }

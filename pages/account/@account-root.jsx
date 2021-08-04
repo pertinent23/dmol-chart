@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Loader from './@loader';
+import Tools from './@tools';
 import { refreshToken } from './@request';
 
 export function Item( { src, page, data, prev, link } ) {
@@ -102,6 +103,7 @@ export default function AccountRoot( { page, children, userdata } ) {
             <Head>
                 <link rel="stylesheet" type="text/css" href="/css/account.css" />
             </Head>
+            <Tools />
             <div className="container-fluid d-flex justify-content-center align-items-center account-body p-0">
                 <div className="row d-block d-md-flex flex-row w-100 main-row">
                     <div className="col col-md-5 col-lg-4 col-lx-3 menu-container overflow-hidden px-0 pt-2 pt-md-3 d-flex h-100 justify-content-center justify-content-md-start flex-column">
