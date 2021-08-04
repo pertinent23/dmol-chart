@@ -55,16 +55,17 @@
     position: -webkit-sticky;
     background-color: var( --light-dark-2 );
     z-index: 50;
+    color: #888888;
     border-bottom: 1px solid var( --dark );
 }
 
 .content-user-number .user-number{
-    color: #888888;
+    color: var( --yellow );
     font-weight: 600;
     font-size: 0.95em;
     border-bottom: 2px solid var( --yellow );
 }
 
-.content-user-number .user-number i{
-    font-size: 20px;
+.content-user-number i{
+    font-size: 30px;
 }

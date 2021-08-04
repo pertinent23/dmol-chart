@@ -98,7 +98,7 @@ function AddData() {
             </Head>
             <div className="container-fluid py-2">
                 <div className="page-title d-flex align-items-center justify-content-center justify-content-md-start mb-2 py-2"> 
-                    <i className="bi bi-clipboard-data ml-2 mr-4"></i>
+                    <i className="bi bi-bar-chart-line ml-2 mr-4"></i>
                     Graphiques 
                 </div>
                 <div className="container content-item-list py-2 d-flex flex-column px-0">

@@ -1,6 +1,11 @@
 import { Fragment } from 'react';
 import { Bar, Pie, PolarArea, Doughnut, Line } from 'react-chartjs-2';
 
+const Sizes = {
+    width: '300',
+    height: '260'
+};
+
 const Colors = {
     index: 1 + 0.1,
     yellow: "#E6BD84",
@@ -25,11 +30,11 @@ export default function Index() {
     );
 };
 
-export function DoughnutChart( { data, name } ) {
+export function DoughnutChart( { data, name, width, height } ) {
     return (
         <Doughnut 
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="doughnut"
             data={ ( canvas ) => {
                 const 
@@ -62,11 +67,11 @@ export function DoughnutChart( { data, name } ) {
     )
 };
 
-export function PolarChart( { data, name } ) {
+export function PolarChart( { data, name, width, height } ) {
     return (
         <PolarArea
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="polar"
             data={ ( canvas ) => {
                 const 
@@ -104,11 +109,11 @@ export function PolarChart( { data, name } ) {
     )
 };
 
-export function VerticalBarChart( { data, name } ) {
+export function VerticalBarChart( { data, name, width, height } ) {
     return (
         <Bar
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="vbar"
             data={ ( canvas ) => {
                 const 
@@ -144,11 +149,11 @@ export function VerticalBarChart( { data, name } ) {
     )
 };
 
-export function HorizontalBarChart( { data, name } ) {
+export function HorizontalBarChart( { data, name, width, height } ) {
     return (
         <Bar
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="hbar"
             data={ ( canvas ) => {
                 const 
@@ -184,11 +189,11 @@ export function HorizontalBarChart( { data, name } ) {
     )
 };
 
-export function LineChart( { data, name } ) {
+export function LineChart( { data, name, width, height } ) {
     return (
         <Line
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="line"
             data={ ( canvas ) => {
                 const 
@@ -228,11 +233,11 @@ export function LineChart( { data, name } ) {
     )
 };
 
-export function PieChart( { data, name } ) {
+export function PieChart( { data, name, width, height } ) {
     return (
         <Pie
-            width="300" 
-            height="260" 
+            width={ width || Sizes.width  } 
+            height={ height  || Sizes.height  } 
             id="pie"
             data={ ( canvas ) => {
                 const 
