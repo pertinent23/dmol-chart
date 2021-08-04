@@ -113,7 +113,7 @@ export default function Sticky( { state, setState } ) {
     return (
         <div className={ "sticky-note d-flex flex-column justify-content-center align-items-center position-fixed ".concat( display ) }>
             <div className="container-fluid py-2 sticky-note-head d-flex justify-content-center align-items-center">
-                <i className="bi bi-pencil-square"></i>
+                <i className="bi bi-pencil-square mr-2"></i>
                 Sticky-Note
             </div>
             <div className="container-fluid sticky-note-data d-flex flex-column justify-content-center align-items-center py-3">
