@@ -39,6 +39,7 @@ const Manager = {
             }  ) ).data;
                 for( const item of result )
                     await this.push( item );
+                console.log( result );
             Manager.setCookies( 'networks', JSON.stringify( result ) );
         return setState( this.generateItem() );
     },
@@ -81,15 +82,13 @@ export default function Sticky( { state, setState } ) {
         options = { checked: note },
         data = cook.data;
         useEffect( () => {
-            if ( load <= 2 && data ) {
-                const { pk } = data.user;
-                    Manager.auth = 'Bearer ' + data.access_token;
-                    Manager.getNetWorks( pk, setContent );
-            }
-            setDisplay( note ? 'show-i' : state );
-            setAppear( note ? 'hide' : 'show' );
-            if( note )
-                setState( 'show-i' );
+            const { pk } = data.user;
+                Manager.auth = 'Bearer ' + data.access_token;
+                Manager.getNetWorks( pk, setContent );
+                    setDisplay( note ? 'show-i' : state );
+                    setAppear( note ? 'hide' : 'show' );
+                if( note )
+                    setState( 'show-i' );
             return () => {};
         }, [ note, state, setState, data ] );
         Manager.cookies = cookies;

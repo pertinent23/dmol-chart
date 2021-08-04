@@ -419,6 +419,8 @@
 .sticky-note .content-button,
 .sticky-note .content-button.show{
     transition-duration: 0.3s;
+    max-width: 500px !important;
+    max-height: 500px !important;
 }
 
 .sticky-note .content-button.hide{
