@@ -1,5 +1,6 @@
 import { useCookies } from 'react-cookie';
 import { useState, Fragment, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const Manager = {
@@ -69,6 +70,7 @@ let load = 0;
 /** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
 export default function Sticky( { state, setState } ) {
     const 
+        router = useRouter(),
         [ cookies, setCookies ] = useCookies( [ 'sticky-note' ] ),
         [ cook ] = useCookies( [ 'user' ] ),
         [ note, setNote ] = useState( cookies.note === 'true' ),
@@ -91,6 +93,15 @@ export default function Sticky( { state, setState } ) {
                     setState( 'show-i' );
             return () => {};
         }, [ note, state, setState, data ] );
+        if ( typeof router.events !== 'undefined' )
+            router.events.on( 'routeChangeStart', () => {
+                setState( 'hide-i' );
+                return () => (
+                    router.events.off( 'routeChangeStart', () => (
+                        setState( 'hide-i' )
+                    ) )
+                );
+            } );
         Manager.cookies = cookies;
         Manager.setCookies = function ( name, value ) {
             return setCookies( name, value, {
