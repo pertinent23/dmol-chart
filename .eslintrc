@@ -1,6 +1,7 @@
 {
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
-    "no-css-tags": "off"
+    "no-css-tags": "off",
+    "next/no-css-tags": "off"
   }
 }

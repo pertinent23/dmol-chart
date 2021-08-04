@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 import PageRoot from './../../account/@account-root';
-import getUserData from './../../account/@request';
+import { getUserData } from './../../account/@request';
 import Image from 'next/image';
 import Cookies from 'cookie';
 

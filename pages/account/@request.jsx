@@ -1,7 +1,6 @@
 import axios from "axios";
-import cookie from "cookie";
 
-export default async function getUserData( key, res ) {
+export async function getUserData( key, res ) {
     try{ 
         const 
             auth = `Bearer ${ key }`,
@@ -23,10 +22,6 @@ export default async function getUserData( key, res ) {
     }
 };
 
-export function parseCookies( req ) {
-    return cookie.parse( req ? req.headers.cookie || "" : document.cookie );
-};
-
 export async function refreshToken( cookies, setCookie ) {
     const 
         data = cookies.data,
@@ -45,4 +40,10 @@ export async function refreshToken( cookies, setCookie ) {
         maxAge: 3600 * 24,
         path: '/'
     } );
+};
+
+export default function Index() {
+    return (
+        <h1> @request </h1>
+    );
 };
