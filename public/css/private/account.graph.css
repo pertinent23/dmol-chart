@@ -66,3 +66,66 @@
     font-size: 16px;
     color: #999999;
 }
+
+.network-subitem-action.modify i{
+    color: var( --danger );
+}
+
+.network-item .btn:focus,
+.network-item .btn{
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: var( --dark );
+    font-size: 0.8em;
+    font-weight: 600;
+    box-shadow: none !important;
+}
+
+.network-item .btn i{
+    font-size: 20px;
+}
+
+.network-item .delete{
+    background-color: var( --danger );
+}
+
+.network-item .add-node{
+    background-color: var( --orange );
+}
+
+.form .btn,
+.add-network{
+    background-color: var( --orange );
+    border-radius: 5px;
+    color: var( --dark );
+    font-size: 0.85em;
+    font-weight: 600;
+    box-shadow: none !important;
+    border-radius: 40px;
+}
+
+.form .btn i,
+.add-network i{
+    font-size: 20px;
+}
+
+.form input{
+    width: 100%;
+    background-color: var( --dark );
+    max-width: 300px;
+    border: none;
+    border-radius: 6px;
+    color: #999999;
+    text-align: center;
+    outline: none;
+    box-shadow: none;
+}
+
+.network-item .form input{
+    background-color: var( --light-dark-2 );
+}
+
+.form input::placeholder{
+    opacity: 0.4;
+    color: #888888;
+}

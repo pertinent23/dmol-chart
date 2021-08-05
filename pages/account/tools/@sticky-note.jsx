@@ -4,13 +4,12 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 
 const Manager = {
-    arr: [],
-    async push( item ) {
+    async push( node ) {
         const 
-            { nameNet, id } = item,
-            list = await this.getNode( id );
-            this.arr.push(
-                <div className="container-fluid sticky-note-data-item d-flex flex-column px-0" key={ id }>
+            { nameNet, id } = node,
+            list = await this.getNode( id ),
+            item = (
+                <div className="container-fluid sticky-note-data-item d-flex flex-column px-0" key={ id + 'k' }>
                     <div className="sticky-note-item-head d-flex justify-content-start align-items-center py-2">
                         <i className="bi bi-chevron-right mr-2"></i>
                         { nameNet } : { id }
@@ -20,18 +19,18 @@ const Manager = {
                     </div>
                 </div>
             );
-        return this;
+        return item;
     },
-    generateItem() {
+    generateItem( arr ) {
         return (
             <Fragment>
-                { this.arr }
+                { arr }
             </Fragment>
         );
     },
     async getNetWorks( id, setState ) {
-        this.arr = [ ];
         const
+            arr = [],
             auth = Manager.auth,
             result = Manager.cookies.networks || ( await axios.get( '/userNetwork/' + encodeURIComponent( id ) + "/", {
                 headers: {
@@ -39,10 +38,9 @@ const Manager = {
                 }
             }  ) ).data;
                 for( const item of result )
-                    await this.push( item );
-                console.log( result );
+                    arr.push( await this.push( item ) );
             Manager.setCookies( 'networks', JSON.stringify( result ) );
-        return setState( this.generateItem() );
+        return setState( this.generateItem( arr ) );
     },
     async getNode( id ) {
         const 
@@ -66,8 +64,6 @@ const Manager = {
     }
 };
 
-let load = 0;
-/** @param {import('next').InferGetStaticPropsType<typeof getStaticProps> } props */
 export default function Sticky( { state, setState } ) {
     const 
         router = useRouter(),
@@ -89,27 +85,27 @@ export default function Sticky( { state, setState } ) {
                 Manager.getNetWorks( pk, setContent );
                     setDisplay( note ? 'show-i' : state );
                     setAppear( note ? 'hide' : 'show' );
-                if( note )
-                    setState( 'show-i' );
+                    if( note )
+                        setState( 'show-i' );
+                if ( typeof router.events !== 'undefined' )
+                    router.events.on( 'routeChangeStart', () => {
+                        Manager.arr = [ ];
+                        setState( 'hide-i' );
+                        return () => (
+                            router.events.off( 'routeChangeStart', () => (
+                                setState( 'hide-i' )
+                            ) )
+                        );
+                    } );
             return () => {};
         }, [ note, state, setState, data ] );
-        if ( typeof router.events !== 'undefined' )
-            router.events.on( 'routeChangeStart', () => {
-                setState( 'hide-i' );
-                return () => (
-                    router.events.off( 'routeChangeStart', () => (
-                        setState( 'hide-i' )
-                    ) )
-                );
-            } );
         Manager.cookies = cookies;
         Manager.setCookies = function ( name, value ) {
             return setCookies( name, value, {
-                maxAge: 3600 * 24 * 5,
+                maxAge: 300,
                 path: '/'
             } );
         };
-        load++;
     return (
         <div className={ "sticky-note d-flex flex-column justify-content-center align-items-center position-fixed ".concat( display ) }>
             <div className="container-fluid py-2 sticky-note-head d-flex justify-content-center align-items-center">

@@ -270,6 +270,11 @@
     transition-duration: 0.4s;
 }
 
+.tools .tool-item-name span,
+.tools .tool-item-name{
+    overflow: hidden;
+}
+
 .tools .tool-item-name.hide-i span,
 .tools .tool-item-name.hide-i{
     transition-duration: 0.4s;
