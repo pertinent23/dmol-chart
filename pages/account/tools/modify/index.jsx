@@ -37,30 +37,41 @@ const Manager = {
                 }
             } ) ).data;
                 this.pushAll( nodes );
-        return setState( this.generateSubItem() );
+        return setState( this.generateSubItem( id ) );
     },
-    generateSubItem() {
+    generateSubItem( id ) {
         const result = [];
             for( const item of this.arr )
                 result.push(
-                    <SubItem { ...item } key={ item.id } id={ item.id } auth={ Manager.auth } />
+                    <SubItem { ...item } key={ item.id } id={ item.id } auth={ Manager.auth } net={ id } />
                 );
         return result;
     }
 };
 
-function SubItem( { name, id, auth } ) {
-    const [ appear, setAppear ] = useState( 'd-flex' );
+function SubItem( { name, id, auth, net } ) {
+    const
+        [ cookies, setCookie ] = useCookies( [ 'sticky-note' ] ), 
+        [ appear, setAppear ] = useState( 'd-flex' );
     return (
         <div className={ "network-subitem list-group-item align-items-center justify-content-between mt-2 w-100 ".concat( appear ) }>
             { name }
             <div className="network-subitem-action modify d-flex justify-content-center align-items-center ml-3" onClick={ async function () {
                     try{
-                        await axios.delete( '/node/' + encodeURIComponent( id ) + '/' , {
-                            headers: {
-                                Authorization: auth
-                            }
-                        } );
+                        const 
+                            nodes = cookies[ net ],
+                            result = ( nodes || [] ).filter( ( node ) => {
+                                return node.id === net ? false : true;
+                            } );
+                            await axios.delete( '/node/' + encodeURIComponent( id ) + '/' , {
+                                headers: {
+                                    Authorization: auth
+                                }
+                            } );
+                            setCookie( '' + net, JSON.stringify( result ), {
+                                maxAge: 100,
+                                path: '/'
+                            }  );
                         setAppear( 'd-none' );
                     } catch( e ) {}
                 } }>
@@ -76,6 +87,7 @@ function Item( { name, adress, id, auth } ) {
         [ appear, setAppear ] = useState( 'd-flex' ),
         [ display, setDisplay ] = useState( 'd-none' ),
         [ form, setForm ] = useState( 'd-none' ),
+        [ cookies, setCookie ] = useCookies( [ 'sticky-note' ] ),
         [ content, setContent ] = useState(
             <div className="spinner-border text-light my-4" role="status">
                 <span className="sr-only"></span>
@@ -105,11 +117,20 @@ function Item( { name, adress, id, auth } ) {
                 </div>
                 <div className="btn d-flex justify-content-center align-items-center py-0 px-3 mr-3 delete" onClick={ async function () {
                     try{
-                        await axios.delete( '/network/' + encodeURIComponent( id ) + '/' , {
-                            headers: {
-                                Authorization: auth
-                            }
-                        } );
+                        const 
+                            networks = cookies.networks,
+                            result = ( networks || [] ).filter( ( net ) => {
+                                return net.id === id ? false : true;
+                            } );
+                            await axios.delete( '/network/' + encodeURIComponent( id ) + '/' , {
+                                headers: {
+                                    Authorization: auth
+                                }
+                            } );
+                            setCookie( 'networks', JSON.stringify( result ), {
+                                maxAge: 100,
+                                path: '/'
+                            }  );
                         setAppear( 'd-none' );
                     } catch( e ) {}
                 } }>

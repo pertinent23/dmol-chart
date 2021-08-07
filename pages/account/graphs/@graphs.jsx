@@ -263,7 +263,8 @@ export function PieChart( { data, name, width, height } ) {
                     },
                     title: {
                         display: true,
-                        text: name || 'Diagramme circulaire'
+                        text: name || 'Diagramme circulaire',
+                        color: Colors.text
                     }
                 }
             } }
