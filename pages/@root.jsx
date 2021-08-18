@@ -21,7 +21,7 @@ export default function Root( { children } ) {
                 <script async src="/libs/popper.min.js"></script>
                 <script async src="/libs/digital-v2.0.0.min.js"></script>
             </Head>
-            <div className="container-fluid p-0 main-container">
+            <div className="container-fluid p-0 main-container d-flex justify-content-center align-items-center px-1 px-sm-2 px-md-3">
                 { children }
             </div>
             <script async src="/libs/bootstrap.bundle.min.js"></script>
