@@ -6,6 +6,7 @@
     --dark: rgba( 19, 21, 27, 1 );
     --yellow: rgba( 252, 186, 90, 1 );
     --orange: #F7931A;
+    --dark-gray: #555555;
 }
 
 ::-webkit-scrollbar{
@@ -15,12 +16,17 @@
 }
   
 ::-webkit-scrollbar-thumb{
-    background-color: var( --yellow );
+    background-color: var( --dark );
 }
 
 @font-face{
     src: url( "./../police/Aaargh.ttf" );
     font-family: aaargh;
+}
+
+@font-face{
+    src: url( "./../police/The Bravery Lite Ver.ttf" );
+    font-family: bravery;
 }
 
 #__next{
@@ -48,11 +54,9 @@ body{
     display: -ms-flexbox;
     display: flex;
     min-height: 100%;
-    background-color: var( --light-dark-2 );
 }
 
 .main-container{
-    display: block;
     position: relative;
 }
 
@@ -61,5 +65,81 @@ body{
         width: 6px;
         height: 6px;
         background-color: transparent;
+    }
+}
+
+.sticky{
+    position: sticky;
+    position: -webkit-sticky;
+}
+
+.navigation{
+    background-color: #FFFFFF;
+    box-shadow: 0px 5px 5px #EEEEEE;
+    top: 0px;
+    z-index: 200;
+}
+
+.navigation-item:hover,
+.navigation-item{
+    text-decoration: none;
+    color: #666666;
+}
+
+.navigation-item i{
+    font-size: 25px;
+}
+
+.navigation-item .navigation-item-title{
+    font-family: bravery;
+    font-size: 1.01em;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.navigation-button{
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.navigation-search-button i{
+    color: var( --dark-gray );
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.navigation-action-button .items{
+    display: block;
+    width: 60%;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var( --dark-gray );
+    margin-bottom: 10%;
+}
+
+.navigation-contents.show,
+.navigation-contents{
+    max-height: 800px;
+    transition-duration: 0.3s;
+    overflow: hidden;
+}
+
+.navigation-contents.hide{
+    max-height: 0px;
+    transition-duration: 0.3s;
+}
+
+@media screen and ( min-width: 768px ) {
+    .navigation-item i{
+        font-size: 30px;
+    }
+    
+    .navigation-item .navigation-item-title{
+        font-size: 1.15em;
+    }
+
+    .navigation-contents.hide{
+        max-height: 350px;
     }
 }
