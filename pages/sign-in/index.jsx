@@ -66,13 +66,12 @@ function AddData() {
                                                 authCallback={ responseTwitter }
                                                 consumerKey={ keys.TWITTER_PUPLIC }
                                                 consumerSecret={ keys.TWITTER_SECRET }
-                                                children={
-                                                    <div className="d-flex justify-content-center align-items-center twitter py-2 px-4">
-                                                        <i className="bi bi-twitter mr-2"></i>
-                                                        Utiliser twitter
-                                                    </div>
-                                                }
-                                            />
+                                            >
+                                                <div className="d-flex justify-content-center align-items-center twitter py-2 px-4">
+                                                    <i className="bi bi-twitter mr-2"></i>
+                                                    Utiliser twitter
+                                                </div>
+                                            </TwitterLogin>
                                         </div>
                                     </div>
                                     <div className="line d-flex align-items-center justify-content-center py-3">
@@ -116,8 +115,10 @@ function AddData() {
                                     <Input type="password" placeholder="Mot de passe: " name="password" icon="shield-lock-fill" />
                                 </div>
                                 <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4">
-                                    <a href="/sign-up" className="secondary d-flex align-items-center mr-5"> Inscription </a>
-                                    <a className="submit d-flex align-items-center"> Connection </a>
+                                    <Link href="/sign-up">
+                                        <a className="secondary d-flex align-items-center mr-5"> Inscription </a>
+                                    </Link>
+                                    <div className="submit d-flex align-items-center"> Connection </div>
                                 </div>
                             </div>
                         </div>

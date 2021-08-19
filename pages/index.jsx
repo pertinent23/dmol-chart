@@ -86,7 +86,7 @@ export default function Home () {
             <div className="content-page d-flex flex-column">
                 <div className="container-fluid header d-flex justify-content-center align-items-center">
                     <div className="d-flex header-icon justify-content-center align-items-center my-4">
-                        <Image src="/img/other/africa.svg" layout="fill" />
+                        <Image src="/img/other/africa.svg" alt="icon" layout="fill" />
                     </div>
                     <div className="d-block header-title ml-3"> E-TECH  </div>
                 </div>
