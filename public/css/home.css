@@ -357,6 +357,10 @@
     color: #FFFFFF;
 }
 
+.footer .option-item .option-item-img{
+    width: 130px;
+}
+
 .footer .option-item .option-item-detail{
     color: #EEEEEE;
 }
@@ -393,7 +397,7 @@
 }
 
 .footer-body-part{
-    color: #000000;
+    color: #666666;
     font-size: 0.9em;
     font-weight: bold;
 }

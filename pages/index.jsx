@@ -319,9 +319,9 @@ export default function Home () {
                                     </div>
                                 </div>
                             </div>
-                            <div className="footer-body container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3">
+                            <div className="footer-body container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between px-4 px-md-5 py-3">
                                 <div className="footer-body-part d-flex py-3 py-md-2 d-flex align-items-center">
-                                    <img src="/img/other/africa.svg" alt="footer-img" className="img-responsive mr-3" />
+                                    <img src="/img/other/africa.w.svg" alt="footer-img" className="img-responsive mr-3" />
                                     Etech
                                 </div>
                                 <div className="footer-body-part d-flex py-3 py-md-2 align-items-center">
