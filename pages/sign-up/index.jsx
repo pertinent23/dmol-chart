@@ -115,7 +115,7 @@ function AddData() {
                                     <Input type="text" placeholder="Email" name="email" icon="envelope-fill" />
                                     <Input type="password" placeholder="Mot de passe: " name="password" icon="shield-lock-fill" />
                                 </div>
-                                <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4">
+                                <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4 pb-3">
                                     <Link href="/sign-in">
                                         <a className="secondary d-flex align-items-center mr-5 button"> Connection </a>
                                     </Link>
