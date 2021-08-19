@@ -1,122 +1,127 @@
 import Head from 'next/head';
 import { Fragment, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import axios from 'axios';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import FacebookLogin from 'react-facebook-login';
+import { GoogleLogin } from 'react-google-login';
+import TwitterLogin from "react-twitter-login";
+import { keys } from '../@keys';
 
 const ContentData = {};
-function Input( { placeholder, type, name } ) {
-    const 
-        [ display, setDisplay ] = useState( 'd-none' ),
-        [ p, setP ] = useState( 'pl-3' );
+const page = "sing-in";
+
+const responseFacebook = ( response ) => {
+    console.log( response );
+};
+
+const responseGoogle = ( response ) => {
+    console.log( response );
+};
+
+const responseTwitter = ( err, data ) => {
+    console.log( err, data );
+};
+
+function Input( { placeholder, name, icon, type } ) {
     return (
-        <div htmlFor="username" className="content-input d-flex flex-column">
-            <span className={ "content-input-text pl-3 py-3 ".concat( display ) }> { placeholder } </span>
-            <input 
-                className={ "py-3 pr-4 ".concat( p ) } 
-                type={ type } 
-                name={ name } 
-                id={ name } 
-                placeholder={ placeholder } 
-                onInput={ function ( event ) {
-                    const 
-                        str = event.target.value;
-                            ContentData[ event.target.name ] = str;
-                                setP( str ? 'pl-5' : 'pl-3'  );
-                    return setDisplay( str ? 'd-block' : 'd-none' );
-                } }
-            />
+        <div className="field container-fluid d-flex justify-content-center py-3">
+            <i className={ "mr-3 bi bi-".concat( icon ) }></i>
+            <input { ...{ placeholder, name, type } } className="pl-3" />
         </div>
     );
 };
 
 function AddData() {
-    const 
-        [ error, setError ] = useState( '' ),
-        [ , setCookie ] = useCookies( [ 'user' ] ),
-        [ loader, setLoader ] = useState( 'd-none' ),
-        router = useRouter();
     return (
         <Fragment>
             <Head>
                 <link rel="stylesheet" href="/css/form.css" />
             </Head>
-            <div className="form d-flex flex-column justify-content-center align-items-center container-fluid pt-5 px-2">
-                <div className="form-head d-flex flex-column container-fluid">
-                    <div className="form-icon d-flex align-items-center justify-content-center container-fluid">
-                        <div className="form-icon-item">
-                            <Image layout="fill" src="/img/solar.svg" alt="icon" className="img d-block position-relative" />
-                        </div>
+            <div className="container-fluid content-form d-flex px-0">
+                <div className="row container-fluid mx-0 px-0">
+                    <div className="col-0 col-md-6 px-0 d-none overlfow-hidden d-md-flex justify-content-center align-items-center">
+                        <img src="/img/form/form6.jpg" alt="img" className="img-responsive form-img" />
                     </div>
-                    <div className="form-name text-center container-fluid py-5">
-                        <span className="text-center"> Inscription </span>
-                    </div>
-                </div>
-                <div className="form-body d-flex flex-column align-items-center container-fluid py-3 px-0">
-                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
-                        <div className="field-icon justify-content-center align-items-center mr-4">
-                            <i className="bi bi-file-earmark-text-fill"></i>
-                        </div>
-                        <Input placeholder="Nom d'utilisateur: " type="text" name="username" />
-                    </div>
-                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
-                        <div className="field-icon justify-content-center align-items-center mr-4">
-                            <i className="bi bi-envelope-open-fill"></i>
-                        </div>
-                        <Input placeholder="Email: " type="email" name="email" />
-                    </div>
-                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
-                        <div className="field-icon justify-content-center align-items-center mr-4">
-                            <i className="bi bi-shield-lock-fill"></i>
-                        </div>
-                        <Input placeholder="Mot de passe: " type="password" name="password1" />
-                    </div>
-                    <div className="d-flex field container-fluid justify-content-center align-items-center my-3">
-                        <div className="field-icon justify-content-center align-items-center mr-4">
-                            <i className="bi bi-shield-lock"></i>
-                        </div>
-                        <Input placeholder="Mot de passe: " type="password" name="password2" />
-                    </div>
-
-                    <div className="container-fluid d-flex justify-content-center text-danger pt-4"> { error } </div>
-                    <div className="form-buttons d-flex justify-content-between align-items-center py-2 mt-5 mb-5">
-                        <Link href="/sign-in">
-                            <a className="btn py-2 px-4 btn-outline first mr-3 mr-sm-4 mr-md-5"> Connection </a>
-                        </Link>
-                        <Link href="/sign-up">
-                            <a className="btn py-2 px-4 second d-flex align-items-center" onClick={ async ( e ) => {
-                                console.log( ContentData );
-                                setLoader( 'd-flex' );
-                                axios.post( '/user/registration/', ContentData, {
-                                    mode: 'cors',
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    }
-                                } ).then( function ( res ) {
-                                    if ( res.status === 200 || res.status === 201 ) {
-                                        setError( '' );
-                                            setCookie( 'data', JSON.stringify( res.data ), { 
-                                                path: '/', 
-                                                maxAge: 3600 * 24
-                                            } );
-                                        return router.push( '/account/graphs' );
-                                    }
-                                    setLoader( 'd-none' );
-                                    setError( 'Inscription failed' );
-                                } ).catch( function ( err ) {
-                                        setError( 'Inscription failed' );
-                                    setLoader( 'd-none' );
-                                } );
-                            } }>
-                                <div className={ "spinner-border text-light mr-3 ".concat( loader ) } role="status">
-                                    <span className="sr-only"></span>
+                    <div className="col-12 col-md-6 d-flex px-0">
+                        <div className="form container-fluid d-flex px-0">
+                            <div className="form-head h-100 d-flex justify-content-center align-items-center">
+                                <img src="/img/form/form3.jpg" alt="img" className="img-responsive form-img" />
+                            </div>
+                            <div className="form-body d-block flex-column position-absolute overflow-auto container-fluid py-4">
+                                <div className="container-fluid d-flex">
+                                    <div className="content-icon">
+                                        <img src="/img/other/africa.svg" alt="icon" className="img-responsive" />
+                                    </div>
+                                    <div className="d-flex flex-column justify-content-center pl-3">
+                                        <div className="form-title py-1"> Inscription </div>
+                                        <div className="form-description py-1"> s'inscrire sur e-tech </div>
+                                    </div>
                                 </div>
-                                Inscription 
-                                <i className="bi bi-arrow-right ml-3"></i>
-                            </a>
-                        </Link>
+                                <div className="container content-extends d-flex flex-column py-5">
+                                    <div className="line d-flex align-items-center justify-content-center py-3">
+                                        <div className="log-item d-flex justify-content-center align-items-center">
+                                            <TwitterLogin
+                                                authCallback={ responseTwitter }
+                                                consumerKey={ keys.TWITTER_PUPLIC }
+                                                consumerSecret={ keys.TWITTER_SECRET }
+                                                children={
+                                                    <div className="d-flex justify-content-center align-items-center twitter py-2 px-4">
+                                                        <i className="bi bi-twitter mr-2"></i>
+                                                        Utiliser twitter
+                                                    </div>
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="line d-flex align-items-center justify-content-center py-3">
+                                        <div className="d-flex px-2">
+                                            <div className="log-item">
+                                                <FacebookLogin
+                                                    appId={ keys.FACEBOOK }
+                                                    fields="name,email,picture"
+                                                    callback={ responseFacebook } 
+                                                    icon={ <i className="bi bi-facebook mr-2"></i> }
+                                                    textButton="Utiliser facebook"
+                                                    cssClass="d-flex justify-content-center align-items-center facebook py-2 px-3 px-sm-4"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="d-flex px-2">
+                                            <div className="log-item">
+                                                <GoogleLogin
+                                                    clientId={ keys.GOOGLE }
+                                                    render={ props => (
+                                                        <div { ...props } className="d-flex justify-content-center align-items-center google py-2 px-3 px-sm-4">
+                                                            <i className="bi bi-google mr-2"></i>
+                                                            Utiliser gmail
+                                                        </div>
+                                                    ) }
+                                                    onSuccess={ responseGoogle }
+                                                    onFailure={ responseGoogle }
+                                                    cookiePolicy={ 'single_host_origin' }
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-3 d-flex align-items-center or mx-4">
+                                    <div className="bar"></div>
+                                    <span className="py-2 px-4"> ou </span>
+                                    <div className="bar"></div>
+                                </div>
+                                <div className="container content-inputs d-flex flex-column mt-5">
+                                    <Input type="text" placeholder="Nom d'utilisateur" name="username" icon="person-badge-fill" />
+                                    <Input type="text" placeholder="Email" name="email" icon="envelope-fill" />
+                                    <Input type="password" placeholder="Mot de passe: " name="password" icon="shield-lock-fill" />
+                                </div>
+                                <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4">
+                                    <a href="/sign-in" className="secondary d-flex align-items-center mr-5"> Connection </a>
+                                    <a className="submit d-flex align-items-center"> Inscription </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -124,9 +129,7 @@ function AddData() {
     );
 };
 
-export const page = "sing-up";
-/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Index(props) {
+export default function Index() {
     return (
         <Fragment>
             <AddData />

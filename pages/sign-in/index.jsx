@@ -5,17 +5,33 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import FacebookLogin from 'react-facebook-login';
+import { GoogleLogin } from 'react-google-login';
+import TwitterLogin from "react-twitter-login";
+import { keys } from '../@keys';
 
 const ContentData = {};
 const page = "sing-in";
 
-const responseFacebook = (response) => {
-    console.log(response);
-}
+const responseFacebook = ( response ) => {
+    console.log( response );
+};
 
-const componentClicked = () => {
-    console.log ('ood')
-}
+const responseGoogle = ( response ) => {
+    console.log( response );
+};
+
+const responseTwitter = ( err, data ) => {
+    console.log( err, data );
+};
+
+function Input( { placeholder, name, icon, type } ) {
+    return (
+        <div className="field container-fluid d-flex justify-content-center py-3">
+            <i className={ "mr-3 bi bi-".concat( icon ) }></i>
+            <input { ...{ placeholder, name, type } } className="pl-3" />
+        </div>
+    );
+};
 
 function AddData() {
     return (
@@ -33,14 +49,76 @@ function AddData() {
                             <div className="form-head h-100 d-flex justify-content-center align-items-center">
                                 <img src="/img/form/form3.jpg" alt="img" className="img-responsive form-img" />
                             </div>
-                            <div className="form-body d-flex position-absolute">
-                                <FacebookLogin
-                                    appId="522395098976902"
-                                    autoLoad={true}
-                                    fields="name,email,picture"
-                                    onClick={componentClicked}
-                                    callback={responseFacebook} 
-                                />
+                            <div className="form-body d-block flex-column position-absolute overflow-auto container-fluid py-4">
+                                <div className="container-fluid d-flex">
+                                    <div className="content-icon">
+                                        <img src="/img/other/africa.svg" alt="icon" className="img-responsive" />
+                                    </div>
+                                    <div className="d-flex flex-column justify-content-center pl-3">
+                                        <div className="form-title py-1"> Connection </div>
+                                        <div className="form-description py-1"> se connecter sur e-tech </div>
+                                    </div>
+                                </div>
+                                <div className="container content-extends d-flex flex-column py-5">
+                                    <div className="line d-flex align-items-center justify-content-center py-3">
+                                        <div className="log-item d-flex justify-content-center align-items-center">
+                                            <TwitterLogin
+                                                authCallback={ responseTwitter }
+                                                consumerKey={ keys.TWITTER_PUPLIC }
+                                                consumerSecret={ keys.TWITTER_SECRET }
+                                                children={
+                                                    <div className="d-flex justify-content-center align-items-center twitter py-2 px-4">
+                                                        <i className="bi bi-twitter mr-2"></i>
+                                                        Utiliser twitter
+                                                    </div>
+                                                }
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="line d-flex align-items-center justify-content-center py-3">
+                                        <div className="d-flex px-2">
+                                            <div className="log-item">
+                                                <FacebookLogin
+                                                    appId={ keys.FACEBOOK }
+                                                    fields="name,email,picture"
+                                                    callback={ responseFacebook } 
+                                                    icon={ <i className="bi bi-facebook mr-2"></i> }
+                                                    textButton="Utiliser facebook"
+                                                    cssClass="d-flex justify-content-center align-items-center facebook py-2 px-3 px-sm-4"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="d-flex px-2">
+                                            <div className="log-item">
+                                                <GoogleLogin
+                                                    clientId={ keys.GOOGLE }
+                                                    render={ props => (
+                                                        <div { ...props } className="d-flex justify-content-center align-items-center google py-2 px-3 px-sm-4">
+                                                            <i className="bi bi-google mr-2"></i>
+                                                            Utiliser gmail
+                                                        </div>
+                                                    ) }
+                                                    onSuccess={ responseGoogle }
+                                                    onFailure={ responseGoogle }
+                                                    cookiePolicy={ 'single_host_origin' }
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="mt-3 d-flex align-items-center or mx-4">
+                                    <div className="bar"></div>
+                                    <span className="py-2 px-4"> ou </span>
+                                    <div className="bar"></div>
+                                </div>
+                                <div className="container content-inputs d-flex flex-column mt-5">
+                                    <Input type="text" placeholder="Email" name="email" icon="envelope-fill" />
+                                    <Input type="password" placeholder="Mot de passe: " name="password" icon="shield-lock-fill" />
+                                </div>
+                                <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4">
+                                    <a href="/sign-up" className="secondary d-flex align-items-center mr-5"> Inscription </a>
+                                    <a className="submit d-flex align-items-center"> Connection </a>
+                                </div>
                             </div>
                         </div>
                     </div>

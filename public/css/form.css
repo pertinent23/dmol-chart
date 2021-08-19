@@ -18,9 +18,138 @@
 }
 
 .form .form-body{
-    background-color: rgba( 255, 255, 255, 0.97 );
+    background-color: rgba( 255, 255, 255, 0.90 );
     width: 100%;
     height: 100%;
     -webkit-backdrop-filter: blur( 5px );
     backdrop-filter: blur( 5px );
+    flex-wrap: wrap;
+}
+
+.form .content-icon img{
+    width: 100px;
+}
+
+.form-title{
+    font-size: 1.4em;
+    color: #000000;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+}
+
+.form-description{
+    font-size: 0.85em;
+    color: #333333;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+}
+
+.or .bar{
+    flex: 1;
+    height: 2px;
+    background-color: #333333;
+}
+
+.or span{
+    color: #333333;
+    font-weight: 600;
+}
+
+.field i{
+    font-size: 35px;
+}
+
+.field input{
+    height: 45px;
+    width: 270px;
+    border-radius: 6px;
+    border: 2px solid #333333;
+    outline: none;
+    background-color: transparent !important;
+    font-size: 0.85em;
+}
+
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field input:-webkit-autofill:active{
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #333333 !important;
+}
+
+.form a{
+    box-shadow: none !important;
+    padding: 10px 20px !important;
+    border-radius: 5px;
+}
+
+.form .secondary{
+    background-color: transparent;
+    color: #333333;
+    font-size: 0.85em;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+}
+
+.form .submit{
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 0.85em;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+}
+
+.form .log-item{
+    min-width: 50px;
+    height: 45px;
+    border-radius: 6px;
+}
+
+.google,
+.facebook,
+.twitter{
+    color: #FFFFFF;
+    background-color: #1DA1F2;
+    border-radius: 70px;
+    font-size: 0.55em;
+    font-weight: bold;
+    word-spacing: 0.01em;
+    letter-spacing: 0.12em;
+    min-width: 20px;
+    cursor: pointer;
+}
+
+
+.google i,
+.facebook i,
+.twitter i{
+    font-size: 15px;
+}
+
+.google{
+    background-color: #DB4437;
+}
+
+.facebook{
+    background-color: #4267B2;
+    border: none;
+    outline: none;
+}
+
+@media screen and ( min-width: 567px ) {
+    .form a{
+        padding: 12.5px 25px !important;
+    }
+
+    .google,
+    .facebook,
+    .twitter{
+        font-size: 0.75em;
+    }
+
+    .google i,
+    .facebook i,
+    .twitter i{
+        font-size: 25px;
+    }
 }
