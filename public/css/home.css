@@ -33,10 +33,11 @@
 .part .part-image img{
     display: block;
     position: relative;
-    width: 100%;
+    min-width: 100%;
     min-height: 350px;
+    max-width: 150%;
     height: auto;
-    filter: blur( 2px );
+    filter: blur( 6px );
 }
 
 .first-part .part-image{
@@ -87,6 +88,7 @@
 
 .second-part{
     background-color: #FFFFFF;
+    max-width: 100%;
 }
 
 .share{
@@ -169,7 +171,8 @@
     color: #555555;
     letter-spacing: 0.12em;
     font-weight: 600;
-    max-height: 350px;
+    max-height: 100px;
+    overflow: hidden;
     overflow: hidden;
 }
 
@@ -192,6 +195,10 @@
 .options{
     background-color: #F5F5F5;
     width: 100%;
+}
+
+.options.search-option-container{
+    background-color: #FFFFFF;
 }
 
 .options .option-title{
@@ -262,7 +269,7 @@
 
 .search-option{
     height: 50px;
-    width: 300px;
+    width: 270px;
     border: 2px solid #555555;
 }
 
@@ -271,6 +278,7 @@
     outline: none;
     display: block;
     height: 100%;
+    width: auto;
     flex: 1;
     font-size: 0.85em;
 }
@@ -331,6 +339,80 @@
     font-weight: 600;
 }
 
+.footer{
+    background-color: #333333;
+}
+
+.footer .options{
+    background-color: transparent;
+    width: auto !important;
+}
+
+.footer .options .option-title{
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.footer .option-item .option-item-title{
+    color: #FFFFFF;
+}
+
+.footer .option-item .option-item-detail{
+    color: #EEEEEE;
+}
+
+.tags .option-items{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tags .tag-item{
+    font-size: 0.65em;
+    border: 1px solid #DDDDDD;
+    color: #DDDDDD;
+    padding: 5px 8px;
+    margin: 5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    transition-duration: 0.2s;
+}
+
+.tags .tag-item:hover{
+    background-color: #DDDDDD;
+    color: #333333;
+    font-weight: bold;
+}
+
+.footer-body{
+    background-color: #222222;
+}
+
+.footer-body-part img{
+    width: 25px;
+    height: 25px;
+}
+
+.footer-body-part{
+    color: #000000;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.footer-body-part .footer-body-share{
+    padding: 0px 10px;
+}
+
+.footer-body-part .footer-body-share i{
+    color: #BBBBBB;
+    font-size: 20px;
+}
+
+@media screen and ( min-width: 575.98px ) {
+    .article-item .article-data{
+        max-height: 200px;
+    }
+}
+
 @media screen and ( min-width: 768px ) {
     .first-part .part-title{
         font-size: 2.2em;
@@ -340,11 +422,19 @@
         font-size: 1.2em;
     }
 
+    .article-item .article-data{
+        max-height: 300px;
+    }
+
     .article-item .detail-item{
         font-size: 0.8em;
     }
 
     .options{
         max-width: 350px;
+    }
+
+    .search-option{
+        max-width: 300px;
     }
 }

@@ -32,10 +32,10 @@ export function Share() {
 
 export function Item( { img, title } ) {
     return (
-        <div className="article-item my-2 px-0 py-2">
+        <div className="article-item my-2 px-2 py-2 w-100">
             <div className="article-head w-100">
-                <div className="article-img w-100">
-                    <img src={ img } alt="article-image" className="img-responsive" />
+                <div className="article-img w-100 overflow-hidden">
+                    <img src={ img } alt="article-image" className="img-responsive w-100" />
                     <Share/>
                 </div>
             </div>
@@ -111,7 +111,7 @@ export default function Home () {
                             </div>
                         </div>
                     </div>
-                    <div className="w-100 part second-part d-flex justify-content-center align-items-center py-5">
+                    <div className="w-100 part second-part d-flex flex-column justify-content-center align-items-center pt-5 mt-3">
                         <div className="row w-100">
                             <div className="col-12 col-md-8 d-flex flex-column align-items-center align-items-md-end content-article px-0 px-md-3">
                                 <Item img="/img/pres/img1.jpg" title="IOT" />
@@ -132,7 +132,7 @@ export default function Home () {
                                     </nav>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-4 d-flex flex-column align-items-center align-items-md-start">
+                            <div className="col-12 col-md-4 px-2 px-md-3 d-flex flex-column align-items-center align-items-md-start">
                                 <div className="options mt-2 py-4 d-flex flex-column align-items-center">
                                     <div className="option-title py-4"> Derniers articles </div>
                                     <div className="bar"></div>
@@ -175,7 +175,7 @@ export default function Home () {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="container-fluid py-4 mt-5">
+                                <div className="py-4 mt-5 d-flex justify-content-center options search-option-container">
                                     <div className="search-option d-flex">
                                         <input type="text" name="search" id="search-option" className="pl-3" placeholder="Recherche..." />
                                         <div className="btn d-flex justify-content-center align-items-center">
@@ -214,6 +214,129 @@ export default function Home () {
                                     <div className="description container-fluid py-2"> Souscrivez pour être au courant de nos prochaines publications </div>
                                     <input type="text" className="my-3 pl-3 py-3 mt-5" placeholder="Votre Email: " />
                                     <div className="btn py-3 mt-4" id="subscribe"> Souscrire </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="w-100 footer mt-5 px-0 d-flex d-flex flex-column overflow-hidden">
+                            <div className="footer-head container px-0 mx-0 mx-sm-auto">
+                                <div className="row w-100 mx-0 px-0">
+                                    <div className="col col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                                        <div className="options mt-2 py-4 d-flex flex-column align-items-center">
+                                            <div className="option-title py-4"> Articles Populaire </div>
+                                            <div className="option-items container-fluid">
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img5.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> INTERNET </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img4.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> JAVA </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img6.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> MOBILE </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+                                        <div className="options mt-2 py-4 d-flex flex-column align-items-center">
+                                            <div className="option-title py-4"> Derniers articles </div>
+                                            <div className="option-items container-fluid">
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img5.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> INTERNET </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img4.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> JAVA </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                                <div className="option-item d-flex my-4">
+                                                    <div className="option-item-img d-flex justify-content-center align-items-center">
+                                                        <img src="/img/pres/img6.jpg" alt="test" className="img-responsive" />
+                                                    </div>
+                                                    <div className="option-item-data d-flex flex-column container-fluid">
+                                                        <div className="option-item-title"> MOBILE </div>
+                                                        <div className="option-item-detail py-2"> 15/03/2018 </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col col-12 col-md-4 d-flex justify-content-center">
+                                        <div className="options tags mt-2 py-4 d-flex flex-column align-items-center">
+                                            <div className="option-title py-4"> Derniers articles </div>
+                                            <div className="option-items container-fluid">
+                                                <a href="#" className="tag-item"> PHP </a>
+                                                <a href="#" className="tag-item"> code </a>
+                                                <a href="#" className="tag-item"> JAVA </a>
+                                                <a href="#" className="tag-item"> IOT </a>
+                                                <a href="#" className="tag-item"> Programmation </a>
+                                                <a href="#" className="tag-item"> python </a>
+                                                <a href="#" className="tag-item"> SQL </a>
+                                                <a href="#" className="tag-item"> Bloc-chaine </a>
+                                                <a href="#" className="tag-item"> C++ </a>
+                                                <a href="#" className="tag-item"> CSHARP </a>
+                                                <a href="#" className="tag-item"> Swisht </a>
+                                                <a href="#" className="tag-item"> PHP </a>
+                                                <a href="#" className="tag-item"> code </a>
+                                                <a href="#" className="tag-item"> JAVA </a>
+                                                <a href="#" className="tag-item"> IOT </a>
+                                                <a href="#" className="tag-item"> Programmation </a>
+                                                <a href="#" className="tag-item"> python </a>
+                                                <a href="#" className="tag-item"> SQL </a>
+                                                <a href="#" className="tag-item"> Bloc-chaine </a>
+                                                <a href="#" className="tag-item"> C++ </a>
+                                                <a href="#" className="tag-item"> CSHARP </a>
+                                                <a href="#" className="tag-item"> Swisht </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="footer-body container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3">
+                                <div className="footer-body-part d-flex py-3 py-md-2 d-flex align-items-center">
+                                    <img src="/img/other/africa.svg" alt="footer-img" className="img-responsive mr-3" />
+                                    Etech
+                                </div>
+                                <div className="footer-body-part d-flex py-3 py-md-2 align-items-center">
+                                    <a href="#" className="footer-body-share">
+                                        <i className="bi bi-facebook"></i>
+                                    </a>
+                                    <a href="#" className="footer-body-share">
+                                        <i className="bi bi-twitter"></i>
+                                    </a>
+                                    <a href="#" className="footer-body-share">
+                                        <i className="bi bi-linkedin"></i>
+                                    </a>
+                                    <a href="#" className="footer-body-share">
+                                        <i className="bi bi-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

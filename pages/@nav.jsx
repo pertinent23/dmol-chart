@@ -6,7 +6,7 @@ export function compare( id, main ) {
 
 export function NavItem( { icon, title, active, href } ) {
     return (
-        <a href={ href } className={ "navigation-item d-flex justify-content-center align-items-center mx-md-4 py-0 ".concat( active ? 'active' : '' ) }>
+        <a href={ href } className={ "navigation-item d-flex justify-content-center align-items-center mx-md-4 py-2 py-md-0 ".concat( active ? 'active' : '' ) }>
             <i className={ "bi d-block mr-2 bi-".concat( icon ) } ></i>
             <span className="navigation-item-title"> { title } </span>
         </a>
