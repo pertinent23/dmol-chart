@@ -116,9 +116,9 @@ function AddData() {
                                 </div>
                                 <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4">
                                     <Link href="/sign-up">
-                                        <a className="secondary d-flex align-items-center mr-5"> Inscription </a>
+                                        <a className="secondary d-flex align-items-center mr-5 button"> Inscription </a>
                                     </Link>
-                                    <div className="submit d-flex align-items-center"> Connection </div>
+                                    <div className="submit d-flex align-items-center button"> Connection </div>
                                 </div>
                             </div>
                         </div>
