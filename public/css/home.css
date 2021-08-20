@@ -177,15 +177,25 @@
 }
 
 .article-item .btn{
-    font-size: 0.8em;
-    color: #333333;
+    font-size: 0.7em;
+    color: #000000;
     transition-duration: 0.3s;
     text-transform: uppercase;
     font-weight: 600;
 }
 
 .article-item .btn i{
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.article-item .info-item{
+    font-size: 0.85em;
+    color: #000000;
+    font-weight: 600;
+}
+
+.article-item .info-item i{
+    font-size: 15px;
 }
 
 .article-item .btn:hover{
@@ -297,7 +307,7 @@
 
 .newsletter{
     display: block;
-    top: 70px;
+    top: 90px;
     z-index: 150;
 }
 
@@ -329,6 +339,35 @@
     border-radius: 0px;
     font-size: 0.85em;
     font-weight: 600;
+}
+
+.list-title{
+    font-size: 1.25em;
+    color: #333333;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.13em;
+}
+
+.list-bar{
+    display: block;
+    width: 150px;
+    height: 5px;
+    background-color: #BBBBBB;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.list-bar::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    background-color: #333333;
+    left: 0px;
+    top: 0px;
+    border-radius: 6px;
 }
 
 .pagination .page-item a{
@@ -409,6 +448,11 @@
 .footer-body-part .footer-body-share i{
     color: #BBBBBB;
     font-size: 20px;
+    transition-duration: 0.3s;
+}
+
+.footer-body-part .footer-body-share i:hover{
+    color: #EEEEEE;
 }
 
 @media screen and ( min-width: 575.98px ) {

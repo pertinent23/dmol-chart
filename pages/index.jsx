@@ -65,10 +65,20 @@ export function Item( { img, title } ) {
                     Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam 
                     sodales hendrerit.
                 </div>
-                <div className="content-button w-100">
+                <div className="content-button w-100 d-flex justify-content-between align-items-center">
                     <div className="btn more px-0 py-2 d-flex align-items-center">
                         Plus
                         <i className="bi bi-arrow-right ml-2"></i>
+                    </div>
+                    <div className="infos d-flex align-items-center">
+                        <div className="info-item px-2 d-flex align-items-center">
+                            <i className="mr-1 bi bi-heart"></i>
+                            2k
+                        </div>
+                        <div className="info-item px-2 d-flex align-items-center">
+                            <i className="mr-1 bi bi-chat-right-text-fill"></i>
+                            250
+                        </div>
                     </div>
                 </div>
             </div>
@@ -114,6 +124,10 @@ export default function Home () {
                     <div className="w-100 part second-part d-flex flex-column justify-content-center align-items-center pt-5 mt-3">
                         <div className="row w-100">
                             <div className="col-12 col-md-8 d-flex flex-column align-items-center align-items-md-end content-article px-0 px-md-3">
+                                <div className="article-item d-flex flex-column w-100 justify-content-start align-items-start">
+                                    <span className="list-title ml-2 pt-4"> Articles recents </span>
+                                    <div className="list-bar mt-4 ml-2 mb-5"></div>
+                                </div>
                                 <Item img="/img/pres/img1.jpg" title="IOT" />
                                 <Item img="/img/pres/img5.jpg" title="INTERNET" />
                                 <Item img="/img/pres/img4.jpg" title="JAVA" />
@@ -133,7 +147,7 @@ export default function Home () {
                                 </div>
                             </div>
                             <div className="col-12 col-md-4 px-2 px-md-3 d-flex flex-column align-items-center align-items-md-start">
-                                <div className="options mt-2 py-4 d-flex flex-column align-items-center">
+                                <div className="options mt-2 mt-md-5 py-4 d-flex flex-column align-items-center">
                                     <div className="option-title py-4"> Derniers articles </div>
                                     <div className="bar"></div>
                                     <div className="option-items container-fluid py-3">

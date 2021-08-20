@@ -17,6 +17,7 @@
     "express-fileupload": "^1.2.1",
     "next": "11.0.1",
     "next-images": "^1.8.1",
+    "progressive-images": "^1.0.5",
     "react": "17.0.2",
     "react-chartjs-2": "^3.0.4",
     "react-cookie": "^4.0.3",
