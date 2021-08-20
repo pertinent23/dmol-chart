@@ -85,10 +85,13 @@
 
 .form .secondary{
     background-color: transparent;
-    color: #333333;
+    border: 2px solid #000000;
+    color: #000000;
     font-size: 0.85em;
     letter-spacing: 0.12em;
-    font-weight: 600;
+    font-weight: bold;
+    transition-duration: 0.3s;
+    box-sizing: content-box;
 }
 
 .form .submit{

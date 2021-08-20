@@ -27,7 +27,7 @@ const responseTwitter = ( err, data ) => {
 function Input( { placeholder, name, icon, type } ) {
     return (
         <div className="field container-fluid d-flex justify-content-center py-3">
-            <i className={ "mr-3 bi bi-".concat( icon ) }></i>
+            <i className={ "mr-4 bi bi-".concat( icon ) }></i>
             <input { ...{ placeholder, name, type } } className="pl-3" />
         </div>
     );
@@ -42,7 +42,7 @@ function AddData() {
             <div className="container-fluid content-form d-flex px-0">
                 <div className="row container-fluid mx-0 px-0">
                     <div className="col-0 col-md-6 px-0 d-none overlfow-hidden d-md-flex justify-content-center align-items-center">
-                        <img src="/img/form/form6.jpg" alt="img" className="img-responsive form-img" />
+                        <img src="/img/form/form12.jpg" alt="img" className="img-responsive form-img" />
                     </div>
                     <div className="col-12 col-md-6 d-flex px-0">
                         <div className="form container-fluid d-flex px-0">

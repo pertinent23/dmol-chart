@@ -27,7 +27,7 @@ const responseTwitter = ( err, data ) => {
 function Input( { placeholder, name, icon, type } ) {
     return (
         <div className="field container-fluid d-flex justify-content-center py-3">
-            <i className={ "mr-3 bi bi-".concat( icon ) }></i>
+            <i className={ "mr-4 bi bi-".concat( icon ) }></i>
             <input { ...{ placeholder, name, type } } className="pl-3" />
         </div>
     );
