@@ -16,7 +16,7 @@ const styles = {
         width: '250px',
         height: '250px',
         borderRadius: '100%',
-        border: '6px solid #FFFFFF',
+        border: '3px solid #FFFFFF',
         borderBottomColor: 'transparent',
         borderRightColor: 'transparent',
         animationName: "rotate",

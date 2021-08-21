@@ -9,7 +9,7 @@ export default function Root( { children } ) {
             <Head>
                 <meta charSet="UTF-8" />
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                <meta name="theme-color" content="#13151B"/>
+                <meta name="theme-color" content="#222222"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="stylesheet" type="text/css" href="/libs/bootstrap.min.css" />
                 <link rel="stylesheet" type="text/css" href="/css/main.css" />
