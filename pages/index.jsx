@@ -360,3 +360,9 @@ export default function Home () {
         </Fragment>
     );
 };
+
+export async function getServerSideProps() {
+    return {
+        props: {}
+    };
+};

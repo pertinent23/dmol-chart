@@ -29,4 +29,5 @@ function MyApp( { Component, pageProps } ) {
         </Loader>
     );
 };
+
 export default MyApp;
