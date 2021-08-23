@@ -1,0 +1,95 @@
+.header{
+    background-color: #FFFFFF;
+}
+
+.header-icon{
+    font-size: 30px;
+}
+
+.header-title{
+    font-size: 1.4em;
+    color: #000000;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.share .share-box{
+    background-color: #FFFFFF;
+    right: 15px;
+    bottom: 15px;
+}
+
+.share .share-box .share-item{
+    width: 40px;
+    height: 40px;
+    color: #666666;
+}
+
+.share .share-box .share-item:first-child{
+    transform: rotateY( 180deg );
+}
+
+.share .share-box .share-item i{
+    font-size: 20px;
+}
+
+.share .share-box .share-item a{
+    color: #333333;
+}
+
+.content-category-items{
+    background-color: transparent;
+}
+
+.category-item-box{
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+}
+
+.category-content-box{
+    flex-wrap: wrap;
+}
+
+.category-item-box .title{
+    color: #000000;
+    font-size: 1.3em;
+    font-weight: bold;
+    letter-spacing: 0.12em;
+}
+
+.category-item-box .title i{
+    font-size: 25px;
+}
+
+.category-content-box .catrgory-content-box-item{
+    border: 1px solid #666666;
+    font-size: 0.75em;
+    letter-spacing: 0.13em;
+    padding: 5px 8px;
+    margin: 5px;
+    color: #666666;
+    font-weight: bold;
+    transition-duration: 0.2s;
+}
+
+.category-content-box .catrgory-content-box-item:hover{
+    background-color: #666666;
+    color: #FFFFFF;
+}
+
+@media screen and ( min-width: 768px ) {
+    .header-icon{
+        font-size: 37px;
+    }
+    
+    .header-title{
+        font-size: 1.7em;
+    }   
+
+    .header .share .share-box .share-item i{
+        font-size: 30px !important;
+    }
+}

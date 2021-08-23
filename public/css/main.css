@@ -93,6 +93,12 @@ body{
     color: #666666;
 }
 
+.navigation-item.active:hover,
+.navigation-item.active{
+    color: #000000;
+    font-weight: bold;
+}
+
 .navigation-item i{
     font-size: 25px;
 }

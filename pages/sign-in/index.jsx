@@ -25,10 +25,26 @@ const responseTwitter = ( err, data ) => {
 };
 
 function Input( { placeholder, name, icon, type } ) {
+    const 
+        [ focus, setFocus ] = useState( 'blur' );
     return (
-        <div className="field container-fluid d-flex justify-content-center py-3">
-            <i className={ "mr-4 bi bi-".concat( icon ) }></i>
-            <input { ...{ placeholder, name, type } } className="pl-3" />
+        <div className="field container-fluid d-flex align-items-center justify-content-center py-3">
+            <div className="d-flex field-item">
+                <i className={ "mr-4 bi bi-".concat( icon ) }></i>
+            </div>
+            <div className="d-flex flex-column align-items-center field-item">
+                <div className={ `field-content-input d-flex flex-column ${ focus }` }>
+                    <input { ...{ name, type } } id={ name } autoComplete="off" className="pl-4 pt-3" required pattern=".*" onInput={ e => {
+                        const 
+                            target = e.target,
+                            name = target.name,
+                            value = target.value;
+                        ContentData[ name ] = value;
+                    } } onFocus={ () => setFocus( 'focus' ) } onBlur={ () => setFocus( 'blur' ) } />
+                    <label htmlFor={ name } className="pl-3 d-flex align-items-center"> { placeholder } </label>
+                </div>
+                <div className="field-bar d-flex justify-content-center"></div>
+            </div>
         </div>
     );
 };
@@ -49,7 +65,7 @@ function AddData() {
                             <div className="form-head h-100 d-flex justify-content-center align-items-center">
                                 <img src="/img/form/form3.jpg" alt="img" className="img-responsive form-img" />
                             </div>
-                            <div className="form-body d-block flex-column position-absolute overflow-auto container-fluid py-4">
+                            <div className="form-body d-block flex-column position-absolute overflow-auto container-fluid py-4 px-0">
                                 <div className="container-fluid d-flex">
                                     <div className="content-icon">
                                         <img src="/img/other/africa.svg" alt="icon" className="img-responsive" />
@@ -114,11 +130,14 @@ function AddData() {
                                     <Input type="text" placeholder="Email" name="email" icon="envelope-fill" />
                                     <Input type="password" placeholder="Mot de passe: " name="password" icon="shield-lock-fill" />
                                 </div>
-                                <div className="container-fluid mt-5 d-flex justify-content-center align-items-center py-4 pb-3">
-                                    <Link href="/sign-up">
-                                        <a className="secondary d-flex align-items-center mr-5 button"> Inscription </a>
-                                    </Link>
-                                    <div className="submit d-flex align-items-center button"> Connection </div>
+                                <div className="container-fluid mt-5 d-flex flex-column-reverse justify-content-center align-items-center pb-4 pt-2">
+                                    <div className="secondary d-block mt-5 pt-2"> 
+                                        { "Vous n'êtes pas encore inscrit ?" }
+                                        <Link href="/sign-up">
+                                            <a className="px-0 px-md-2">incrivez vous</a>
+                                        </Link> 
+                                    </div>
+                                    <div className="submit d-flex align-items-center button shadow"> Connection </div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +148,8 @@ function AddData() {
     );
 };
 
-export default function Index() {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Index(props) {
     return (
         <Fragment>
             <AddData />

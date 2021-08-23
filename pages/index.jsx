@@ -304,7 +304,7 @@ export default function Home () {
                                     </div>
                                     <div className="col col-12 col-md-4 d-flex justify-content-center">
                                         <div className="options tags mt-2 py-4 d-flex flex-column align-items-center">
-                                            <div className="option-title py-4"> Derniers articles </div>
+                                            <div className="option-title py-4"> Categories </div>
                                             <div className="option-items container-fluid">
                                                 <a href="#" className="tag-item"> PHP </a>
                                                 <a href="#" className="tag-item"> code </a>

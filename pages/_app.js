@@ -22,7 +22,7 @@ function MyApp( { Component, pageProps } ) {
         );
             useEffect( () => (
                 setDisplay( 'block' )
-            ) );
+            ), [ display ] );
     return (
         <Loader { ...{ display } }>
             { content }
