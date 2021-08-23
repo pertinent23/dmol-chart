@@ -68,7 +68,7 @@ export default function MainNav( { main } ) {
         <Nav>
             <NavItem href="/" active={compare(main,'home')} title="accueil" icon="house" />
             <NavItem href="/category" active={compare(main,'category')} title="caterories" icon="columns-gap" />
-            <NavItem href="/article" active={compare(main,'articles')} title="articles" icon="receipt" />
+            <NavItem href="/article" active={compare(main,'article')} title="articles" icon="receipt" />
             <NavItem href="/sign-in" active={compare(main,'sign-in')} title="connection" icon="terminal" />
         </Nav>
     );

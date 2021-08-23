@@ -14,7 +14,7 @@ export function Item( { title, children  } ) {
                     </div>
                 </div>
                 <div className="title pl-3 py-3 py-md-4 d-flex align-items-center">
-                    <i className="bi bi-chevron-right mr-3"></i>
+                    <i className="bi bi-chevron-right mr-2 mr-md-3"></i>
                     { title }
                 </div>
                 <div className="category-content-box pb-5 pt-2 px-3 d-flex">
@@ -41,7 +41,7 @@ export default function Category () {
                 <link rel="stylesheet" href="/css/page.css" />
             </Head>
             <div className="content-page d-flex flex-column">
-                <div className="header d-flex flex-column py-4">
+                <div className="header-page d-flex flex-column py-4">
                     <div className="header-head py-4 pl-0 pl-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
                         <i className="bi bi-columns-gap mr-3 header-icon"></i>
                         <span className="header-title"> Categories </span>
