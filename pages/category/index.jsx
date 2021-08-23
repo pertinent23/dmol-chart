@@ -8,6 +8,11 @@ export function Item( { title, children  } ) {
     return (
         <div className="col-12 col-sm-6 col-md-4 category-item d-flex justify-content-center align-items-center p-2">
             <div className="category-item-box d-flex flex-column shadow border">
+                <div className="category-design">
+                    <div className="category-design-item d-flex justify-content-center align-items-center">
+                        <i className="bi bi-columns-gap"></i>
+                    </div>
+                </div>
                 <div className="title pl-3 py-3 py-md-4 d-flex align-items-center">
                     <i className="bi bi-chevron-right mr-3"></i>
                     { title }
@@ -78,16 +83,9 @@ export default function Category () {
                 </div>
                 <Navigation main={ page } />
                 <div className="content-category-items w-100">
-                    <div className="container px-0 py-3">
-                        <div className="row mx-0">
+                    <div className="w-100 px-0 py-3">
+                        <div className="row mx-0 d-flex justify-content-center align-items-center">
                             <Item title="Programmation">
-                                <SubItem name="PHP" link="#" />
-                                <SubItem name="JAVA" link="#" />
-                                <SubItem name="CSS" link="#" />
-                                <SubItem name="HTML" link="#" />
-                                <SubItem name="JavaScript" link="#" />
-                                <SubItem name="jQuery" link="#" />
-                                <SubItem name="Laravel" link="#" />
                                 <SubItem name="PHP" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="CSS" link="#" />
@@ -119,11 +117,6 @@ export default function Category () {
                                 <SubItem name="Kivy" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="Kotlin" link="#" />
-                                <SubItem name="Swift" link="#" />
-                                <SubItem name="Android" link="#" />
-                                <SubItem name="Objective-c" link="#" />
-                                <SubItem name="MAC-OS" link="#" />
-                                <SubItem name="WINDONS MOBILE" link="#" />
                             </Item>
                             <Item title="IOT">
                                 <SubItem name="PHP" link="#" />
@@ -143,10 +136,6 @@ export default function Category () {
                                 <SubItem name="PHP" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="CSS" link="#" />
-                                <SubItem name="HTML" link="#" />
-                                <SubItem name="JavaScript" link="#" />
-                                <SubItem name="jQuery" link="#" />
-                                <SubItem name="Laravel" link="#" />
                             </Item>
                             <Item title="Cyber">
                                 <SubItem name="Flutter" link="#" />
@@ -164,11 +153,6 @@ export default function Category () {
                                 <SubItem name="Kivy" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="Kotlin" link="#" />
-                                <SubItem name="Swift" link="#" />
-                                <SubItem name="Android" link="#" />
-                                <SubItem name="Objective-c" link="#" />
-                                <SubItem name="MAC-OS" link="#" />
-                                <SubItem name="WINDONS MOBILE" link="#" />
                             </Item>
                             <Item title="Internet">
                                 <SubItem name="PHP" link="#" />
@@ -188,10 +172,6 @@ export default function Category () {
                                 <SubItem name="PHP" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="CSS" link="#" />
-                                <SubItem name="HTML" link="#" />
-                                <SubItem name="JavaScript" link="#" />
-                                <SubItem name="jQuery" link="#" />
-                                <SubItem name="Laravel" link="#" />
                             </Item>
                             <Item title="IA">
                                 <SubItem name="Flutter" link="#" />
@@ -209,11 +189,6 @@ export default function Category () {
                                 <SubItem name="Kivy" link="#" />
                                 <SubItem name="JAVA" link="#" />
                                 <SubItem name="Kotlin" link="#" />
-                                <SubItem name="Swift" link="#" />
-                                <SubItem name="Android" link="#" />
-                                <SubItem name="Objective-c" link="#" />
-                                <SubItem name="MAC-OS" link="#" />
-                                <SubItem name="WINDONS MOBILE" link="#" />
                             </Item>
                         </div>
                     </div>
