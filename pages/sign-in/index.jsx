@@ -24,6 +24,52 @@ const responseTwitter = ( err, data ) => {
     console.log( err, data );
 };
 
+function Twitter() {
+    return (
+        <TwitterLogin
+            authCallback={ responseTwitter }
+            consumerKey={ keys.TWITTER_PUPLIC }
+            consumerSecret={ keys.TWITTER_SECRET }
+        >
+            <div className="d-flex justify-content-center align-items-center twitter p-0">
+                <i className="bi bi-twitter"></i>
+                <span className="d-none"> Utiliser twitter </span>
+            </div>
+        </TwitterLogin>
+    );  
+};
+
+function Facebook() {
+    return (
+        <FacebookLogin
+            appId={ keys.FACEBOOK }
+            fields="name,email,picture"
+            callback={ responseFacebook } 
+            buttonStyle={{ backgroundColor: "#000000", opacity: 1 }}
+            icon={ <i className="bi bi-facebook"></i> }
+            textButton=""
+            cssClass="d-flex justify-content-center align-items-center facebook p-0"
+        />
+    );
+};
+
+function Google() {
+    return (
+        <GoogleLogin
+            clientId={ keys.GOOGLE }
+            render={ props => (
+                <div { ...props } className="d-flex justify-content-center align-items-center google p-0">
+                    <i className="bi bi-google"></i>
+                    <span className="d-none"> Utiliser google </span>
+                </div>
+            ) }
+            onSuccess={ responseGoogle }
+            onFailure={ responseGoogle }
+            cookiePolicy={ 'single_host_origin' }
+        />
+    );
+};
+
 function Input( { placeholder, name, icon, type } ) {
     const 
         [ focus, setFocus ] = useState( 'blur' );
@@ -77,46 +123,19 @@ function AddData() {
                                 </div>
                                 <div className="container content-extends d-flex flex-column py-5">
                                     <div className="line d-flex align-items-center justify-content-center py-3">
-                                        <div className="log-item d-flex justify-content-center align-items-center">
-                                            <TwitterLogin
-                                                authCallback={ responseTwitter }
-                                                consumerKey={ keys.TWITTER_PUPLIC }
-                                                consumerSecret={ keys.TWITTER_SECRET }
-                                            >
-                                                <div className="d-flex justify-content-center align-items-center twitter py-2 px-4">
-                                                    <i className="bi bi-twitter mr-2"></i>
-                                                    Utiliser twitter
-                                                </div>
-                                            </TwitterLogin>
-                                        </div>
-                                    </div>
-                                    <div className="line d-flex align-items-center justify-content-center py-3">
                                         <div className="d-flex px-2">
-                                            <div className="log-item">
-                                                <FacebookLogin
-                                                    appId={ keys.FACEBOOK }
-                                                    fields="name,email,picture"
-                                                    callback={ responseFacebook } 
-                                                    icon={ <i className="bi bi-facebook mr-2"></i> }
-                                                    textButton="Utiliser facebook"
-                                                    cssClass="d-flex justify-content-center align-items-center facebook py-2 px-3 px-sm-4"
-                                                />
+                                            <div className="log-item p-2" data-toolip="Utiliser Facebook">
+                                                <Facebook />
                                             </div>
                                         </div>
                                         <div className="d-flex px-2">
-                                            <div className="log-item">
-                                                <GoogleLogin
-                                                    clientId={ keys.GOOGLE }
-                                                    render={ props => (
-                                                        <div { ...props } className="d-flex justify-content-center align-items-center google py-2 px-3 px-sm-4">
-                                                            <i className="bi bi-google mr-2"></i>
-                                                            Utiliser gmail
-                                                        </div>
-                                                    ) }
-                                                    onSuccess={ responseGoogle }
-                                                    onFailure={ responseGoogle }
-                                                    cookiePolicy={ 'single_host_origin' }
-                                                />
+                                            <div className="log-item p-2" data-toolip="Utiliser Twitter">
+                                                <Twitter />
+                                            </div>
+                                        </div>
+                                        <div className="d-flex px-2">
+                                            <div className="log-item p-2" data-toolip="Utiliser Google">
+                                                <Google />
                                             </div>
                                         </div>
                                     </div>

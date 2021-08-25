@@ -168,7 +168,7 @@
 
 .form .log-item{
     min-width: 50px;
-    height: 45px;
+    height: auto;
     border-radius: 6px;
 }
 
@@ -176,14 +176,16 @@
 .facebook,
 .twitter{
     color: #FFFFFF;
-    background-color: #1DA1F2;
-    border-radius: 70px;
+    border-radius: 100%;
     font-size: 0.55em;
     font-weight: bold;
     word-spacing: 0.01em;
     letter-spacing: 0.12em;
+    width: 50px;
+    height: 50px;
     min-width: 20px;
     cursor: pointer;
+    background-color: #000000 !important;
 }
 
 .twitter{
@@ -194,11 +196,15 @@
 .google i,
 .facebook i,
 .twitter i{
-    font-size: 15px;
+    font-size: 25px;
 }
 
 .google{
     background-color: #DB4437;
+}
+
+.twitter{
+    background-color: #1DA1F2;
 }
 
 .facebook{
@@ -207,16 +213,38 @@
     outline: none;
 }
 
+[data-toolip]{
+    background-color: red;
+}
+
+[data-toolip]::before{
+    content: attr( data-toolip );
+    display: block;
+    position: absolute;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 4px;
+    padding: 5px 8px;
+    bottom: -50%;
+    min-height: 25px;
+    max-width: 250px;
+    font-size: 0.85em;
+    letter-spacing: 0.12em;
+    text-align: center;
+}
+
 @media screen and ( min-width: 450px ) {
     .google,
     .facebook,
     .twitter{
         font-size: 0.75em;
+        width: 70px;
+        height: 70px;
     }
 
     .google i,
     .facebook i,
     .twitter i{
-        font-size: 25px;
+        font-size: 30px;
     }
 }

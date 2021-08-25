@@ -84,7 +84,7 @@ export default function Category () {
                 <Navigation main={ page } />
                 <div className="content-category-items w-100">
                     <div className="w-100 px-0 py-3">
-                        <div className="row mx-0 d-flex justify-content-center align-items-center">
+                        <div className="row mx-0 d-flex justify-content-center">
                             <Item title="Programmation">
                                 <SubItem name="PHP" link="#" />
                                 <SubItem name="JAVA" link="#" />
