@@ -96,7 +96,8 @@ export function TitleItem( { id, name } ) {
 };
 
 export const page = 'article';
-export default function Home () {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Home (props) {
     return (
         <Fragment>
             <Head>
@@ -107,7 +108,7 @@ export default function Home () {
                 <div className="header-page d-flex flex-column py-4">
                     <div className="header-head py-4 pl-0 pl-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
                         <i className="bi bi-receipt mr-3 header-icon"></i>
-                        <span className="header-title"> Categories </span>
+                        <span className="header-title"> ARTICLES </span>
                     </div>
                     <div className="header-body d-flex justify-content-center py-3 py-md-4">
                         <div className="d-flex-justify-content-center align-items-center share">
@@ -172,17 +173,17 @@ export default function Home () {
                             </div>
                             <div className="col-12 col-md-4 px-2 px-md-3 d-none d-md-flex flex-column align-items-center align-items-md-start">
                                 <div className="list-group container-fluid py-4 mt-5 d-flex flex-column justify-content-center align-items-center menu sticky" id="menuss">
-                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3" href="#recent-articles"> 
+                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3 d-flex align-items-center" href="#recent-articles"> 
                                         <i className="bi bi-chevron-right mr-3"></i>
-                                        Articles récent 
+                                        <span className="text-center d-flex"> Articles récent </span> 
                                     </a>
-                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3" href="#polular-articles"> 
+                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3 d-flex align-items-center" href="#polular-articles"> 
                                         <i className="bi bi-chevron-right mr-3"></i>
-                                        Articles Populaires
+                                        <span className="text-center d-flex"> Articles Populaire </span> 
                                     </a>
-                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3" href="#other-articles"> 
+                                    <a className="menu-item list-group-item container-fluid border-0 py-4 mt-3 d-flex align-items-center" href="#other-articles"> 
                                         <i className="bi bi-chevron-right mr-3"></i>
-                                        Autres articles 
+                                        <span className="text-center d-flex"> Autres articles </span>  
                                     </a>
                                 </div>
                             </div>

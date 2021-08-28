@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export function Item( { title, children  } ) {
     return (
-        <div className="col-12 col-sm-6 col-md-4 category-item d-flex justify-content-center align-items-center p-2">
+        <div className="col-12 col-md-6 col-lg-4 category-item d-flex justify-content-center align-items-center p-2">
             <div className="category-item-box d-flex flex-column shadow border">
                 <div className="category-design">
                     <div className="category-design-item d-flex justify-content-center align-items-center">
@@ -34,7 +34,8 @@ export function SubItem( { name, link } ) {
 };
 
 export const page = 'category';
-export default function Category () {
+/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
+export default function Category (props) {
     return (
         <Fragment>
             <Head>
@@ -84,7 +85,7 @@ export default function Category () {
                 <Navigation main={ page } />
                 <div className="content-category-items w-100">
                     <div className="w-100 px-0 py-3">
-                        <div className="row mx-0 d-flex justify-content-center">
+                        <div className="row mx-0">
                             <Item title="Programmation">
                                 <SubItem name="PHP" link="#" />
                                 <SubItem name="JAVA" link="#" />

@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 import Axios from 'axios';
 import { CookiesProvider } from 'react-cookie';
 import Loader from './@loader';
+import { useRouter } from 'next/router';
 
 Axios.defaults.baseURL = "https://solartracking.herokuapp.com/api";
 Axios.defaults.urlImg = "https://solartracking.herokuapp.com";
@@ -10,8 +11,9 @@ Axios.defaults.withCredentials = false;
 
 function MyApp( { Component, pageProps } ) {
     const 
+        router = useRouter(),
         [ display, setDisplay ] = useState( 'none' ),
-        content = (
+        [ content, setContent ] = useState(
             <Fragment>
                 <CookiesProvider>
                     <Root page={ Component.page }>
@@ -20,9 +22,12 @@ function MyApp( { Component, pageProps } ) {
                 </CookiesProvider>
             </Fragment>
         );
-            useEffect( () => (
-                setDisplay( 'block' )
-            ), [ display ] );
+        useEffect( () => {
+            setDisplay( 'block' );
+            router.events.on( "routeChangeStart", () => setContent(
+                <Loader display="none" />
+            ) );
+        }, [ display ] );
     return (
         <Loader { ...{ display } }>
             { content }

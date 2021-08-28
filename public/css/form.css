@@ -213,10 +213,6 @@
     outline: none;
 }
 
-[data-toolip]{
-    background-color: red;
-}
-
 [data-toolip]::before{
     content: attr( data-toolip );
     display: block;
@@ -227,10 +223,18 @@
     padding: 5px 8px;
     bottom: -50%;
     min-height: 25px;
-    max-width: 250px;
+    max-width: 100%;
     font-size: 0.85em;
     letter-spacing: 0.12em;
     text-align: center;
+    left: 0px;
+    opacity: 0;
+    transition-duration: 0.2s;
+}
+
+[data-toolip]::before:hover{
+    opacity: 1; 
+    background-color: red;
 }
 
 @media screen and ( min-width: 450px ) {
