@@ -129,7 +129,7 @@ export default function Home (props) {
                                             Mauris ac mauris sed pede 
                                             <div className="article-caption-bar mt-3 mb-3"></div>
                                         </div>
-                                        <div className="article-image article-image-fluid w-100 d-flex justify-content-center align-items-center my-3">
+                                        <div className="article-image article-image-fluid w-100 d-flex justify-content-center align-items-center my-3" data-title="Nom de l'image">
                                             <img src="/img/form/form12.jpg" alt="Nom de l'image" className="img article-img" />
                                         </div>
                                         <div className="article-text w-100 my-3">
@@ -144,7 +144,7 @@ export default function Home (props) {
                                             Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam 
                                             sodales hendrerit.
                                         </div>
-                                        <div className="article-image article-video article-image-fluid w-100 d-flex justify-content-center align-items-center my-3">
+                                        <div className="article-image article-video article-image-fluid w-100 d-flex justify-content-center align-items-center my-3" data-title="Nom de l'image">
                                             <img src="/img/form/form8.jpg" alt="Nom de l'image" className="img article-img" />
                                             <div className="pay-box container-fluid position-absolute w-100 h-100 d-flex justify-content-center align-items-center">
                                                 <div className="pay-icon d-flex justify-content-center align-items-center">
@@ -163,15 +163,58 @@ export default function Home (props) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-md-4 px-2 px-md-3 pb-4 d-flex flex-column align-items-center align-items-md-start">
-                                <div className="container-fluid d-flex article-tools py-3 sticky mt-5">
-                                    <div className="article-tool-item d-flex align-items-center px-3">
-                                        <i className="mr-2 bi bi-suit-heart"></i>
-                                        720
+                            <div className="col-12 col-md-4 px-2 px-md-4 pb-4 d-flex flex-column align-items-center align-items-md-start article-second-col">
+                                <div className="d-flex flex-column container-fluid article-tools py-3 sticky mt-5">
+                                    <div className="w-100 article-tools-head mb-3">
+                                        <div className="pt-3 article-tools-share">
+                                            <div className="d-flex-justify-content-center align-items-center share">
+                                                <div className="share-box d-flex">
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <i className="bi bi-reply-fill"></i>
+                                                    </div>
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <a href="#">
+                                                            <i className="bi bi-facebook"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <a href="#">
+                                                            <i className="bi bi-twitter"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <a href="#">
+                                                            <i className="bi bi-linkedin"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <a href="#">
+                                                            <i className="bi bi-instagram"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div className="share-item d-flex justify-content-center align-items-center p-2">
+                                                        <a href="#">
+                                                            <i className="bi bi-google"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="pt-4 pl-2 article-tools-data"> 15 mai 2021 </div>
+                                        <button className="px-4 py-2 mt-4 mb-3 pl-2 article-follow btn btn-outline d-flex align-items-center"> 
+                                            follow 
+                                            <i className="ml-2 bi bi-bookmark-heart"></i>
+                                        </button>
                                     </div>
-                                    <div className="article-tool-item d-flex align-items-center px-3">
-                                        <i className="mr-2 bi bi-chat-left-dots-fill"></i>
-                                        2.3k
+                                    <div className="w-100 article-tools-body d-flex justify-content-center align-items-center py-3 pt-3 px-5">
+                                        <div className="article-tool-item d-flex align-items-center justify-content-center">
+                                            <i className="d-block mr-2 bi bi-suit-heart"></i>
+                                            720
+                                        </div>
+                                        <div className="article-tool-item article-tool-item-chat d-flex align-items-center justify-content-center">
+                                            <i className="d-block mr-2 bi bi-chat-fill"></i>
+                                            2.3k
+                                        </div>
                                     </div>
                                 </div>
                             </div>
