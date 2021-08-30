@@ -58,8 +58,8 @@ export default function Home (props) {
                         <div className="row w-100">
                             <div className="col-12 col-md-8 d-flex flex-column align-items-center align-items-md-end content-article px-0 px-md-3">
                                 <div className="article d-flex flex-column align-items-center w-100">
-                                    <span className="container-fluid py-2 article-title"> Nom de l'article </span>
-                                    <span className="container-fluid py-2 article-subtitle"> Sous-title de l'article </span>
+                                    <span className="container-fluid py-2 article-title"> { "Nom de l'article" } </span>
+                                    <span className="container-fluid py-2 article-subtitle"> { "Sous-title de l'article" } </span>
                                     <div className="author container-fluid d-flex align-items-center mt-3">
                                         <div className="author-head d-flex justify-content-center align-items-center h-100">
                                             <div className="author-icon d-flex justify-content-center align-items-center">
@@ -68,7 +68,7 @@ export default function Home (props) {
                                         </div>
                                         <div className="author-body d-flex flex-column justify-content-center align-items-center">
                                             <div className="container-fluid d-flex align-items-center pt-3">
-                                                <span className="author-name"> Nom de L'auteur </span>
+                                                <span className="author-name"> { "Nom de L'auteur" } </span>
                                                 <span className="author-follow ml-3">
                                                     <i className="bi bi-bookmark-heart"></i>
                                                 </span>
