@@ -96,14 +96,14 @@
     content: attr( data-title );
     position: absolute;
     display: block;
-    padding: 10px 30px;
+    padding: 5px 15px;
     background-color: #FFFFFF;
     color: #000000;
     font-weight: 600;
-    font-size: 0.9em;
+    font-size: 0.75em;
     letter-spacing: 0.14em;
-    bottom: 30px;
-    right: 30px;
+    bottom: 10px;
+    right: 10px;
     z-index: 5;
     text-transform: capitalize;
     max-width: 80%;
@@ -213,8 +213,8 @@
 }
 
 .article-follow{
-    border: 2px solid #777777;
-    color: #777777;
+    border: 2px solid #555555;
+    color: #222222;
     border-radius: 40px;
     font-size: 0.9em;
     letter-spacing: 0.14em;
@@ -228,7 +228,7 @@
 
 .article-follow:hover{
     color: #FFFFFF;
-    background-color: #777777;
+    background-color: #555555;
 }
 
 .article-tools-share .share-box{

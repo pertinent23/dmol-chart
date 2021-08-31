@@ -164,9 +164,9 @@ export default function Home (props) {
                                 </div>
                             </div>
                             <div className="col-12 col-md-4 px-2 px-md-4 pb-4 d-flex flex-column align-items-center align-items-md-start article-second-col">
-                                <div className="d-flex flex-column container-fluid article-tools py-3 sticky mt-5">
+                                <div className="d-flex flex-column container-fluid article-tools py-3 sticky mt-0 mt-md-5">
                                     <div className="w-100 article-tools-head mb-3">
-                                        <div className="pt-3 article-tools-share">
+                                        <div className="pt-0 pt-md-3 article-tools-share">
                                             <div className="d-flex-justify-content-center align-items-center share">
                                                 <div className="share-box d-flex">
                                                     <div className="share-item d-flex justify-content-center align-items-center p-2">

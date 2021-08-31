@@ -7,7 +7,7 @@ import { useCookies } from 'react-cookie';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
 import TwitterLogin from "react-twitter-login";
-import { keys } from '../@keys';
+import { keys } from '../@api';
 
 const ContentData = {};
 const page = "sing-in";
