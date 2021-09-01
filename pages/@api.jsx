@@ -50,6 +50,13 @@ export function ShareForArticleItem() {
 export function ArticleItem( { img, title, by, date, comment, tags, data, like } ) {
     return (
         <div className="article-item my-2 px-2 py-2 w-100">
+            <div className="article-author w-100 d-flex align-items-center py-3">
+                <div className="article-author-image d-flex justify-content-center align-items-center">
+                    <img src="/img/user/user1.svg" alt="author image" className="img article-author-img" />
+                </div>
+                <span className="article-author-name ml-3"> { 'Author name' } </span>
+                <div className="article-author-bar mx-4"></div>
+            </div>
             <div className="article-head w-100">
                 <div className="article-img w-100 overflow-hidden">
                     <img src={ img } alt="article-image" className="img-responsive w-100" />
