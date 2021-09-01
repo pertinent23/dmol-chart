@@ -12,8 +12,18 @@ Axios.defaults.withCredentials = false;
 function MyApp( { Component, pageProps } ) {
     const 
         router = useRouter(),
+        event = 'routeChangeStart',
         [ display, setDisplay ] = useState( 'none' ),
-        [ content, setContent ] = useState(
+        handle = () => setDisplay( 'none' );
+        useEffect( () => {
+            setDisplay( 'block' );
+            router.events.on( event, handle );
+            return function () {
+                return router.events.off( event, handle );
+            };
+        }, [ display ] );
+    return (
+        <Loader { ...{ display } }>
             <Fragment>
                 <CookiesProvider>
                     <Root page={ Component.page }>
@@ -21,16 +31,6 @@ function MyApp( { Component, pageProps } ) {
                     </Root>
                 </CookiesProvider>
             </Fragment>
-        );
-        useEffect( () => {
-            setDisplay( 'block' );
-            router.events.on( "routeChangeStart", () => setContent(
-                <Loader display="none" />
-            ) );
-        }, [ display ] );
-    return (
-        <Loader { ...{ display } }>
-            { content }
         </Loader>
     );
 };

@@ -13,7 +13,6 @@ export const baseText = `
     sodales hendrerit.
 `;
 
-export default Root;
 export const keys = {
     TWITTER_SECRET: "",
     TWITTER_PUPLIC: "",
@@ -61,7 +60,7 @@ export function ArticleItem( { img, title, by, date, comment, tags, data, like }
                 <div className="article-title py-2 pt-3"> { title } </div>
                 <div className="article-details d-flex align-items-center py-2">
                     <div className="detail-item d-flex align-items-center"> { by || "By antony" } </div>
-                    <div className="detail-item d-flex align-items-center"> { data || "15/06/2015" } </div>
+                    <div className="detail-item d-flex align-items-center"> { date || "15/06/2015" } </div>
                     <div className="detail-item d-flex align-items-center">
                         <i className="bi bi-chat-right-quote-fill d-flex align-items-center"></i>
                         { comment || "03" } comment
@@ -94,3 +93,56 @@ export function ArticleItem( { img, title, by, date, comment, tags, data, like }
         </div>
     );
 };
+
+export function SharePage() {
+    return (
+        <div className="d-flex-justify-content-center align-items-center share">
+            <div className="share-box d-flex">
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <i className="bi bi-reply-fill"></i>
+                </div>
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <a href="#">
+                        <i className="bi bi-facebook"></i>
+                    </a>
+                </div>
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <a href="#">
+                        <i className="bi bi-twitter"></i>
+                    </a>
+                </div>
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <a href="#">
+                        <i className="bi bi-linkedin"></i>
+                    </a>
+                </div>
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <a href="#">
+                        <i className="bi bi-instagram"></i>
+                    </a>
+                </div>
+                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
+                    <a href="#">
+                        <i className="bi bi-google"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export function PageHeader( { icon, title } ) {
+    return (
+        <div className="header-page d-flex flex-column py-4">
+            <div className="header-head py-4 pl-0 pl-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+                <i className={ `bi mr-3 header-icon bi-${ icon }` }></i>
+                <span className="header-title"> { title } </span>
+            </div>
+            <div className="header-body d-flex justify-content-center py-3 py-md-4">
+                <SharePage />
+            </div>
+        </div>
+    );
+};
+
+export default Root;

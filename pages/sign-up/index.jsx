@@ -169,8 +169,7 @@ function AddData() {
     );
 };
 
-/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Index(props) {
+export default function SignUp() {
     return (
         <Fragment>
             <AddData />

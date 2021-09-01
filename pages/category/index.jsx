@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 import Navigation from './../@nav';
 import Link from 'next/link';
+import { PageHeader } from '../@api';
 
 
 export function Item( { title, children  } ) {
@@ -34,54 +35,14 @@ export function SubItem( { name, link } ) {
 };
 
 export const page = 'category';
-/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Category (props) {
+export default function Category() {
     return (
         <Fragment>
             <Head>
                 <link rel="stylesheet" href="/css/page.css" />
             </Head>
             <div className="content-page d-flex flex-column">
-                <div className="header-page d-flex flex-column py-4">
-                    <div className="header-head py-4 pl-0 pl-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
-                        <i className="bi bi-columns-gap mr-3 header-icon"></i>
-                        <span className="header-title"> Categories </span>
-                    </div>
-                    <div className="header-body d-flex justify-content-center py-3 py-md-4">
-                        <div className="d-flex-justify-content-center align-items-center share">
-                            <div className="share-box d-flex">
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <i className="bi bi-reply-fill"></i>
-                                </div>
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <a href="#">
-                                        <i className="bi bi-facebook"></i>
-                                    </a>
-                                </div>
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <a href="#">
-                                        <i className="bi bi-twitter"></i>
-                                    </a>
-                                </div>
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <a href="#">
-                                        <i className="bi bi-linkedin"></i>
-                                    </a>
-                                </div>
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <a href="#">
-                                        <i className="bi bi-instagram"></i>
-                                    </a>
-                                </div>
-                                <div className="share-item d-flex justify-content-center align-items-center p-2 p-sm-3 p-md-4 m-sm-1 m-md-2">
-                                    <a href="#">
-                                        <i className="bi bi-google"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <PageHeader icon="columns-gap" title="Categories" />
                 <Navigation main={ page } />
                 <div className="content-category-items w-100">
                     <div className="w-100 px-0 py-3">

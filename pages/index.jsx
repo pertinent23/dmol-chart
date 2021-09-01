@@ -5,7 +5,7 @@ import Navigation from './@nav';
 import { ArticleItem } from './@api';
 
 export const page = 'home';
-export default function Home () {
+export default function Home() {
     return (
         <Fragment>
             <Head>

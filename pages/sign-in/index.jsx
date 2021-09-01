@@ -167,8 +167,7 @@ function AddData() {
     );
 };
 
-/** @param {import('next').InferGetServerSidePropsType<typeof getServerSideProps> } props */
-export default function Index(props) {
+export default function SignIn() {
     return (
         <Fragment>
             <AddData />
