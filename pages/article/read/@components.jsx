@@ -1,6 +1,23 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+import { CopyBlock, tomorrowNight, a11yLight, atomOneLight, github, irBlack, anOldHope, hybrid, atomOneDark, googlecode } from "react-code-blocks";
 import Reader from './index';
 import { SharePage, baseText } from './../../@api';
+
+export const defaultCode = 
+`const 
+    [ a, setA ] = useState( true ),
+    test = "une phrase";
+function fn1( a, b ) {
+    return a + b;
+};
+
+function fn2( a, b ) {
+    console.log( "Test de code block" );
+};
+
+function test( a, b ) {
+    return "A string";
+};`;
 
 export function ParticularShare() {
     return (
@@ -41,6 +58,33 @@ export function ArticleText( { text, children } ) {
     return (
         <div className="article-text w-100 my-3">
             { text || children || baseText }
+        </div>
+    );  
+};
+
+export const ArticleCodeTheme = {
+    a11yLight: a11yLight,
+    atomOneLight: atomOneLight,
+    github: github,
+    tomorrowNight: tomorrowNight,
+    irBlack: irBlack,
+    anOldHope: anOldHope,
+    hybrid: hybrid,
+    atomOneDark: atomOneDark,
+    googlecode: googlecode
+};
+
+export function ArticleCode( { code, language, children, theme } ) {
+    return (
+        <div className="article-text w-100 my-3">
+            <CopyBlock
+                text={ code || children || defaultCode }
+                language={ language || "javascript" }
+                showLineNumbers={ true }
+                wrapLines={ true }
+                theme={ ArticleCodeTheme[ theme ] || tomorrowNight }
+                codeBlock={ true }
+            />
         </div>
     );  
 };
@@ -188,32 +232,195 @@ export function ArticleVideo( { alt, image, video } ) {
     );
 };
 
-export function ArticleTools( { date, like, comment } ) {
+export function ArticleComment( { setReply } ) {
+    const [ replyVisible, setReplyVisible ] = useState( false );
     return (
-        <div className="d-flex flex-column container-fluid article-tools py-3 sticky mt-0 mt-md-5">
-            <div className="w-100 article-tools-head mb-3">
-                <div className="pt-0 pt-md-3 article-tools-share">
-                    <div className="d-flex-justify-content-center align-items-center share">
-                        <ParticularShare />
+        <div className="w-100 px-md-3 article-comment py-3 d-flex flex-column">
+            <div className="article-comment-author d-flex align-items-start">
+                <div className="article-comment-author-icon mx-2 mr-3"></div>
+                <div className="article-comment-author-data d-flex flex-column">
+                    <div className="article-comment-author-detail d-flex justify-content-between align-items-center">
+                        <span className="d-flex align-items-center"> 
+                            Author Name 
+                            <i className="bi bi-chevron-right ml-2"></i>
+                        </span>
+                        <span className="d-flex align-items-center"> 10 may 2020 </span>
+                    </div>
+                    <div className="article-comment-author-comment-container w-100 pt-2">
+                        <span className="article-comment-author-comment d-block p-3">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+                            Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. 
+                        </span>
+                    </div>
+                    <div className="article-comment-author-option w-100 d-flex pt-1">
+                        <div className="article-comment-author-option-item px-3" onClick={ () => setReply( 'Author Name' ) }> reply </div>
+                        <div className="article-comment-author-option-item px-3"> like </div>
                     </div>
                 </div>
-                <div className="pt-4 pl-2 article-tools-data"> { date || "15 mai 2021" } </div>
-                <button className="px-4 py-2 mt-4 mb-3 pl-2 article-follow btn btn-outline d-flex align-items-center"> 
-                    follow 
-                    <i className="ml-2 bi bi-bookmark-heart"></i>
-                </button>
             </div>
-            <div className="w-100 article-tools-body d-flex justify-content-center align-items-center py-3 pt-3 px-5">
-                <div className="article-tool-item d-flex align-items-center justify-content-center">
-                    <i className="d-block mr-2 bi bi-suit-heart"></i>
-                    { like || "720" }
+            <div className="article-comment-reply-container py-md-3 d-flex flex-column">
+                <div className="article-comment-reply-container-bar w-100 d-flex justify-content-end align-items-center">
+                    <div className={ "article-comment-reply-bar ".concat( replyVisible ? "open" : "close" ) }></div>
+                    <span 
+                        className={ "article-comment-reply-switch mx-3 d-flex justify-content-center align-items-center ".concat( replyVisible ? "open" : "close" ) }
+                        onClick={ () => setReplyVisible( !replyVisible ) }
+                    >
+                        <i className="bi bi-chevron-up"></i>
+                    </span>
                 </div>
-                <div className="article-tool-item article-tool-item-chat d-flex align-items-center justify-content-center">
-                    <i className="d-block mr-2 bi bi-chat-fill"></i>
-                    { comment || "2.3k" }
+                <div className={ "article-comment-reply-list d-flex flex-column pl-4 pl-md-5 ".concat( replyVisible ? "open" : "close" ) }>
+                    <div className="article-comment-author d-flex align-items-start my-2">
+                        <div className="article-comment-author d-flex align-items-start">
+                            <div className="article-comment-author-icon mx-2 mr-3"></div>
+                            <div className="article-comment-author-data d-flex flex-column">
+                                <div className="article-comment-author-detail d-flex justify-content-between align-items-center">
+                                    <span className="d-flex align-items-center"> 
+                                        Author Name 
+                                        <i className="bi bi-chevron-right ml-2"></i>
+                                    </span>
+                                    <span className="d-flex align-items-center"> 10 may 2020 </span>
+                                </div>
+                                <div className="article-comment-author-comment-container w-100 pt-2">
+                                    <span className="article-comment-author-comment d-block p-3">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="article-comment-author d-flex align-items-start my-2">
+                        <div className="article-comment-author d-flex align-items-start">
+                            <div className="article-comment-author-icon mx-2 mr-3"></div>
+                            <div className="article-comment-author-data d-flex flex-column">
+                                <div className="article-comment-author-detail d-flex justify-content-between align-items-center">
+                                    <span className="d-flex align-items-center"> 
+                                        Author Name 
+                                        <i className="bi bi-chevron-right ml-2"></i>
+                                    </span>
+                                    <span className="d-flex align-items-center"> 10 may 2020 </span>
+                                </div>
+                                <div className="article-comment-author-comment-container w-100 pt-2">
+                                    <span className="article-comment-author-comment d-block p-3">
+                                        Lorem ipsum dolor sit amet
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="article-comment-author d-flex align-items-start my-2">
+                        <div className="article-comment-author d-flex align-items-start">
+                            <div className="article-comment-author-icon mx-2 mr-3"></div>
+                            <div className="article-comment-author-data d-flex flex-column">
+                                <div className="article-comment-author-detail d-flex justify-content-between align-items-center">
+                                    <span className="d-flex align-items-center"> 
+                                        Author Name 
+                                        <i className="bi bi-chevron-right ml-2"></i>
+                                    </span>
+                                    <span className="d-flex align-items-center"> 10 may 2020 </span>
+                                </div>
+                                <div className="article-comment-author-comment-container w-100 pt-2">
+                                    <span className="article-comment-author-comment d-block p-3">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    );
+};
+
+export function ArticleCommentManager( { liked, setLiked, commentsVisible, setCommentVisible } ) {
+    const [ reply, setReply ] = useState( '' );
+    return (
+        <div className={ "article-comment-container position-fixed justify-content-center w-100 h-100 shadow ".concat( commentsVisible ? "d-flex" : "d-none" ) }>
+            <div className="article-comment-container-main w-100 h-100 d-flex flex-column border-left border-right">
+                <div className="w-100 d-flex flex-column article-comment-list overflow-auto">
+                    <div className="container-fluid article-comment-close-container d-flex justify-content-end pt-2">
+                        <i className="bi bi-x article-comment-close" onClick={ () => setCommentVisible( false ) }></i>
+                    </div>
+                    <div className="article-comment-list-header container-fluid d-flex align-items-center justify-content-center py-5">
+                        <i className="bi bi-receipt"></i>
+                        <span className="ml-3"> E-TECH </span>
+                    </div>
+                    <div className="article-comment-list-bar container-fluid d-flex justify-content-between align-items-center border-bottom py-2 sticky">
+                        <span className="article-comment-list-bar-user d-flex align-items-center"> 
+                            { "nom de l'utilisateur" } 
+                            <i className="bi bi-chevron-right ml-2"></i>
+                        </span>
+                        <span className="article-comment-list-bar-add-like" onClick={ function () {
+                            setLiked( !liked );
+                        } }>
+                            <i className={ "bi bi-hand-thumbs-up".concat( liked ? "-fill" : "" ) }></i>
+                        </span>
+                    </div>
+                    <div className="container-fluid article-comment-list-data d-flex flex-column">
+                        <ArticleComment { ...{ setReply } } />
+                        <ArticleComment { ...{ setReply } } />
+                        <ArticleComment { ...{ setReply } } />
+                    </div>
+                </div>
+                <div className="w-100 d-flex flex-column article-comment-field-container border-top">
+                    <div className={ "container-fluid d-flex article-comment-field-reply ".concat( reply ? "open" : "close" ) }>
+                        <div className="article-comment-field-reply-content d-flex align-items-center mt-2 px-2 py-1 ml-md-2 ">
+                            <span className="article-comment-fiend-reply-destinater pl-2"> { reply } </span>
+                            <span className="article-comment-fiend-reply-close ml-3" onClick={ () => setReply( '' ) }>
+                                <i className="bi bi-x"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div className="w-100 d-flex article-comment-field-content-input align-items-center py-2">
+                        <span className="pt-2 article-comment-close-field px-1 px-md-2 ml-2 ml-md-3">
+                            <i className="bi bi-x article-comment-close" onClick={ () => setCommentVisible( false ) }></i>
+                        </span>
+                        <input type="text" className="article-comment-field ml-1 pl-3" placeholder="Az" />
+                        <span className="pt-2 article-comment-send-data mx-2 mx-md-3">
+                            <i className="bi bi-telegram"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export function ArticleTools( { date, like, comment } ) {
+    const 
+        [ commentsVisible, setCommentVisible ] = useState( false ),
+        [ liked, setLiked ] = useState( false );
+    return (
+        <Fragment>
+            <ArticleCommentManager { ...{ liked, setLiked, commentsVisible, setCommentVisible } } />
+            <div className="d-flex flex-column container-fluid article-tools py-3 sticky mt-0 mt-md-5">
+                <div className="w-100 article-tools-head mb-3">
+                    <div className="pt-0 pt-md-3 article-tools-share">
+                        <div className="d-flex-justify-content-center align-items-center share">
+                            <ParticularShare />
+                        </div>
+                    </div>
+                    <div className="pt-4 pl-2 article-tools-data"> { date || "15 mai 2021" } </div>
+                    <button className="px-4 py-2 mt-4 mb-3 pl-2 article-follow btn btn-outline d-flex align-items-center"> 
+                        follow 
+                        <i className="ml-2 bi bi-bookmark-heart"></i>
+                    </button>
+                </div>
+                <div className="w-100 article-tools-body d-flex justify-content-center align-items-center py-3 pt-3 px-5">
+                    <div className="article-tool-item d-flex align-items-center justify-content-center" onClick={ function () {
+                        setLiked( !liked );
+                    } }>
+                        <i className={ "d-block mr-2 bi bi-heart".concat( liked ? "-fill" : "" ) }></i>
+                        { like || "720" }
+                    </div>
+                    <div className="article-tool-item article-tool-item-chat d-flex align-items-center justify-content-center" onClick={ () => setCommentVisible( true ) }>
+                        <i className="d-block mr-2 bi bi-chat"></i>
+                        { comment || "2.3k" }
+                    </div>
+                </div>
+            </div>
+        </Fragment>
     );
 };
 

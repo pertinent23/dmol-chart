@@ -19,6 +19,7 @@ export default function Article() {
             <Head>
                 <link rel="stylesheet" href="/css/home.css" />
                 <link rel="stylesheet" href="/css/page.css" />
+                <link rel="stylesheet" href="/css/article.css" />
             </Head>
             <div className="content-page d-flex flex-column">
                 <PageHeader icon="receipt" title="ARTICLES" />

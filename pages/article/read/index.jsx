@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 import Navigation from './../../@nav';
-import { SharePage, PageHeader } from './../../@api';
+import { PageHeader } from './../../@api';
 import { 
     ArticleTitle, ArticleSubTitle, ArticleAuthor, ArticleImage, ArticleVideo, 
-    ArticleText, ArticleMainImage, ArticleCaption, ArticleList, ArticleTools
+    ArticleText, ArticleMainImage, ArticleCaption, ArticleList, ArticleTools,
+    ArticleCode
 } from './@components';
 
 export const page = 'article';
@@ -39,6 +40,7 @@ export default function ReadArticle() {
                                             'amet erat. Duis semper',
                                             'sodales. Vestibulum ante'
                                         ] } />
+                                        <ArticleCode language="jsx" />
                                     </div>
                                 </div>
                             </div>

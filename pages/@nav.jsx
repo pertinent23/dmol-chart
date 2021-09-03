@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
 
 export function compare( id, main ) {
     return id === main;  
@@ -42,12 +43,15 @@ export function NavAction( { display, setDisplay } ) {
 };
 
 export function Nav( { children } ) {
-    const [ display, setDisplay ] = useState( 'hide' );
+    const 
+        router = useRouter(),
+        handle = () => router.push( '/search' ),
+        [ display, setDisplay ] = useState( 'hide' );
     return (
         <Fragment>
             <div className="container-fluid sticky navigation d-flex flex-column px-0">
                 <div className="w-100 navigation-contents py-2 d-flex d-md-none align-items-center justify-content-between px-2">
-                    <SearchButton />
+                    <SearchButton onClick={ handle } />
                     <NavAction { ...{ display, setDisplay } } />
                 </div>
                 <div className={ "container navigation-contents py-0 py-md-2 d-flex align-items-center justify-content-center ".concat( display ) }>
@@ -55,7 +59,7 @@ export function Nav( { children } ) {
                         { children }
                     </div>
                     <div className="d-none d-md-flex align-items-center justify-content-center p-0 ml-md-2">
-                        <SearchButton />
+                        <SearchButton onClick={ handle } />
                     </div>
                 </div>
             </div>

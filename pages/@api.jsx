@@ -1,3 +1,5 @@
+import { useState, Fragment } from 'react';
+import { ArticleCommentManager } from './article/read/@components';
 import Root from './@root';
 
 export const baseText = `
@@ -48,56 +50,66 @@ export function ShareForArticleItem() {
 };
 
 export function ArticleItem( { img, title, by, date, comment, tags, data, like } ) {
+    const 
+        [ commentsVisible, setCommentVisible ] = useState( false ),
+        [ liked, setLiked ] = useState( false );
     return (
-        <div className="article-item my-2 px-2 py-2 w-100">
-            <div className="article-author w-100 d-flex align-items-center py-3">
-                <div className="article-author-image d-flex justify-content-center align-items-center">
-                    <img src="/img/user/user1.svg" alt="author image" className="img article-author-img" />
-                </div>
-                <span className="article-author-name ml-3"> { 'Author name' } </span>
-                <div className="article-author-bar mx-4"></div>
-            </div>
-            <div className="article-head w-100">
-                <div className="article-img w-100 overflow-hidden">
-                    <img src={ img } alt="article-image" className="img-responsive w-100" />
-                    <ShareForArticleItem/>
-                </div>
-            </div>
-            <div className="article-body w-100 px-2">
-                <div className="article-title py-2 pt-3"> { title } </div>
-                <div className="article-details d-flex align-items-center py-2">
-                    <div className="detail-item d-flex align-items-center"> { by || "By antony" } </div>
-                    <div className="detail-item d-flex align-items-center"> { date || "15/06/2015" } </div>
-                    <div className="detail-item d-flex align-items-center">
-                        <i className="bi bi-chat-right-quote-fill d-flex align-items-center"></i>
-                        { comment || "03" } comment
+        <Fragment>
+            <ArticleCommentManager { ...{ liked, setLiked, commentsVisible, setCommentVisible } } />
+            <div className="article-item my-2 px-2 py-2 w-100">
+                <div className="article-author w-100 d-flex align-items-center py-3">
+                    <div className="article-author-image d-flex justify-content-center align-items-center">
+                        <img src="/img/user/user1.svg" alt="author image" className="img article-author-img" />
                     </div>
-                    <div className="detail-item d-flex align-items-center">
-                        <i className="bi bi-tags-fill"></i>
-                        { tags || "Lorem,ipsum,dolor" }
+                    <span className="article-author-name ml-3"> { 'Author name' } </span>
+                    <div className="article-author-bar mx-4"></div>
+                </div>
+                <div className="article-head w-100">
+                    <div className="article-img w-100 overflow-hidden">
+                        <img src={ img } alt="article-image" className="img-responsive w-100" />
+                        <ShareForArticleItem/>
                     </div>
                 </div>
-                <div className="article-data py-2">
-                    { data || baseText }
-                </div>
-                <div className="content-button w-100 d-flex justify-content-between align-items-center">
-                    <div className="btn more px-0 py-2 d-flex align-items-center">
-                        Plus
-                        <i className="bi bi-arrow-right ml-2"></i>
-                    </div>
-                    <div className="infos d-flex align-items-center">
-                        <div className="info-item px-2 d-flex align-items-center">
-                            <i className="mr-1 bi bi-heart"></i>
-                            { like || "2k" }
+                <div className="article-body w-100 px-2">
+                    <div className="article-title py-2 pt-3"> { title } </div>
+                    <div className="article-details d-flex align-items-center py-2">
+                        <div className="detail-item d-flex align-items-center"> { by || "By antony" } </div>
+                        <div className="detail-item d-flex align-items-center"> { date || "15/06/2015" } </div>
+                        <div className="detail-item d-flex align-items-center">
+                            <i className="bi bi-chat-right-quote-fill d-flex align-items-center"></i>
+                            { comment || "03" } comment
                         </div>
-                        <div className="info-item px-2 d-flex align-items-center">
-                            <i className="mr-1 bi bi-chat-right-text-fill"></i>
-                            { comment || "250" }
+                        <div className="detail-item d-flex align-items-center">
+                            <i className="bi bi-tags-fill"></i>
+                            { tags || "Lorem,ipsum,dolor" }
                         </div>
                     </div>
+                    <div className="article-data py-2">
+                        { data || baseText }
+                    </div>
+                    <div className="content-button w-100 d-flex justify-content-between align-items-center">
+                        <div className="btn more px-0 py-2 d-flex align-items-center">
+                            Plus
+                            <i className="bi bi-arrow-right ml-2"></i>
+                        </div>
+                        <div className="infos d-flex align-items-center">
+                            <div className="info-item px-2 d-flex align-items-center" onClick={ function () {
+                                setLiked( !liked );
+                            } }>
+                                <i className={ "mr-1 bi bi-heart".concat( liked ? "-fill" : "" ) }></i>
+                                { like || "2k" }
+                            </div>
+                            <div className="info-item px-2 d-flex align-items-center" onClick={ function () {
+                                setCommentVisible( true );
+                            } }>
+                                <i className="mr-1 bi bi-chat-right-text-fill"></i>
+                                { comment || "250" }
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Fragment>
     );
 };
 

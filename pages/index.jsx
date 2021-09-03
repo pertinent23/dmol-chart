@@ -10,6 +10,7 @@ export default function Home() {
         <Fragment>
             <Head>
                 <link rel="stylesheet" href="/css/home.css" />
+                <link rel="stylesheet" href="/css/article.css" />
             </Head>
             <div className="content-page d-flex flex-column">
                 <div className="container-fluid header d-flex justify-content-center align-items-center">

@@ -224,6 +224,7 @@
     font-size: 0.85em;
     color: #000000;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .article-item .info-item i{

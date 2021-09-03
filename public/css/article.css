@@ -240,6 +240,206 @@
     transform: rotateY( 180deg );
 }
 
+.article-comment-container{
+    z-index: 250;
+    left: 0px;
+    top: 0px;
+    background-color: rgba( 255, 255, 255, 0.85 );
+    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 4px );
+}
+
+.article-comment-container-main{
+    max-width: 550px;
+    background-color: #FFFFFF;
+}
+
+.article-comment-list{
+    flex: 1;
+}
+
+.article-comment-field-reply{
+    max-height: 0px;
+    overflow: hidden;
+    transition-duration: 0.2s;
+}
+
+.article-comment-field-reply.open{
+    max-height: 80px;
+}
+
+.article-comment-field-reply-content{
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.article-comment-field-reply-content .article-comment-fiend-reply-destinater{
+    font-size: 0.85em;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.article-comment-field-reply-content i{
+    font-size: 15px;
+    color: #DDDDDD;
+    cursor: pointer;
+}
+
+.article-comment-close-field{
+    cursor: pointer;
+}
+
+.article-comment-close-field i{
+    font-size: 30px;
+}
+
+.article-comment-field{
+    flex: 1;
+    border: 1px solid #333333;
+    outline: none;
+    height: 40px;
+    border-radius: 50px;
+    background-color: transparent;
+    font-size: 0.85em;
+    letter-spacing: 0.12em;
+}
+
+.article-comment-send-data{
+    cursor: pointer;
+}
+
+.article-comment-send-data i{
+    font-size: 35px;
+    color: #333333;
+}
+
+.article-comment-close-container .article-comment-close{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.article-comment-list-header i{
+    font-size: 40px;
+}
+
+.article-comment-list-header span{
+    font-size: 1.4em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+}
+
+.article-comment-list-bar{
+    top: 0px;
+    color: #333333;
+    z-index: 50;
+    background-color: rgba( 255, 255, 255, 0.75 );
+    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 4px );
+}
+
+.article-comment-list-bar .article-comment-list-bar-user{
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.article-comment-list-bar .article-comment-list-bar-user i{
+    font-size: 15px;
+}
+
+.article-comment-list-bar .article-comment-list-bar-add-like i{
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.article-comment-author-icon{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    background-color: #BBBBBB;
+}
+
+.article-comment-author-data{
+    flex: 1;
+}
+
+.article-comment-author-data .article-comment-author-detail span{
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.article-comment-author-data .article-comment-author-detail span i{
+    font-size: 15px;
+}
+
+.article-comment-author-comment{
+    font-size: 0.70em;
+    letter-spacing: 0.13em;
+    font-weight: 600;
+    word-wrap: break-word;
+    word-break: break-all;
+    background-color: #CCCCCC;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}
+
+.article-comment-author-option-item{
+    font-size: 0.75em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.article-comment-reply-container-bar .article-comment-reply-bar{
+    display: block;
+    height: 1px;
+    flex: 1;
+    max-width: 600px;
+    background-color: #999999;
+    transition-duration: 0.4s;
+}
+
+.article-comment-reply-container-bar .article-comment-reply-bar.close{
+    max-width: 0px;
+}
+
+.article-comment-reply-container-bar .article-comment-reply-switch{
+    height: 25px;
+    width: 25px;
+    border-radius: 100%;
+    border: 1px solid #999999;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+
+.article-comment-reply-container-bar .article-comment-reply-switch.close{
+    transform: rotate( 180deg );
+    transition-duration: 0.2s;
+}
+
+.article-comment-reply-container-bar .article-comment-reply-switch i{
+    font-size: 15px;
+    color: #666666;
+}
+
+.article-comment-reply-list{
+    transition-duration: 0.3s;
+    overflow: hidden;
+}
+
+.article-comment-reply-list.open{
+    max-height: fit-content;
+    transition-duration: 0.1s;
+}
+
+.article-comment-reply-list.close{
+    max-height: 0px;
+    transition-duration: 0.1s;
+}
+
 @media screen and ( min-width: 768px ) {
     .article .article-title{
         font-size: 1.3em;
