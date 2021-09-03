@@ -1,4 +1,5 @@
 import { useState, Fragment } from 'react';
+import { useRouter } from 'next/router';
 import { ArticleCommentManager } from './article/read/@components';
 import Root from './@root';
 
@@ -51,6 +52,7 @@ export function ShareForArticleItem() {
 
 export function ArticleItem( { img, title, by, date, comment, tags, data, like } ) {
     const 
+        router = useRouter(),
         [ commentsVisible, setCommentVisible ] = useState( false ),
         [ liked, setLiked ] = useState( false );
     return (
@@ -88,7 +90,9 @@ export function ArticleItem( { img, title, by, date, comment, tags, data, like }
                         { data || baseText }
                     </div>
                     <div className="content-button w-100 d-flex justify-content-between align-items-center">
-                        <div className="btn more px-0 py-2 d-flex align-items-center">
+                        <div className="btn more px-0 py-2 d-flex align-items-center" onClick={ function () {
+                            return router.push( '/article/read' );
+                        } }>
                             Plus
                             <i className="bi bi-arrow-right ml-2"></i>
                         </div>
