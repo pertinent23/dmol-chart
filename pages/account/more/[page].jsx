@@ -40,7 +40,7 @@ export const Contents = {
     },
     default() {
         return (
-            <div className="mt-5 px-5 py-5 none-items d-flex justify-content-center align-items-start w-100">
+            <div className="mt-5 px-3 px-md-5 py-5 none-items d-flex justify-content-center align-items-start w-100">
                 <div className="d-flex justify-content-center align-items-center">
                     <i className="bi bi-hourglass-split mr-2"></i>
                     Aucun elements pour le moment
