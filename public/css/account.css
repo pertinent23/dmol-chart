@@ -208,6 +208,12 @@
     font-size: 30px;
 }
 
+@media screen and ( max-width: 576px ) {
+    .menu{
+        border-top: 1px solid #DDDDDD;
+    }
+}
+
 @media screen and ( min-width: 576px ) {
     .form .profil-container{
         height: 300px;
