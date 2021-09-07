@@ -1,23 +1,40 @@
 import { Fragment, useState } from 'react';
-import { CopyBlock, tomorrowNight, a11yLight, atomOneLight, github, irBlack, anOldHope, hybrid, atomOneDark, googlecode } from "react-code-blocks";
+import { CodeBlock, tomorrowNight, a11yLight, atomOneLight, github, irBlack, anOldHope, hybrid, atomOneDark, googlecode } from "react-code-blocks";
 import Reader from './index';
 import { SharePage, baseText } from './../../@api';
 
 export const defaultCode = 
-`const 
-    [ a, setA ] = useState( true ),
-    test = "une phrase";
-function fn1( a, b ) {
-    return a + b;
+`interface Point {
+    x: number;
+    y: number;
+}
+  
+function formatPoint(p: Point): string {
+    let str = 'x:' + p.x;
+    str += ', y:' + p.y;
+    return str;
+}
+
+type Props = {
+    message?: string;
+    point: Point;
 };
 
-function fn2( a, b ) {
-    console.log( "Test de code block" );
-};
+class PointLogger extends React.Component<Props> {
+    formatMessage = (point: Point, message: string | undefined, ): string =>
+        message
+            ? message.replace(/({point})/, formatPoint(point))
+            : formatPoint(point);
 
-function test( a, b ) {
-    return "A string";
-};`;
+    render() {
+        const { message, point } = this.props;
+        return <div id="point-logger">{this.formatMessage(point, message)}</div>;
+    }
+}
+
+const coords = { x: 12, y: 26 };
+
+ReactDOM.render(<PointLogger message="Position {point}" point={coords} />, mountNode);`;
 
 export function ParticularShare() {
     return (
@@ -74,10 +91,58 @@ export const ArticleCodeTheme = {
     googlecode: googlecode
 };
 
+export const ArticleCodeLanguage = {
+    abap : "", actionscript: "", ada: "", arduino: "", autoit: "", c: "", clojure: "", cs: "", cpp: "", coffeescript: "", csharp: "",
+    css: "", cuda: "", d: "", dart: "", delphi: "", elixir: "", elm: "", erlang: "", fortran: "", foxpro: "", fsharp: "",
+    go: "", graphql: "", gql: "", groovy: "", haskell: "", haxe: "", html: "", java: "", javascript: "", json: "", julia: "", jsx: "", 
+    js: "", kotlin: "", latex: "", lisp: "", livescript: "", lua: "", mathematica: "", makefile: "", matlab: "", objectivec: "", objective: "", 
+    objective: "", objectpascal: "", ocaml: "", octave: "", perl: "", php: "", powershell: "", prolog: "", puppet: "", python: "", qml: "", 
+    r: "", racket: "", restructuredtext: "", rest: "", ruby: "", rust: "", sass: "", less: "", scala: "", scheme: "", shell: "", smalltalk: "", 
+    sql: "", standardml: "", sml: "", swift: "", tcl: "", tex: "", text: "", tsx: "", ts: "", typescript: "", vala: "", vbnet: "", verilog: "", 
+    vhdl: "", xml: "", xquery: "", yaml: ""
+};
+
+export const DefaultTheme = {
+    lineNumberColor: `#abb2bf`,
+    lineNumberBgColor: `red`,
+    backgroundColor: `#282c34`,
+    textColor: `#000000`,
+    substringColor: `#e06c75`,
+    keywordColor: `#c678dd`,
+    attributeColor: `#98c379`,
+    selectorAttributeColor: `#e06c75`,
+    docTagColor: `#c678dd`,
+    nameColor: `#e06c75`,
+    builtInColor: `#e6c07b`,
+    literalColor: `#56b6c2`,
+    bulletColor: `#61aeee`,
+    codeColor: `#abb2bf`,
+    additionColor: `#98c379`,
+    regexpColor: `#98c379`,
+    symbolColor: `#61aeee`,
+    variableColor: `#d19a66`,
+    templateVariableColor: `#d19a66`,
+    linkColor: `#61aeee`,
+    selectorClassColor: `#d19a66`,
+    typeColor: `#d19a66`,
+    stringColor: `#98c379`,
+    selectorIdColor: `#61aeee`,
+    quoteColor: `#5c6370`,
+    templateTagColor: `#abb2bf`,
+    deletionColor: `#e06c75`,
+    titleColor: `#61aeee`,
+    sectionColor: `#e06c75`,
+    commentColor: `#5c6370`,
+    metaKeywordColor: `#abb2bf`,
+    metaColor: `#61aeee`,
+    functionColor: `#abb2bf`,
+    numberColor: `#d19a66`,
+};
+
 export function ArticleCode( { code, language, children, theme } ) {
     return (
         <div className="article-text w-100 my-3">
-            <CopyBlock
+            <CodeBlock
                 text={ code || children || defaultCode }
                 language={ language || "javascript" }
                 showLineNumbers={ true }

@@ -7,6 +7,7 @@
     --yellow: rgba( 252, 186, 90, 1 );
     --orange: #F7931A;
     --dark-gray: #555555;
+    --back: #F5F5F5;
 }
 
 ::-webkit-scrollbar{
