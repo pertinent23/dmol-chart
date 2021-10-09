@@ -6,8 +6,7 @@
     --dark: rgba( 19, 21, 27, 1 );
     --yellow: rgba( 252, 186, 90, 1 );
     --orange: #F7931A;
-    --dark-gray: #555555;
-    --back: #F5F5F5;
+    --gray: #F5F5F5;
 }
 
 ::-webkit-scrollbar{
@@ -17,17 +16,12 @@
 }
   
 ::-webkit-scrollbar-thumb{
-    background-color: var( --dark );
+    background-color: #FF1122;
 }
 
 @font-face{
-    src: url( "./../police/Aaargh.ttf" );
+    src: url( "./../font/Aaargh.ttf" );
     font-family: aaargh;
-}
-
-@font-face{
-    src: url( "./../police/The Bravery Lite Ver.ttf" );
-    font-family: bravery;
 }
 
 #__next{
@@ -55,16 +49,17 @@ body{
     display: -ms-flexbox;
     display: flex;
     min-height: 100%;
+    background-color: var( --gray );
 }
 
 .main-container{
+    display: block;
     position: relative;
-    background-color: #F5F5F5;
 }
 
-.content-page{
-    width: 100%;
-    max-width: 1400px;
+.typo-main{
+    border-right: 1px solid #333333;
+    padding-right: 20px;
 }
 
 @media screen and ( min-width: 768px ) {
@@ -72,92 +67,5 @@ body{
         width: 6px;
         height: 6px;
         background-color: transparent;
-    }
-}
-
-.sticky{
-    position: sticky;
-    position: -webkit-sticky;
-}
-
-.navigation{
-    background-color: #FFFFFF;
-    border-bottom: 4px solid #F5F5F5;
-    /*box-shadow: 0px 5px 5px #CCCCCC;*/
-    top: 0px;
-    z-index: 200;
-}
-
-.navigation-item:hover,
-.navigation-item{
-    text-decoration: none;
-    color: #666666;
-}
-
-.navigation-item.active:hover,
-.navigation-item.active{
-    color: #000000;
-    font-weight: bold;
-}
-
-.navigation-item i{
-    font-size: 25px;
-}
-
-.navigation-item .navigation-item-title{
-    font-family: bravery;
-    font-size: 1.01em;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-}
-
-.navigation-button{
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-}
-
-.navigation-search-button i{
-    color: var( --dark-gray );
-    font-weight: 600;
-    font-size: 23px;
-}
-
-.navigation-action-button .items{
-    display: block;
-    width: 60%;
-    height: 3px;
-    border-radius: 3px;
-    background-color: var( --dark-gray );
-    margin-bottom: 10%;
-}
-
-.navigation-contents.show,
-.navigation-contents{
-    max-height: 800px;
-    transition-duration: 0.3s;
-    overflow: hidden;
-}
-
-.navigation-contents.hide{
-    max-height: 0px;
-    transition-duration: 0.3s;
-}
-
-.btn{
-    box-shadow: none !important;
-}
-
-@media screen and ( min-width: 768px ) {
-    .navigation-item i{
-        font-size: 30px;
-    }
-    
-    .navigation-item .navigation-item-title{
-        font-size: 1.15em;
-    }
-
-    .navigation-contents.hide{
-        max-height: 350px;
     }
 }
